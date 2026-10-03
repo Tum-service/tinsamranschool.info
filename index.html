@@ -110,7 +110,7 @@ tbody tr:last-child td{border-bottom:none}
 .hero-stat-label{font-size:12.5px;opacity:.8;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
 .hero-latest{margin-top:16px;padding:10px 16px;background:rgba(255,255,255,.15);border-radius:10px;display:inline-block;position:relative;font-size:14px;font-weight:600}
 .modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;z-index:1000;padding:24px;overflow-y:auto}
-.modal-overlay.show{display:flex;z-index:1000}
+.modal-overlay.show{display:flex}
 .modal{background:#fff;border-radius:16px;max-width:900px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 24px 64px rgba(0,0,0,.25)}
 .modal-sm{max-width:480px}
 .modal-header{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:2}
@@ -128,7 +128,7 @@ tbody tr:last-child td{border-bottom:none}
 .form-group label{font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text)}
 .form-group label .req{color:var(--red)}
 .form-group input,.form-group select,.form-group textarea{padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;background:#fff;width:100%}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 .checkbox-group{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;padding:12px;background:#f8fafc;border:1.5px solid var(--border);border-radius:10px}
 .checkbox-group label{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;transition:background .15s}
 .checkbox-group label:hover{background:#e2e8f0}
@@ -182,14 +182,13 @@ tbody tr:last-child td{border-bottom:none}
 .att-status[data-s="ป"]{background:var(--orange-light);color:#9a3412}
 .att-status[data-s=""]{background:#f1f5f9;color:#cbd5e1}
 .att-status[data-s="ส"],.att-status[data-s="อ"]{background:#e2e8f0;color:#64748b}
-.att-status[data-s="H"]{background:#fef3c7;color:#92400e}
 .teacher-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:center;transition:all .2s}
 .teacher-card:hover{box-shadow:var(--shadow-lg)}
 .teacher-card .avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800;flex-shrink:0;overflow:hidden}
 .teacher-card .avatar img{width:100%;height:100%;object-fit:cover}
 .teacher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
 .teacher-classes{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
-.toast{position:fixed;bottom:28px;right:28px;background:#0f172a;color:#fff;padding:16px 22px;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.25);font-size:14px;font-weight:600;transform:translateY(120px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:9999;max-width:420px;display:flex;align-items:center;gap:10px}
+.toast{position:fixed;bottom:28px;right:28px;background:#0f172a;color:#fff;padding:16px 22px;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.25);font-size:14px;font-weight:600;transform:translateY(120px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:9999;max-width:420px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success{background:linear-gradient(135deg,#10b981,#059669)}
 .toast.error{background:linear-gradient(135deg,#ef4444,#dc2626)}
@@ -209,12 +208,14 @@ tbody tr:last-child td{border-bottom:none}
 .info-banner .icon{font-size:22px}
 .info-banner.danger{background:linear-gradient(135deg,#fee2e2,#fecaca);border-color:#fca5a5;color:#991b1b}
 .info-banner.success{background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-color:#6ee7b7;color:#065f46}
+.info-banner.info{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-color:#93c5fd;color:#1e40af}
+.info-banner.purple{background:linear-gradient(135deg,#ede9fe,#ddd6fe);border-color:#c4b5fd;color:#5b21b6}
 
-/* ============ LOGIN ============ */
+/* Auth */
 .auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#1e40af 0%,#7c3aed 100%);position:relative;overflow:hidden}
 .auth-page::before{content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%}
 .auth-page::after{content:'';position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.1),transparent 70%);border-radius:50%}
-.auth-card{background:#fff;border-radius:20px;box-shadow:0 24px 64px rgba(0,0,0,.3);max-width:440px;width:100%;padding:40px;position:relative;z-index:1;max-height:95vh;overflow-y:auto}
+.auth-card{background:#fff;border-radius:20px;box-shadow:0 24px 64px rgba(0,0,0,.3);max-width:460px;width:100%;padding:40px;position:relative;z-index:1;max-height:95vh;overflow-y:auto}
 .auth-logo{width:80px;height:80px;border-radius:20px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:38px;margin:0 auto 20px;box-shadow:0 8px 24px rgba(37,99,235,.3);overflow:hidden}
 .auth-logo img{width:100%;height:100%;object-fit:cover}
 .auth-title{text-align:center;font-size:22px;font-weight:800;margin-bottom:4px}
@@ -224,10 +225,10 @@ tbody tr:last-child td{border-bottom:none}
 .auth-tab.active{background:#fff;color:var(--primary);box-shadow:0 2px 6px rgba(0,0,0,.08)}
 .auth-form{display:none}
 .auth-form.active{display:block}
-.auth-form .form-group{margin-bottom:16px}
+.auth-form .form-group{margin-bottom:14px}
 .auth-form .form-group label{font-size:13px;font-weight:600;margin-bottom:6px;display:block}
-.auth-form .form-group input{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14.5px;font-family:inherit;background:#fff;width:100%}
-.auth-form .form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.auth-form .form-group input,.auth-form .form-group select{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14.5px;font-family:inherit;background:#fff;width:100%}
+.auth-form .form-group input:focus,.auth-form .form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 .auth-checkbox{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:13.5px;font-weight:600;cursor:pointer;user-select:none}
 .auth-checkbox input{width:18px;height:18px;accent-color:var(--primary);cursor:pointer}
 .auth-btn{width:100%;padding:14px;border-radius:10px;border:none;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 4px 12px rgba(37,99,235,.25);transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px}
@@ -237,8 +238,12 @@ tbody tr:last-child td{border-bottom:none}
 .auth-footer a{color:var(--primary);font-weight:700;cursor:pointer;text-decoration:none}
 .auth-info{background:var(--primary-light);padding:12px 14px;border-radius:10px;font-size:12.5px;color:#1e40af;margin-bottom:16px;display:flex;gap:8px;align-items:flex-start;font-weight:500}
 .auth-info .icon{font-size:16px;flex-shrink:0}
+.auth-class-box{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px;background:#f8fafc;border:1.5px solid var(--border);border-radius:10px;margin-top:6px}
+.auth-class-box label{display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:12.5px;font-weight:600}
+.auth-class-box label:hover{background:#e2e8f0}
+.auth-class-box input[type="checkbox"]{width:16px;height:16px;accent-color:var(--primary);cursor:pointer}
 
-/* ============ HOLD TO DELETE ============ */
+/* Delete modal */
 .delete-modal-icon{font-size:64px;text-align:center;margin:4px 0 12px}
 .delete-warning{background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;border-radius:12px;padding:14px 18px;margin-bottom:16px;color:#991b1b;font-weight:600;font-size:13.5px;display:flex;gap:10px;align-items:flex-start}
 .delete-warning .icon{font-size:20px;flex-shrink:0}
@@ -260,7 +265,7 @@ tbody tr:last-child td{border-bottom:none}
 .delete-hold-btn:disabled{opacity:.6;cursor:not-allowed}
 .round-text{font-size:13px;color:var(--muted);text-align:center;margin-top:8px;font-weight:600}
 
-/* ============ DELETE REQUEST CARDS ============ */
+/* Delete requests & Users */
 .del-req-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;display:flex;gap:14px;align-items:flex-start;transition:all .15s}
 .del-req-card:hover{box-shadow:var(--shadow)}
 .del-req-card.pending{border-left:4px solid var(--yellow)}
@@ -274,8 +279,6 @@ tbody tr:last-child td{border-bottom:none}
 .del-req-card .meta span{display:flex;align-items:center;gap:4px}
 .del-req-card .note{font-size:12.5px;padding:8px 12px;background:#f8fafc;border-radius:8px;margin-top:8px;color:var(--text)}
 .del-req-card .actions{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap}
-
-/* ============ USER CARD ============ */
 .user-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:center;transition:all .2s}
 .user-card:hover{box-shadow:var(--shadow-lg)}
 .user-card.pending{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-color:#fcd34d}
@@ -288,12 +291,25 @@ tbody tr:last-child td{border-bottom:none}
 .user-role-badge.deputy_director{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff}
 .user-role-badge.teacher{background:#f1f5f9;color:#475569}
 
-/* ============ PRINT ============ */
-@media print {
-  @page { size: A4; margin: 6mm 8mm; }
+/* Promotion page */
+.promo-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
+.promo-step{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;transition:all .2s}
+.promo-step.active{border-color:var(--primary);box-shadow:0 4px 16px rgba(37,99,235,.15)}
+.promo-step-num{position:absolute;top:-12px;left:20px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;box-shadow:0 4px 12px rgba(37,99,235,.3)}
+.promo-step h3{font-size:15px;font-weight:700;margin:8px 0}
+.promo-step p{font-size:13px;color:var(--muted)}
+.promo-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:14px}
+.promo-class-card{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.promo-class-card .from{font-size:12px;color:var(--muted);font-weight:600}
+.promo-class-card .count{font-size:20px;font-weight:800;color:var(--primary);margin:4px 0}
+.promo-class-card .to{font-size:13px;font-weight:700;color:var(--green)}
+
+/* Print */
+@media print{
+  @page{size:A4;margin:6mm 8mm}
   html,body{background:#fff}
   body{font-size:10px}
-  .navbar,.no-print,.btn,.tabs,.filter-bar,.modal-close,.modal-footer,.sync-status,.info-banner,.auth-page,.nav-user-menu{display:none!important}
+  .navbar,.no-print,.btn,.filter-bar,.modal-close,.modal-footer,.sync-status,.info-banner,.auth-page,.nav-user-menu{display:none!important}
   .container{max-width:none;padding:0}
   .card{box-shadow:none;border:0;margin-bottom:0;padding:0;page-break-inside:auto}
   .page-title,.page-sub{display:none}
@@ -335,6 +351,7 @@ tbody tr:last-child td{border-bottom:none}
   .auth-card{padding:28px 20px}
   .user-grid,.teacher-grid{grid-template-columns:1fr}
   .nav-user-info{display:none}
+  .auth-class-box{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -352,7 +369,7 @@ tbody tr:last-child td{border-bottom:none}
       <button class="auth-tab" onclick="switchAuthTab('signup')">📝 สมัครสมาชิก</button>
     </div>
 
-    <!-- LOGIN FORM -->
+    <!-- LOGIN -->
     <form class="auth-form active" id="loginForm" onsubmit="event.preventDefault();doLogin()">
       <div class="form-group">
         <label>ชื่อผู้ใช้</label>
@@ -372,7 +389,7 @@ tbody tr:last-child td{border-bottom:none}
       </div>
     </form>
 
-    <!-- SIGNUP FORM -->
+    <!-- SIGNUP -->
     <form class="auth-form" id="signupForm" onsubmit="event.preventDefault();doSignup()">
       <div class="auth-info">
         <span class="icon">ℹ️</span>
@@ -380,15 +397,17 @@ tbody tr:last-child td{border-bottom:none}
       </div>
       <div class="form-group">
         <label>ชื่อผู้ใช้ <span style="color:var(--red)">*</span></label>
-        <input type="text" id="suUsername" placeholder="a-z, 0-9, _ . - (3 ตัวขึ้นไป)" required>
+        <input type="text" id="suUsername" placeholder="อย่างน้อย 3 ตัวอักษร (ไทย/อังกฤษ/ตัวเลข)" required>
       </div>
-      <div class="form-group">
-        <label>รหัสผ่าน <span style="color:var(--red)">*</span></label>
-        <input type="password" id="suPassword" placeholder="อย่างน้อย 4 ตัวอักษร" required>
-      </div>
-      <div class="form-group">
-        <label>ยืนยันรหัสผ่าน <span style="color:var(--red)">*</span></label>
-        <input type="password" id="suPassword2" required>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>รหัสผ่าน <span style="color:var(--red)">*</span></label>
+          <input type="password" id="suPassword" placeholder="อย่างน้อย 4 ตัวอักษร" required>
+        </div>
+        <div class="form-group">
+          <label>ยืนยันรหัสผ่าน <span style="color:var(--red)">*</span></label>
+          <input type="password" id="suPassword2" required>
+        </div>
       </div>
       <div class="form-group">
         <label>ชื่อ-สกุล <span style="color:var(--red)">*</span></label>
@@ -398,22 +417,40 @@ tbody tr:last-child td{border-bottom:none}
         <label>เบอร์โทร</label>
         <input type="tel" id="suPhone" maxlength="10">
       </div>
-      <div class="form-group">
-        <label>ตำแหน่งที่ต้องการ</label>
-        <select id="suRole">
-          <option value="teacher">ครู</option>
-          <option value="deputy_director">รองผู้อำนวยการ</option>
-          <option value="director">ผู้อำนวยการ</option>
-        </select>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>ตำแหน่ง</label>
+          <select id="suPosition">
+            <option value="">- เลือกตำแหน่ง -</option>
+            <option value="ครูอัตราจ้าง">ครูอัตราจ้าง</option>
+            <option value="พนักงานราชการ">พนักงานราชการ</option>
+            <option value="ครู คศ.1">ครู คศ.1</option>
+            <option value="ครู คศ.2">ครู คศ.2</option>
+            <option value="ครู คศ.3">ครู คศ.3</option>
+            <option value="ครู คศ.4">ครู คศ.4</option>
+            <option value="ครู คศ.5">ครู คศ.5</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>บทบาทในระบบ</label>
+          <select id="suRole">
+            <option value="teacher">ครู</option>
+            <option value="deputy_director">รองผู้อำนวยการ</option>
+            <option value="director">ผู้อำนวยการ</option>
+          </select>
+        </div>
       </div>
-      <button type="submit" class="auth-btn" id="btnSignup">📝 สมัครสมาชิก</button>
+      <div class="form-group">
+        <label>ครูประจำชั้น (เลือกได้หลายชั้น)</label>
+        <div class="auth-class-box" id="suClassesBox"></div>
+      </div>
+      <button type="submit" class="auth-btn" id="btnSignup" style="margin-top:16px">📝 สมัครสมาชิก</button>
     </form>
   </div>
 </div>
 
 <!-- ============ MAIN APP ============ -->
 <div id="appRoot" style="display:none">
-
 <nav class="navbar">
   <div class="navbar-inner">
     <a class="brand" onclick="navigate('home')">
@@ -430,6 +467,7 @@ tbody tr:last-child td{border-bottom:none}
       <a data-page="reports" onclick="navigate('reports')">📑 <span class="label">รายงาน</span></a>
       <a data-page="users" id="navUsers" style="display:none" onclick="navigate('users')">🧑‍💼 <span class="label">ผู้ใช้</span> <span class="nav-badge" id="pendingUsersBadge" style="display:none">0</span></a>
       <a data-page="deletes" id="navDeletes" onclick="navigate('deletes')">🗑️ <span class="label">คำขอลบ</span> <span class="nav-badge" id="pendingDeletesBadge" style="display:none">0</span></a>
+      <a data-page="promotion" id="navPromotion" style="display:none" onclick="navigate('promotion')">🎓 <span class="label">เลื่อนชั้น</span></a>
       <a data-page="settings" id="navSettings" style="display:none" onclick="navigate('settings')">⚙️ <span class="label">ตั้งค่า</span></a>
     </div>
     <div class="sync-status" id="syncStatus">
@@ -453,7 +491,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </nav>
 
-<!-- ============ HOME ============ -->
+<!-- HOME -->
 <div class="page active" id="page-home">
   <div class="container">
     <div class="hero">
@@ -475,7 +513,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ DASHBOARD ============ -->
+<!-- DASHBOARD -->
 <div class="page" id="page-dashboard">
   <div class="container">
     <h1 class="page-title">Dashboard สถิติการมาเรียน</h1>
@@ -505,7 +543,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ ATTENDANCE ============ -->
+<!-- ATTENDANCE -->
 <div class="page" id="page-attendance">
   <div class="container">
     <h1 class="page-title">บันทึกการมาเรียน</h1>
@@ -536,7 +574,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ INFO ============ -->
+<!-- INFO -->
 <div class="page" id="page-info">
   <div class="container">
     <h1 class="page-title">ข้อมูลนักเรียน</h1>
@@ -558,7 +596,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ STUDENTS ============ -->
+<!-- STUDENTS -->
 <div class="page" id="page-students">
   <div class="container">
     <h1 class="page-title">จัดการข้อมูลนักเรียน</h1>
@@ -582,7 +620,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ TEACHERS ============ -->
+<!-- TEACHERS -->
 <div class="page" id="page-teachers">
   <div class="container">
     <h1 class="page-title">ครูประจำชั้น</h1>
@@ -596,7 +634,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ REPORTS ============ -->
+<!-- REPORTS -->
 <div class="page" id="page-reports">
   <div class="container">
     <h1 class="page-title">รายงานการมาเรียน</h1>
@@ -623,7 +661,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ USERS ============ -->
+<!-- USERS -->
 <div class="page" id="page-users">
   <div class="container">
     <h1 class="page-title">จัดการผู้ใช้</h1>
@@ -640,7 +678,7 @@ tbody tr:last-child td{border-bottom:none}
     <div class="card">
       <div class="filter-bar">
         <label>ค้นหา:</label>
-        <div class="search-box"><input type="text" id="searchUser" placeholder="ชื่อ / ชื่อผู้ใช้..."></div>
+        <div class="search-box"><input type="text" id="searchUser" placeholder="ชื่อ / ชื่อผู้ใช้..." oninput="renderUsers()"></div>
         <button class="btn btn-ghost" onclick="loadUsers()">🔄 โหลดใหม่</button>
         <button class="btn btn-primary" onclick="openUserModal()" style="margin-left:auto" id="btnAddUser">➕ เพิ่มผู้ใช้</button>
       </div>
@@ -653,16 +691,15 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ DELETE REQUESTS ============ -->
+<!-- DELETE REQUESTS -->
 <div class="page" id="page-deletes">
   <div class="container">
     <h1 class="page-title">คำขอลบข้อมูล</h1>
     <p class="page-sub" id="deletesSubtitle">ประวัติการขอลบ · อนุมัติ/ปฏิเสธ</p>
-
     <div class="card">
       <div class="filter-bar">
         <label>สถานะ:</label>
-        <select id="filterDelStatus">
+        <select id="filterDelStatus" onchange="loadDeleteRequests()">
           <option value="">ทั้งหมด</option>
           <option value="pending" selected>รออนุมัติ</option>
           <option value="approved">อนุมัติแล้ว</option>
@@ -672,12 +709,72 @@ tbody tr:last-child td{border-bottom:none}
         <button class="btn btn-ghost" onclick="loadDeleteRequests()">🔄 โหลดใหม่</button>
       </div>
     </div>
-
     <div id="deleteRequestsList"></div>
   </div>
 </div>
 
-<!-- ============ SETTINGS ============ -->
+<!-- PROMOTION -->
+<div class="page" id="page-promotion">
+  <div class="container">
+    <h1 class="page-title">เลื่อนชั้น / เริ่มปีการศึกษาใหม่</h1>
+    <p class="page-sub">อัปเดตชั้นเรียนนักเรียน ครู และเริ่มปีการศึกษาใหม่</p>
+
+    <div class="info-banner danger">
+      <span class="icon">⚠️</span>
+      <div>
+        <b>โปรดอ่านก่อนดำเนินการ!</b><br>
+        • ระบบจะ <b>สำรองข้อมูลอัตโนมัติ</b> ทุกชีทก่อนดำเนินการ<br>
+        • นักเรียนจะถูก <b>เลื่อนชั้นขึ้น 1 ระดับ</b> ทุกคน<br>
+        • นักเรียน ป.6 → <b>จบการศึกษาและลบออกจากระบบ</b><br>
+        • ครูประจำชั้นจะเลื่อนชั้นตามนักเรียน<br>
+        • <b>ไม่สามารถย้อนกลับได้</b> — ต้องสำรองก่อนเท่านั้น
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title">📊 ปีการศึกษาปัจจุบัน</h2>
+      <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+        <div style="text-align:center;padding:20px 40px;background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-radius:12px;border:1px solid #93c5fd">
+          <div style="font-size:12px;font-weight:700;color:#1e40af;text-transform:uppercase;letter-spacing:.4px">ปีการศึกษาปัจจุบัน</div>
+          <div style="font-size:36px;font-weight:800;color:#1e40af;line-height:1.1" id="currentYearBig">—</div>
+        </div>
+        <div style="text-align:center;padding:20px 40px;background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-radius:12px;border:1px solid #6ee7b7">
+          <div style="font-size:12px;font-weight:700;color:#065f46;text-transform:uppercase;letter-spacing:.4px">ปีถัดไป</div>
+          <div style="font-size:36px;font-weight:800;color:#065f46;line-height:1.1" id="nextYearBig">—</div>
+        </div>
+        <button class="btn btn-primary" onclick="loadPromotionPreview()">🔄 โหลดข้อมูลล่าสุด</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title">📋 ตัวอย่างการเลื่อนชั้น (Preview)</h2>
+      <div id="promoBreakdown" class="promo-breakdown"></div>
+      <div id="promoSummary" style="margin-top:16px;padding:14px;background:#fef9c3;border-radius:10px;border:1px solid #fcd34d;font-size:14px;font-weight:600;color:#78350f">
+        กำลังโหลด...
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title">🚀 ดำเนินการเลื่อนชั้น</h2>
+      <p style="color:var(--muted);font-size:13.5px;margin-bottom:16px">
+        เมื่อกดปุ่มด้านล่าง ระบบจะ:<br>
+        1. สำรองข้อมูลทุกชีท (ข้อมูล, พค, มิย, ..., มีค) เก็บไว้ชื่อ <code>ชีทเดิม_ปี</code><br>
+        2. เลื่อนชั้นนักเรียนทุกคนขึ้น 1 ระดับ (ป.6 จบการศึกษา)<br>
+        3. ล้างข้อมูลการมาเรียนในชีทเดือน (เก็บแค่ชื่อ-เลขที่)<br>
+        4. เลื่อนชั้นครูประจำชั้นตามนักเรียน<br>
+        5. อัปเดตปีการศึกษา
+      </p>
+      <button class="btn btn-danger" id="btnPromote" onclick="confirmPromotion()">🚀 เริ่มปีการศึกษาใหม่</button>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title">📜 ประวัติการเลื่อนชั้น</h2>
+      <div id="promoHistory"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS -->
 <div class="page" id="page-settings">
   <div class="container">
     <h1 class="page-title">ตั้งค่าโรงเรียน</h1>
@@ -715,10 +812,9 @@ tbody tr:last-child td{border-bottom:none}
     </div>
   </div>
 </div>
-
 </div><!-- /appRoot -->
 
-<!-- ============ MODAL: Student ============ -->
+<!-- MODAL: Student -->
 <div class="modal-overlay" id="studentModalOverlay" onclick="if(event.target===this)closeStudentModal()">
   <div class="modal">
     <div class="modal-header"><div class="modal-title" id="studentModalTitle">เพิ่มนักเรียนใหม่</div><button class="modal-close" onclick="closeStudentModal()">×</button></div>
@@ -801,7 +897,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ MODAL: Teacher ============ -->
+<!-- MODAL: Teacher -->
 <div class="modal-overlay" id="teacherModalOverlay" onclick="if(event.target===this)closeTeacherModal()">
   <div class="modal">
     <div class="modal-header"><div class="modal-title" id="teacherModalTitle">เพิ่มครูใหม่</div><button class="modal-close" onclick="closeTeacherModal()">×</button></div>
@@ -861,7 +957,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ MODAL: User ============ -->
+<!-- MODAL: User -->
 <div class="modal-overlay" id="userModalOverlay" onclick="if(event.target===this)closeUserModal()">
   <div class="modal">
     <div class="modal-header"><div class="modal-title" id="userModalTitle">เพิ่มผู้ใช้</div><button class="modal-close" onclick="closeUserModal()">×</button></div>
@@ -886,6 +982,21 @@ tbody tr:last-child td{border-bottom:none}
               <option value="admin">ผู้ดูแลระบบ</option>
             </select>
           </div>
+          <div class="form-group">
+            <label>ตำแหน่ง</label>
+            <select id="u_position">
+              <option value="">- ไม่ระบุ -</option>
+              <option value="ครูอัตราจ้าง">ครูอัตราจ้าง</option>
+              <option value="พนักงานราชการ">พนักงานราชการ</option>
+              <option value="ครู คศ.1">ครู คศ.1</option>
+              <option value="ครู คศ.2">ครู คศ.2</option>
+              <option value="ครู คศ.3">ครู คศ.3</option>
+              <option value="ครู คศ.4">ครู คศ.4</option>
+              <option value="ครู คศ.5">ครู คศ.5</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid" style="margin-top:14px">
           <div class="form-group">
             <label>สถานะ</label>
             <select id="u_status">
@@ -919,14 +1030,14 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ MODAL: Transfer Admin ============ -->
+<!-- MODAL: Transfer Admin -->
 <div class="modal-overlay" id="transferModalOverlay" onclick="if(event.target===this)closeTransferModal()">
   <div class="modal modal-sm">
     <div class="modal-header"><div class="modal-title" style="color:var(--purple)">🔄 โอนสิทธิ์ผู้ดูแลระบบ</div><button class="modal-close" onclick="closeTransferModal()">×</button></div>
     <div class="modal-body">
       <div class="info-banner danger">
         <span class="icon">⚠️</span>
-        <span><b>โปรดอ่านก่อนยืนยัน!</b><br>เมื่อโอนสิทธิ์แล้ว:<br>• บัญชีของคุณจะกลายเป็น "ครู" ทันที<br>• บัญชีปลายทางจะกลายเป็น "ผู้ดูแลระบบ"<br>• <b>ไม่สามารถย้อนกลับได้!</b></div>
+        <span><b>โปรดอ่านก่อนยืนยัน!</b><br>เมื่อโอนสิทธิ์แล้ว:<br>• บัญชีของคุณจะกลายเป็น "ครู" ทันที<br>• บัญชีปลายทางจะกลายเป็น "ผู้ดูแลระบบ"<br>• <b>ไม่สามารถย้อนกลับได้!</b></span>
       </div>
       <div class="form-group">
         <label>เลือกผู้ใช้ปลายทาง</label>
@@ -940,7 +1051,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ MODAL: Delete Confirm (Hold 3 rounds) ============ -->
+<!-- MODAL: Delete Student (Hold 3 rounds) -->
 <div class="modal-overlay" id="deleteModalOverlay">
   <div class="modal modal-sm">
     <div class="modal-header">
@@ -956,10 +1067,8 @@ tbody tr:last-child td{border-bottom:none}
           <div style="font-size:12.5px;font-weight:500">ต้องผ่านการอนุมัติจาก <b>ผอ. / รอง ผอ. / Admin</b> ก่อน</div>
         </div>
       </div>
-
       <div id="deleteStep1">
         <div class="delete-student-info" id="deleteStudentInfo"></div>
-
         <div style="text-align:center;font-size:13.5px;color:var(--text);font-weight:700;margin:14px 0 8px">
           🔒 ขั้นตอนที่ 1/2 — กดปุ่มค้างไว้ 5 วินาที จำนวน 3 ครั้ง
         </div>
@@ -969,7 +1078,6 @@ tbody tr:last-child td{border-bottom:none}
           <div class="hold-dot" id="holdDot3"></div>
         </div>
         <div class="round-text" id="roundText">รอบที่ 1 จาก 3</div>
-
         <button type="button" class="delete-hold-btn" id="deleteHoldBtn"
                 onmousedown="startDeleteHold(event)" ontouchstart="startDeleteHold(event);event.preventDefault()"
                 onmouseup="cancelDeleteHold()" ontouchend="cancelDeleteHold()"
@@ -979,7 +1087,6 @@ tbody tr:last-child td{border-bottom:none}
           <div class="hold-label">🔴 กดค้าง 5 วินาที</div>
         </button>
       </div>
-
       <div id="deleteStep2" style="display:none">
         <div style="text-align:center;font-size:13.5px;color:var(--text);font-weight:700;margin:14px 0">
           ✅ ยืนยันครั้งที่ 1/2 สำเร็จ!
@@ -1003,7 +1110,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ MODAL: My Profile / Change Password / Profile ============ -->
+<!-- MODAL: Profile -->
 <div class="modal-overlay" id="profileModalOverlay" onclick="if(event.target===this)closeProfileModal()">
   <div class="modal" style="max-width:1100px">
     <div class="modal-header"><div class="modal-title" id="profileModalTitle">รายงานรายบุคคล</div><button class="modal-close no-print" onclick="closeProfileModal()">×</button></div>
@@ -1011,6 +1118,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
+<!-- MODAL: My Profile -->
 <div class="modal-overlay" id="myProfileModalOverlay" onclick="if(event.target===this)closeMyProfileModal()">
   <div class="modal">
     <div class="modal-header"><div class="modal-title">👤 ข้อมูลของฉัน</div><button class="modal-close" onclick="closeMyProfileModal()">×</button></div>
@@ -1024,23 +1132,15 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
+<!-- MODAL: Change Password -->
 <div class="modal-overlay" id="changePwdModalOverlay" onclick="if(event.target===this)closeChangePwdModal()">
   <div class="modal modal-sm">
     <div class="modal-header"><div class="modal-title">🔑 เปลี่ยนรหัสผ่าน</div><button class="modal-close" onclick="closeChangePwdModal()">×</button></div>
     <form id="changePwdForm" onsubmit="event.preventDefault();saveChangePwd()">
       <div class="modal-body">
-        <div class="form-group" style="margin-bottom:14px">
-          <label>รหัสผ่านเดิม</label>
-          <input type="password" id="oldPwd" required>
-        </div>
-        <div class="form-group" style="margin-bottom:14px">
-          <label>รหัสผ่านใหม่</label>
-          <input type="password" id="newPwd" required minlength="4">
-        </div>
-        <div class="form-group">
-          <label>ยืนยันรหัสผ่านใหม่</label>
-          <input type="password" id="newPwd2" required minlength="4">
-        </div>
+        <div class="form-group" style="margin-bottom:14px"><label>รหัสผ่านเดิม</label><input type="password" id="oldPwd" required></div>
+        <div class="form-group" style="margin-bottom:14px"><label>รหัสผ่านใหม่</label><input type="password" id="newPwd" required minlength="4"></div>
+        <div class="form-group"><label>ยืนยันรหัสผ่านใหม่</label><input type="password" id="newPwd2" required minlength="4"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-ghost" onclick="closeChangePwdModal()">ยกเลิก</button>
@@ -1072,10 +1172,10 @@ const LS_KEY_REMEMBER = 'bt_remember';
 
 let SCHOOL_SETTINGS = {};
 let STUDENT_PHOTO_CACHE = {};
-let TEACHER_LIST_CACHE = {};
+let TEACHER_LIST_CACHE = [];
 let CURRENT_USER = null;
 let CURRENT_TOKEN = '';
-let REFRESH_TIMER = null;
+let CURRENT_YEAR = 2569;
 
 /* ============================================================
  * API
@@ -1142,7 +1242,13 @@ const API = {
   getStudentReport(studentRow, fromDate, toDate) { return this.call('getStudentReport', { studentRow, fromDate: fromDate || '', toDate: toDate || '' }); },
   getClassDailyTable(cls, fm, fy, tm, ty) { return this.call('getClassDailyTable', { class: cls || 'all', fromMonth: fm, fromYear: fy, toMonth: tm, toYear: ty }); },
   getHomeStats() { return this.call('getHomeStats'); },
-  getSyncVersion() { return this.call('getSyncVersion'); }
+  getSyncVersion() { return this.call('getSyncVersion'); },
+
+  /* Promotion */
+  getCurrentAcademicYear() { return this.call('getCurrentAcademicYear'); },
+  previewPromotion() { return this.call('previewPromotion'); },
+  startNewAcademicYear(data) { return this.call('startNewAcademicYear', {}, 'POST', data || {}); },
+  getPromotionHistory() { return this.call('getPromotionHistory'); }
 };
 
 /* ============================================================
@@ -1241,20 +1347,22 @@ async function doSignup() {
   const name = $('suName').value.trim();
   const phone = $('suPhone').value.trim();
   const role = $('suRole').value;
+  const position = $('suPosition').value;
+  const classes = Array.from($('suClassesBox').querySelectorAll('input:checked')).map(cb => cb.value);
 
   if (!username || !password || !name) { showToast('กรุณากรอกข้อมูลให้ครบ', 'error'); return; }
   if (password !== password2) { showToast('รหัสผ่านทั้งสองไม่ตรงกัน', 'error'); return; }
   if (password.length < 4) { showToast('รหัสผ่านอย่างน้อย 4 ตัวอักษร', 'error'); return; }
-  if (!/^[a-zA-Z0-9_.-]{3,}$/.test(username)) { showToast('ชื่อผู้ใช้ไม่ถูกต้อง', 'error'); return; }
+  if (username.length < 3) { showToast('ชื่อผู้ใช้ต้องมี 3 ตัวอักษรขึ้นไป', 'error'); return; }
+  if (/\s/.test(username)) { showToast('ชื่อผู้ใช้ห้ามมีช่องว่าง', 'error'); return; }
+  if (username.indexOf('@') >= 0) { showToast('ชื่อผู้ใช้ห้ามมี @ (ห้ามใช้อีเมล)', 'error'); return; }
 
   const btn = $('btnSignup'); btn.disabled = true;
   const orig = btn.innerHTML; btn.innerHTML = '<span class="loading"></span> กำลังสมัคร...';
   try {
-    const res = await API.signup({ username, password, name, phone, role });
-    showToast(res.message || 'สมัครสำเร็จ รอการอนุมัติ');
-    // เคลียร์ฟอร์ม
+    const res = await API.signup({ username, password, name, phone, role, position, classes });
+    showToast(res.message || 'สมัครสำเร็จ รอการอนุมัติ', 'success', 5000);
     $('signupForm').reset();
-    // ไปหน้า login
     switchAuthTab('login');
     $('loginUsername').value = username;
     $('loginPassword').focus();
@@ -1310,6 +1418,7 @@ async function enterApp() {
   updateUserUI();
   await loadSettings();
   try { TEACHER_LIST_CACHE = await API.getTeachers(); } catch(e) {}
+  try { const y = await API.getCurrentAcademicYear(); CURRENT_YEAR = y.year || 2569; } catch(e) {}
   updateNavVisibility();
   loadHomeStats();
   startPolling();
@@ -1329,14 +1438,14 @@ function updateUserUI() {
 function updateNavVisibility() {
   $('navUsers').style.display = isManager() ? '' : 'none';
   $('navSettings').style.display = isManager() ? '' : 'none';
-  $('navDeletes').style.display = (isApprover() || true) ? '' : 'none'; // ทุกคนเห็นคำขอของตัวเอง
+  $('navPromotion').style.display = isAdmin() ? '' : 'none';
 }
 
 function toggleUserMenu(e) {
   e.stopPropagation();
   $('navUserMenu').classList.toggle('show');
 }
-document.addEventListener('click', () => { $('navUserMenu')?.classList.remove('show'); });
+document.addEventListener('click', () => { const m = $('navUserMenu'); if (m) m.classList.remove('show'); });
 
 /* ============================================================
  * SETTINGS
@@ -1395,6 +1504,7 @@ function navigate(page) {
   if (page === 'reports') initReports();
   if (page === 'users') loadUsers();
   if (page === 'deletes') loadDeleteRequests();
+  if (page === 'promotion') initPromotion();
   if (page === 'settings') loadSettings();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1408,11 +1518,12 @@ async function loadHomeStats() {
     $('heroStudents').textContent = students.length;
     $('heroPresent').textContent = dash.totals.present;
     $('heroPercent').textContent = dash.totals.percent + '%';
+    let yearInfo = home.academicYear ? ` · ปีการศึกษา ${home.academicYear}` : '';
     if (home.latestFound) {
       const [y,m,d] = home.latestDate.split('-');
-      $('heroLatest').innerHTML = `📅 <b>บันทึกการมาเรียนล่าสุด:</b> วันที่ ${+d} ${MONTHS_TH[+m]} ${+y+543}`;
+      $('heroLatest').innerHTML = `📅 <b>บันทึกการมาเรียนล่าสุด:</b> วันที่ ${+d} ${MONTHS_TH[+m]} ${+y+543}${yearInfo}`;
     } else {
-      $('heroLatest').innerHTML = `📅 <b>ยังไม่มีการบันทึกการมาเรียน</b>`;
+      $('heroLatest').innerHTML = `📅 <b>ยังไม่มีการบันทึกการมาเรียน</b>${yearInfo}`;
     }
   } catch(e) { console.error(e); }
 }
@@ -1441,6 +1552,10 @@ async function loadAttendance() {
   try {
     const res = await API.getAttendance(currentDate, currentClass);
     currentStudents = res.records.map(r => ({ ...r, status: r.status || '' }));
+    if (!Object.keys(STUDENT_PHOTO_CACHE).length) {
+      const all = await API.getStudentsFull();
+      all.forEach(s => { if(s.photo) STUDENT_PHOTO_CACHE[s.row]=s.photo; });
+    }
     renderTable(); setSyncStatus(true, 'พร้อมใช้งาน');
   } catch(e) {
     $('tbody').innerHTML = `<tr><td colspan="4" style="text-align:center;padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</td></tr>`;
@@ -1489,7 +1604,7 @@ async function saveAll() {
 }
 
 /* ============================================================
- * INFO PAGE
+ * INFO
  * ============================================================ */
 let allInfoStudents = [], infoInit = false;
 function initInfoPage() {
@@ -1637,7 +1752,6 @@ function renderProfile(data) {
  * STUDENTS CRUD
  * ============================================================ */
 let allStudents = [], studentsInit = false, _studentPhotoTemp = null;
-
 function initStudents() {
   if (!studentsInit) {
     studentsInit = true;
@@ -1760,16 +1874,13 @@ function requestDeleteStudent(row, name) {
       <div class="name">${escapeHtml(student ? (student.fullName || student.nickname || name) : name)}</div>
       <div class="meta">${student ? '🏫 ' + (CLASS_LABELS[student.class] || student.class) : ''}${student && student.nickname ? ' · 💬 ' + escapeHtml(student.nickname) : ''}</div>
     </div>`;
-
   $('deleteModalOverlay').classList.add('show');
 }
-
 function closeDeleteModal() {
   cancelDeleteHold();
   _deleteTarget = null;
   $('deleteModalOverlay').classList.remove('show');
 }
-
 function startDeleteHold(e) {
   if (!_deleteTarget) return;
   if (_holdCurrentRound >= HOLD_ROUNDS) return;
@@ -1789,7 +1900,6 @@ function startDeleteHold(e) {
   };
   _holdRAF = requestAnimationFrame(step);
 }
-
 function cancelDeleteHold() {
   if (_holdRAF) { cancelAnimationFrame(_holdRAF); _holdRAF = null; }
   $('holdProgress').style.width = '0%';
@@ -1800,20 +1910,17 @@ function cancelDeleteHold() {
     else if (_holdCurrentRound === 2) $('holdDot3').className = 'hold-dot';
   }
 }
-
 function finishHoldRound() {
   cancelDeleteHold();
   _holdCurrentRound++;
   const dotEl = _holdCurrentRound === 1 ? $('holdDot1') : _holdCurrentRound === 2 ? $('holdDot2') : $('holdDot3');
   dotEl.className = 'hold-dot done';
   $('holdProgress').style.width = '0%';
-
   if (_holdCurrentRound < HOLD_ROUNDS) {
     $('roundText').textContent = `รอบที่ ${_holdCurrentRound + 1} จาก ${HOLD_ROUNDS}`;
     $('deleteHoldBtn').querySelector('.hold-label').innerHTML = `🔴 กดค้างอีก ${HOLD_ROUNDS - _holdCurrentRound} ครั้ง`;
     showToast(`สำเร็จรอบ ${_holdCurrentRound}/${HOLD_ROUNDS}`, 'info', 1500);
   } else {
-    // ครบ 3 รอบ → ไปขั้นตอนที่ 2
     $('deleteStep1').style.display = 'none';
     $('deleteStep2').style.display = '';
     $('btnConfirmRequest').style.display = '';
@@ -1821,7 +1928,6 @@ function finishHoldRound() {
     showToast('ผ่านการยืนยันขั้นที่ 1 แล้ว', 'success');
   }
 }
-
 async function submitDeleteRequest() {
   if (!_deleteTarget) return;
   const teacherName = $('deleteTeacherName').value.trim();
@@ -1858,7 +1964,6 @@ async function loadDeleteRequests() {
     container.innerHTML = `<div class="card" style="color:var(--red);padding:40px">⚠️ ${escapeHtml(e.message)}</div>`;
   }
 }
-
 function renderDeleteRequestCard(r) {
   const statusMap = { pending:'รออนุมัติ', approved:'อนุมัติแล้ว', rejected:'ปฏิเสธ', cancelled:'ยกเลิก', failed:'ล้มเหลว' };
   const iconMap = { pending:'⏳', approved:'✅', rejected:'❌', cancelled:'🚫', failed:'⚠️' };
@@ -1866,7 +1971,6 @@ function renderDeleteRequestCard(r) {
   const isPending = r.status === 'pending';
   const canApprove = isPending && isApprover();
   const canCancel = isPending && (r.requestedBy === CURRENT_USER.username || isAdmin());
-
   return `<div class="del-req-card ${r.status}">
     <div class="icon-wrap">${iconMap[r.status] || '📋'}</div>
     <div class="content">
@@ -1891,44 +1995,37 @@ function renderDeleteRequestCard(r) {
     </div>
   </div>`;
 }
-
 async function approveDeleteReq(id) {
   if (!confirm(`⚠️ ยืนยันการอนุมัติคำขอ #${id}?\n\nเมื่ออนุมัติแล้ว นักเรียนจะถูกลบออกจากระบบทันที (ไม่สามารถกู้คืนได้)`)) return;
   try {
     const res = await API.approveDelete({ requestId: id });
     showToast(res.message || 'อนุมัติสำเร็จ');
-    loadDeleteRequests();
-    updateBadges();
+    loadDeleteRequests(); updateBadges();
     if (currentPage === 'students') loadStudents();
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
-
 async function rejectDeleteReq(id) {
   const reason = prompt('เหตุผลการปฏิเสธ (ไม่บังคับ):');
   if (reason === null) return;
   try {
     const res = await API.rejectDelete({ requestId: id, reason });
     showToast(res.message || 'ปฏิเสธสำเร็จ');
-    loadDeleteRequests();
-    updateBadges();
+    loadDeleteRequests(); updateBadges();
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
-
 async function cancelDeleteReq(id) {
   if (!confirm('ยกเลิกคำขอนี้?')) return;
   try {
     await API.cancelDeleteRequest({ requestId: id });
     showToast('ยกเลิกคำขอสำเร็จ');
-    loadDeleteRequests();
-    updateBadges();
+    loadDeleteRequests(); updateBadges();
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
 
 /* ============================================================
  * USERS PAGE
  * ============================================================ */
-let allUsers = [], usersInit = false;
-
+let allUsers = [];
 async function loadUsers() {
   if (!isManager()) { showToast('คุณไม่มีสิทธิ์เข้าถึง', 'error'); navigate('home'); return; }
   try {
@@ -1941,7 +2038,6 @@ async function loadUsers() {
     updateBadges();
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
-
 function renderUsers() {
   const q = ($('searchUser').value || '').trim().toLowerCase();
   let list = allUsers.filter(u => u.status !== 'pending');
@@ -1955,16 +2051,18 @@ function renderUsers() {
     const avatar = u.photo ? `<img src="${u.photo}">` : escapeHtml((u.name||'?').charAt(0));
     const canTransfer = isAdmin() && u.role === 'teacher' && u.status === 'active' && u.username !== CURRENT_USER.username;
     const canDelete = u.username !== CURRENT_USER.username && (isAdmin() || u.role !== 'admin');
+    const classesBadges = (u.classes || []).map(c => `<span class="badge blue">${CLASS_LABELS[c]||c}</span>`).join('');
     return `<div class="user-card">
       <div class="avatar">${avatar}</div>
       <div style="flex:1;min-width:0">
         <div style="font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
           ${escapeHtml(u.name || '-')}
           <span class="user-role-badge ${u.role}">${u.roleLabel}</span>
+          ${u.position ? `<span class="badge gray">${escapeHtml(u.position)}</span>` : ''}
           ${u.status !== 'active' ? `<span class="badge ${u.status==='disabled'?'gray':'red'}">${u.status}</span>` : ''}
         </div>
         <div style="font-size:12px;color:var(--muted);margin-top:2px">@${escapeHtml(u.username)} ${u.phone ? ' · 📞 ' + escapeHtml(u.phone) : ''}</div>
-        ${u.classes && u.classes.length ? `<div class="teacher-classes">${u.classes.map(c => `<span class="badge blue">${CLASS_LABELS[c]||c}</span>`).join('')}</div>` : ''}
+        ${classesBadges ? `<div class="teacher-classes">${classesBadges}</div>` : ''}
       </div>
       <div class="action-btns" style="flex-direction:column">
         <button class="icon-btn edit" title="แก้ไข" onclick="editUser(${u.row})">✏️</button>
@@ -1974,19 +2072,20 @@ function renderUsers() {
     </div>`;
   }).join('');
 }
-
 function renderPendingUsers() {
   const pending = allUsers.filter(u => u.status === 'pending');
   if (!pending.length) { $('pendingUsersSection').style.display = 'none'; return; }
   $('pendingUsersSection').style.display = '';
   $('pendingUsersGrid').innerHTML = pending.map(u => {
     const avatar = u.photo ? `<img src="${u.photo}">` : escapeHtml((u.name||'?').charAt(0));
+    const classesBadges = (u.classes || []).map(c => `<span class="badge blue">${CLASS_LABELS[c]||c}</span>`).join('');
     return `<div class="user-card pending">
       <div class="avatar">${avatar}</div>
       <div style="flex:1;min-width:0">
         <div style="font-weight:700">${escapeHtml(u.name || '-')}</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px">@${escapeHtml(u.username)} · ต้องการเป็น <b>${u.roleLabel}</b></div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">@${escapeHtml(u.username)} · บทบาท: <b>${u.roleLabel}</b>${u.position ? ' · ' + escapeHtml(u.position) : ''}</div>
         ${u.phone ? `<div style="font-size:12px;color:var(--muted)">📞 ${escapeHtml(u.phone)}</div>` : ''}
+        ${classesBadges ? `<div class="teacher-classes">${classesBadges}</div>` : ''}
       </div>
       <div class="action-btns">
         <button class="btn btn-success btn-sm" onclick="approveUserReq(${u.row})">✅ อนุมัติ</button>
@@ -1995,13 +2094,10 @@ function renderPendingUsers() {
     </div>`;
   }).join('');
 }
-
 async function approveUserReq(row) {
   const u = allUsers.find(x => x.row === row);
   if (!u) return;
-  // ถ้าเป็น admin ให้ยืนยัน
-  let role = u.role;
-  if (role === 'admin') {
+  if (u.role === 'admin') {
     const adminCount = allUsers.filter(x => x.role === 'admin' && x.status === 'active').length;
     if (adminCount >= 2) { showToast('มี Admin ครบ 2 คนแล้ว กรุณาเปลี่ยน role ก่อนอนุมัติ', 'error'); return; }
   }
@@ -2012,7 +2108,6 @@ async function approveUserReq(row) {
     loadUsers();
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
-
 async function rejectUserReq(row) {
   const u = allUsers.find(x => x.row === row);
   if (!confirm(`ปฏิเสธคำขอของ "${u.name}"?`)) return;
@@ -2022,7 +2117,6 @@ async function rejectUserReq(row) {
     loadUsers();
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
-
 function openUserModal(user = null) {
   $('userForm').reset();
   $('u_row').value = ''; $('u_id').value = ''; $('u_photo').value = '';
@@ -2038,6 +2132,7 @@ function openUserModal(user = null) {
     $('u_name').value = user.name || '';
     $('u_phone').value = user.phone || '';
     $('u_role').value = user.role || 'teacher';
+    $('u_position').value = user.position || '';
     $('u_status').value = user.status || 'active';
     if (user.photo) $('u_photoPreview').innerHTML = `<img src="${user.photo}">`;
   }
@@ -2045,19 +2140,15 @@ function openUserModal(user = null) {
 }
 function closeUserModal() { $('userModalOverlay').classList.remove('show'); }
 async function editUser(row) { const u = allUsers.find(x => x.row === row); if (u) openUserModal(u); }
-
 function buildUserClassCheckboxes(selected = []) {
-  const container = $('u_classes_checkboxes');
-  container.innerHTML = CLASSES.map(c => {
+  $('u_classes_checkboxes').innerHTML = CLASSES.map(c => {
     const checked = selected.indexOf(c) >= 0 ? 'checked' : '';
     return `<label><input type="checkbox" value="${c}" ${checked}> ${CLASS_LABELS[c]}</label>`;
   }).join('');
 }
-
 let _userPhotoTemp = null;
 async function handleUserPhotoUpload(e) { if (!e.target.files[0]) return; _userPhotoTemp = await fileToBase64(e.target.files[0], 300); $('u_photoPreview').innerHTML = `<img src="${_userPhotoTemp}">`; }
 function clearUserPhoto() { _userPhotoTemp = ''; $('u_photoPreview').innerHTML = '👤'; }
-
 async function saveUser() {
   const classes = Array.from($('u_classes_checkboxes').querySelectorAll('input:checked')).map(cb => cb.value);
   const data = {
@@ -2068,13 +2159,13 @@ async function saveUser() {
     name: $('u_name').value.trim(),
     phone: $('u_phone').value.trim(),
     role: $('u_role').value,
+    position: $('u_position').value,
     status: $('u_status').value,
     classes,
     photo: _userPhotoTemp !== null ? _userPhotoTemp : ($('u_photo').value || '')
   };
   if (!data.row && !data.password) { showToast('ต้องกรอกรหัสผ่านสำหรับผู้ใช้ใหม่', 'error'); return; }
   if (!data.name) { showToast('ต้องระบุชื่อ-สกุล', 'error'); return; }
-
   const btn = $('btnSaveUser'); btn.disabled = true; btn.innerHTML = '<span class="loading"></span>';
   try {
     const res = data.row ? await API.updateUser(data) : await API.addUser(data);
@@ -2083,7 +2174,6 @@ async function saveUser() {
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
   finally { btn.disabled = false; btn.innerHTML = '💾 บันทึก'; }
 }
-
 async function deleteUserReq(row, name) {
   if (!confirm(`⚠️ ลบผู้ใช้ "${name}"?\n\nไม่สามารถกู้คืนได้!`)) return;
   try {
@@ -2111,12 +2201,9 @@ async function confirmTransfer() {
   if (!confirm('⚠️ ยืนยันการโอนสิทธิ์?\n\nคุณจะกลายเป็น "ครู" ทันที\nไม่สามารถย้อนกลับได้!')) return;
   try {
     const res = await API.transferAdmin({ targetRow });
-    showToast(res.message || 'โอนสิทธิ์สำเร็จ');
+    showToast(res.message || 'โอนสิทธิ์สำเร็จ', 'success', 5000);
     closeTransferModal();
-    setTimeout(async () => {
-      showToast('กรุณาเข้าสู่ระบบใหม่', 'info');
-      setTimeout(() => doLogout(), 2000);
-    }, 1500);
+    setTimeout(() => { doLogout(); }, 2500);
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
 
@@ -2124,7 +2211,6 @@ async function confirmTransfer() {
  * TEACHERS
  * ============================================================ */
 let _teacherPhotoTemp = null, _teacherSigTemp = null;
-
 async function loadTeachers() {
   $('teachersGrid').innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px"><span class="loading dark"></span></div>`;
   try { TEACHER_LIST_CACHE = await API.getTeachers(); renderTeachers(); } catch(e) { showToast('⚠️ ' + e.message, 'error'); }
@@ -2204,9 +2290,81 @@ async function saveTeacher() {
   finally { btn.disabled = false; btn.innerHTML = '💾 บันทึก'; }
 }
 async function deleteTeacherReq(row, name) {
-  if (!confirm(`ลบครู "${name}"?`)) return;
+  if (!confirm(`⚠️ ลบครู "${name}"?\n\nไม่สามารถกู้คืนได้!`)) return;
   try { await API.deleteTeacher({ row }); showToast('ลบสำเร็จ'); setTimeout(loadTeachers, 800); }
   catch(e) { showToast('❌ ' + e.message, 'error'); }
+}
+
+/* ============================================================
+ * PROMOTION
+ * ============================================================ */
+async function initPromotion() {
+  if (!isAdmin()) { showToast('เฉพาะผู้ดูแลระบบ', 'error'); navigate('home'); return; }
+  try {
+    const y = await API.getCurrentAcademicYear();
+    CURRENT_YEAR = y.year || 2569;
+    $('currentYearBig').textContent = CURRENT_YEAR;
+    $('nextYearBig').textContent = CURRENT_YEAR + 1;
+  } catch(e) {}
+  loadPromotionPreview();
+  loadPromotionHistory();
+}
+async function loadPromotionPreview() {
+  try {
+    const data = await API.previewPromotion();
+    $('currentYearBig').textContent = data.currentYear;
+    $('nextYearBig').textContent = data.nextYear;
+    const breakdown = data.breakdown || {};
+    $('promoBreakdown').innerHTML = CLASSES.map(c => {
+      const count = breakdown[c] || 0;
+      const next = c==='อ.2'?'อ.3':c==='อ.3'?'ป.1':c==='ป.1'?'ป.2':c==='ป.2'?'ป.3':c==='ป.3'?'ป.4':c==='ป.4'?'ป.5':c==='ป.5'?'ป.6':'จบ';
+      return `<div class="promo-class-card">
+        <div class="from">${CLASS_LABELS[c]}</div>
+        <div class="count">${count} คน</div>
+        <div class="to">→ ${next==='จบ'?'🎓 จบการศึกษา':CLASS_LABELS[next]}</div>
+      </div>`;
+    }).join('');
+    const totalStudents = Object.values(breakdown).reduce((s,v)=>s+v,0);
+    $('promoSummary').innerHTML = `
+      📊 สรุป: นักเรียนทั้งหมด <b>${totalStudents} คน</b> · 
+      จะถูกเลื่อนชั้น <b>${totalStudents - (data.graduates||0)} คน</b> · 
+      จบการศึกษา <b style="color:#dc2626">${data.graduates || 0} คน</b>
+    `;
+  } catch(e) { $('promoSummary').innerHTML = `⚠️ ${escapeHtml(e.message)}`; }
+}
+async function loadPromotionHistory() {
+  try {
+    const list = await API.getPromotionHistory();
+    if (!list.length) {
+      $('promoHistory').innerHTML = `<div class="empty-state" style="padding:40px"><div class="empty-state-icon">📜</div><h3>ยังไม่มีประวัติ</h3></div>`;
+      return;
+    }
+    $('promoHistory').innerHTML = `<div class="table-wrap"><table>
+      <thead><tr><th>วันที่</th><th>จากปี</th><th>ไปปี</th><th>เลื่อนชั้น</th><th>จบ</th><th>ผู้ทำ</th></tr></thead>
+      <tbody>${list.map(r => `<tr>
+        <td>${formatTimestamp(r.timestamp)}</td>
+        <td><span class="badge blue">${r.fromYear}</span></td>
+        <td><span class="badge green">${r.toYear}</span></td>
+        <td>${r.promoted} คน</td>
+        <td>🎓 ${r.graduates} คน</td>
+        <td>${escapeHtml(r.byUser)}</td>
+      </tr>`).join('')}</tbody>
+    </table></div>`;
+  } catch(e) {}
+}
+async function confirmPromotion() {
+  if (!confirm(`⚠️ ยืนยันการเลื่อนชั้น?\n\nระบบจะ:\n• สำรองข้อมูลทุกชีท\n• เลื่อนชั้นนักเรียน\n• ล้างข้อมูลการมาเรียน\n• เลื่อนชั้นครู\n• เปลี่ยนปีการศึกษา\n\nไม่สามารถย้อนกลับได้!`)) return;
+  if (!confirm(`ยืนยันครั้งสุดท้าย?\n\nกด OK เพื่อเริ่มปีการศึกษาใหม่`)) return;
+
+  const btn = $('btnPromote'); btn.disabled = true;
+  const orig = btn.innerHTML; btn.innerHTML = '<span class="loading"></span> กำลังดำเนินการ...';
+  try {
+    const res = await API.startNewAcademicYear({});
+    showToast(res.message || 'เริ่มปีการศึกษาใหม่สำเร็จ', 'success', 6000);
+    CURRENT_YEAR = res.newYear;
+    setTimeout(() => { loadPromotionPreview(); loadPromotionHistory(); }, 1500);
+  } catch(e) { showToast('❌ ' + e.message, 'error', 6000); }
+  finally { btn.disabled = false; btn.innerHTML = orig; }
 }
 
 /* ============================================================
@@ -2347,13 +2505,11 @@ function renderDailyReport(data) {
   if (!data.days || !data.days.length) { c.innerHTML = `<div class="card"><div class="empty-state"><div class="empty-state-icon">📋</div><h3>ไม่พบข้อมูล</h3></div></div>`; return; }
   const rows = data.days.map(d => {
     if (d.status === 'weekend') {
-      return `<tr style="background:#f8fafc">
-        <td>${d.day}</td><td>${d.monthShort} ${d.year}</td>
+      return `<tr style="background:#f8fafc"><td>${d.day}</td><td>${d.monthShort} ${d.year}</td>
         <td colspan="7" style="text-align:center;color:var(--muted);font-weight:600">วันหยุดเสาร์/อาทิตย์</td></tr>`;
     }
     if (d.status === 'holiday') {
-      return `<tr style="background:#fef9c3">
-        <td>${d.day}</td><td>${d.monthShort} ${d.year}</td>
+      return `<tr style="background:#fef9c3"><td>${d.day}</td><td>${d.monthShort} ${d.year}</td>
         <td colspan="7" style="text-align:center;color:#92400e;font-weight:600">วันหยุด</td></tr>`;
     }
     const pct = d.total ? +(d.present/d.total*100).toFixed(2) : 0;
@@ -2362,8 +2518,7 @@ function renderDailyReport(data) {
     if (d.leaveNames && d.leaveNames.length) noteParts.push('ลา: ' + d.leaveNames.join(', '));
     if (d.sickNames && d.sickNames.length) noteParts.push('ป่วย: ' + d.sickNames.join(', '));
     if (d.absentNames && d.absentNames.length) noteParts.push('ขาด: ' + d.absentNames.join(', '));
-    return `<tr>
-      <td>${d.day}</td><td>${d.monthShort} ${d.year}</td><td>${d.total}</td>
+    return `<tr><td>${d.day}</td><td>${d.monthShort} ${d.year}</td><td>${d.total}</td>
       <td style="color:var(--green);font-weight:700">${d.present}</td>
       <td style="color:var(--orange);font-weight:700">${d.sick}</td>
       <td style="color:var(--yellow);font-weight:700">${d.leave}</td>
@@ -2472,7 +2627,6 @@ async function saveMyProfile() {
     const res = await API.updateMyProfile(data);
     if (res.ok) {
       showToast('บันทึกข้อมูลสำเร็จ');
-      // อัปเดต CURRENT_USER
       const refreshed = await API.checkSession();
       if (refreshed.ok) { CURRENT_USER = refreshed.user; updateUserUI(); }
       closeMyProfileModal();
@@ -2481,7 +2635,6 @@ async function saveMyProfile() {
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
   finally { btn.disabled = false; btn.innerHTML = '💾 บันทึก'; }
 }
-
 function openChangePassword() { $('changePwdForm').reset(); $('changePwdModalOverlay').classList.add('show'); }
 function closeChangePwdModal() { $('changePwdModalOverlay').classList.remove('show'); }
 async function saveChangePwd() {
@@ -2518,7 +2671,6 @@ async function updateBadges() {
     } catch(e) {}
   }
 }
-
 let lastSyncVersion = null;
 let pollTimer = null;
 async function checkSync() {
@@ -2542,6 +2694,7 @@ function refreshCurrentPage() {
   else if (currentPage === 'reports') loadReport();
   else if (currentPage === 'users') loadUsers();
   else if (currentPage === 'deletes') loadDeleteRequests();
+  else if (currentPage === 'promotion') { loadPromotionPreview(); loadPromotionHistory(); }
   else if (currentPage === 'home') loadHomeStats();
 }
 function startPolling() {
@@ -2553,14 +2706,22 @@ function startPolling() {
 /* ============================================================
  * INIT
  * ============================================================ */
+function buildSignupClasses() {
+  const box = $('suClassesBox');
+  if (!box) return;
+  box.innerHTML = CLASSES.map(c => 
+    `<label><input type="checkbox" value="${c}"> ${CLASS_LABELS[c]}</label>`
+  ).join('');
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+  buildSignupClasses();
   try {
     await API.ping();
     const ok = await tryAutoLogin();
     if (ok) {
       await enterApp();
     } else {
-      // โหลดโลโก้โรงเรียนมาโชว์หน้า login
       try { const s = await API.getSettings(); SCHOOL_SETTINGS = s; if (s.school_logo) $('authLogo').innerHTML = `<img src="${s.school_logo}">`; } catch(e) {}
       $('authPage').style.display = 'flex';
       $('loginUsername').focus();
