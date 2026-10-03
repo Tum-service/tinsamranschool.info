@@ -740,10 +740,8 @@ function navigate(page) {
  * SETTINGS
  * ============================================================ */
 async function loadSettings() {
-  try {
-    SCHOOL_SETTINGS = await API.getSettings();
-    applySettings();
-  } catch (e) { showToast('⚠️ ' + e.message, 'error'); }
+  try { SCHOOL_SETTINGS = await API.getSettings(); applySettings(); }
+  catch (e) { showToast('⚠️ ' + e.message, 'error'); }
 }
 function applySettings() {
   if (SCHOOL_SETTINGS.school_name) {
@@ -892,9 +890,7 @@ async function loadInfoStudents() {
     allInfoStudents = await API.getStudentsFull();
     allInfoStudents.forEach(s => { if (s.photo) STUDENT_PHOTO_CACHE[s.row] = s.photo; });
     renderInfoStudents();
-  } catch (e) {
-    $('infoTbody').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</td></tr>`;
-  }
+  } catch (e) { $('infoTbody').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</td></tr>`; }
 }
 function renderInfoStudents() {
   const cls = $('infoClass').value;
@@ -921,10 +917,8 @@ function renderInfoStudents() {
 async function viewProfile(row) {
   $('profileModalOverlay').classList.add('show');
   $('profileModalBody').innerHTML = `<div style="padding:60px;text-align:center"><span class="loading dark"></span></div>`;
-  try {
-    const data = await API.getStudentReport(row, '', todayISO());
-    renderProfile(data);
-  } catch (e) { $('profileModalBody').innerHTML = `<div style="padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</div>`; }
+  try { const data = await API.getStudentReport(row, '', todayISO()); renderProfile(data); }
+  catch (e) { $('profileModalBody').innerHTML = `<div style="padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</div>`; }
 }
 function closeProfileModal() { $('profileModalOverlay').classList.remove('show'); }
 async function reloadProfile(row, fromDate, toDate) {
@@ -939,20 +933,13 @@ function renderProfile(data) {
   const initial = (s.firstName || s.nickname || '?').charAt(0);
   const avatarHtml = photo ? `<img src="${photo}">` : escapeHtml(initial);
   const infoItem = (label, value) => `<div class="info-item"><div class="info-label">${label}</div><div class="info-value ${!value ? 'empty' : ''}">${escapeHtml(value || '—')}</div></div>`;
-
   let tableRows = '';
   data.daily.forEach(d => {
     const stat = d.weekend || d.status || '';
     const label = d.weekend ? d.weekend : (stat ? STATUS_LABELS[stat] : '-');
-    tableRows += `<tr>
-      <td>${d.day}</td>
-      <td>${formatThaiDate(d.date)}</td>
-      <td><span class="att-status" data-s="${stat}">${label}</span></td>
-    </tr>`;
+    tableRows += `<tr><td>${d.day}</td><td>${formatThaiDate(d.date)}</td><td><span class="att-status" data-s="${stat}">${label}</span></td></tr>`;
   });
-
   const teacher = TEACHER_LIST_CACHE.find(t => t.classes.indexOf(s.class) >= 0);
-
   $('profileModalTitle').textContent = `📋 รายงาน: ${s.fullName || s.nickname || '(ไม่ระบุชื่อ)'}`;
   $('profileModalBody').innerHTML = `
     <div class="print-header">
@@ -1131,10 +1118,8 @@ async function saveStudent() {
 }
 async function deleteStudent(row, name) {
   if (!confirm(`⚠️ ยืนยันลบ "${name}"?\n\nไม่สามารถกู้คืนได้!`)) return;
-  try {
-    const res = await API.deleteStudent({ row });
-    if (res.ok) { showToast('🗑️ ลบสำเร็จ'); markSheetModified(); setTimeout(loadStudents, 1000); }
-  } catch (e) { showToast('❌ ' + e.message, 'error'); }
+  try { const res = await API.deleteStudent({ row }); if (res.ok) { showToast('🗑️ ลบสำเร็จ'); markSheetModified(); setTimeout(loadStudents, 1000); } }
+  catch (e) { showToast('❌ ' + e.message, 'error'); }
 }
 async function syncStructure() {
   if (!confirm('⚙️ ซิงค์โครงสร้าง?')) return;
@@ -1397,26 +1382,34 @@ function renderDailyReport(data) {
   }
 
   const rows = data.days.map(d => {
+    // ⭐ วันเสาร์/อาทิตย์ → แสดงแค่ "วันหยุดเสาร์/อาทิตย์" ไม่มี ส/อ ใน % และไม่มีข้อความในหมายเหตุ
     if (d.status === 'weekend') {
       return `<tr style="background:#f8fafc">
         <td>${d.day}</td>
         <td>${d.monthShort} ${d.year}</td>
-        <td colspan="5" style="text-align:center;color:var(--muted);font-weight:600">— วันหยุดเสาร์/อาทิตย์ —</td>
-        <td><span class="badge gray">${d.statusText}</span></td>
-        <td style="font-size:11px;color:var(--muted)">${escapeHtml(d.note || 'วันหยุด')}</td>
+        <td colspan="7" style="text-align:center;color:var(--muted);font-weight:600">วันหยุดเสาร์/อาทิตย์</td>
       </tr>`;
     }
+
+    // วันหยุด (ไม่มีการบันทึก)
     if (d.status === 'holiday') {
       return `<tr style="background:#fef9c3">
         <td>${d.day}</td>
         <td>${d.monthShort} ${d.year}</td>
-        <td colspan="5" style="text-align:center;color:#92400e;font-weight:600">— ไม่มีการบันทึกการมาเรียน —</td>
-        <td><span class="badge yellow">หยุด</span></td>
-        <td style="font-size:11px;color:#92400e">${escapeHtml(d.note || 'วันหยุด/ไม่มีการเรียน')}</td>
+        <td colspan="7" style="text-align:center;color:#92400e;font-weight:600">วันหยุด</td>
       </tr>`;
     }
+
     const pct = d.total ? +(d.present/d.total*100).toFixed(2) : 0;
     const color = pct >= 90 ? 'var(--green)' : pct >= 80 ? 'var(--yellow)' : 'var(--red)';
+
+    // ⭐ หมายเหตุ: แสดงเฉพาะชื่อนักเรียน (ลา/ป่วย/ขาด)
+    const noteParts = [];
+    if (d.leaveNames && d.leaveNames.length)   noteParts.push('ลา: ' + d.leaveNames.join(', '));
+    if (d.sickNames  && d.sickNames.length)    noteParts.push('ป่วย: ' + d.sickNames.join(', '));
+    if (d.absentNames && d.absentNames.length) noteParts.push('ขาด: ' + d.absentNames.join(', '));
+    const note = noteParts.join(' | ');
+
     return `<tr>
       <td>${d.day}</td>
       <td>${d.monthShort} ${d.year}</td>
@@ -1426,7 +1419,7 @@ function renderDailyReport(data) {
       <td style="color:var(--yellow);font-weight:700">${d.leave}</td>
       <td style="color:var(--red);font-weight:700">${d.absent}</td>
       <td><b style="color:${color}">${pct}%</b></td>
-      <td style="font-size:11px;color:var(--muted);max-width:280px">${escapeHtml(d.note || '')}</td>
+      <td style="font-size:11px;color:var(--muted);max-width:280px">${escapeHtml(note)}</td>
     </tr>`;
   }).join('');
 
@@ -1551,8 +1544,6 @@ async function loadHomeStats() {
     $('heroStudents').textContent = students.length;
     $('heroPresent').textContent = dash.totals.present;
     $('heroPercent').textContent = dash.totals.percent + '%';
-
-    // แสดงวันล่าสุดที่มีการบันทึก
     if (home.latestFound) {
       const [y,m,d] = home.latestDate.split('-');
       const thaiMonths = ['','มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
