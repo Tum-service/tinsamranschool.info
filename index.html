@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
-:root{--primary:#2563eb;--primary-dark:#1e40af;--primary-light:#dbeafe;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--green:#10b981;--green-light:#d1fae5;--yellow:#f59e0b;--yellow-light:#fef3c7;--red:#ef4444;--red-light:#fee2e2;--orange:#f97316;--orange-light:#ffedd5;--purple:#8b5cf6;--shadow-sm:0 1px 2px rgba(0,0,0,.04);--shadow:0 2px 8px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);--shadow-lg:0 12px 32px rgba(0,0,0,.1);--radius:14px}
+:root{--primary:#2563eb;--primary-dark:#1e40af;--primary-light:#dbeafe;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--green:#10b981;--green-light:#d1fae5;--yellow:#f59e0b;--yellow-light:#fef3c7;--red:#ef4444;--red-light:#fee2e2;--orange:#f97316;--orange-light:#ffedd5;--purple:#8b5cf6;--shadow:0 2px 8px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);--shadow-lg:0 12px 32px rgba(0,0,0,.1);--radius:14px}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
 a{color:inherit}button{font-family:inherit}
@@ -23,7 +23,7 @@ a{color:inherit}button{font-family:inherit}
 .sync-status{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#059669;padding:6px 12px;background:var(--green-light);border-radius:20px}
 .sync-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 .sync-dot.offline{background:var(--red);animation:none}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 .container{max-width:1500px;margin:0 auto;padding:28px 24px 80px}
 .page-title{font-size:26px;font-weight:800;margin-bottom:4px;letter-spacing:-.4px}
 .page-sub{color:var(--muted);font-size:14px;margin-bottom:24px}
@@ -42,7 +42,6 @@ a{color:inherit}button{font-family:inherit}
 .btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .btn-ghost{background:#f1f5f9;color:var(--text);border:1.5px solid var(--border)}
 .btn-ghost:hover{background:#e2e8f0}
-.btn-success{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
 .btn-danger{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff}
 .btn-sm{padding:7px 14px;font-size:13px}
 .status-group{display:inline-flex;gap:6px}
@@ -89,6 +88,7 @@ tbody tr:last-child td{border-bottom:none}
 .hero-stat{display:flex;flex-direction:column}
 .hero-stat-value{font-size:28px;font-weight:800;line-height:1}
 .hero-stat-label{font-size:12.5px;opacity:.8;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+.hero-latest{margin-top:16px;padding:10px 16px;background:rgba(255,255,255,.15);border-radius:10px;display:inline-block;position:relative;font-size:14px;font-weight:600}
 .modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;z-index:1000;padding:24px;overflow-y:auto}
 .modal-overlay.show{display:flex}
 .modal{background:#fff;border-radius:16px;max-width:900px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 24px 64px rgba(0,0,0,.25)}
@@ -108,6 +108,10 @@ tbody tr:last-child td{border-bottom:none}
 .form-group label .req{color:var(--red)}
 .form-group input,.form-group select{padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;background:#fff;width:100%}
 .form-group input:focus,.form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.checkbox-group{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;padding:12px;background:#f8fafc;border:1.5px solid var(--border);border-radius:10px}
+.checkbox-group label{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;transition:background .15s}
+.checkbox-group label:hover{background:#e2e8f0}
+.checkbox-group input[type="checkbox"]{width:18px;height:18px;accent-color:var(--primary);cursor:pointer}
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11.5px;font-weight:700}
 .badge.blue{background:var(--primary-light);color:#1e40af}
 .badge.green{background:var(--green-light);color:#065f46}
@@ -124,10 +128,6 @@ tbody tr:last-child td{border-bottom:none}
 .search-box input{width:100%;padding:10px 14px 10px 42px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;font-weight:500}
 .search-box input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 .search-box::before{content:"🔍";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none}
-.tabs{display:flex;gap:6px;margin-bottom:20px;border-bottom:2px solid var(--border);overflow-x:auto}
-.tab{padding:10px 18px;border:none;background:none;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap;font-family:inherit}
-.tab:hover{color:var(--primary)}
-.tab.active{color:var(--primary);border-color:var(--primary)}
 .profile-header{display:flex;gap:20px;align-items:center;padding:20px;background:linear-gradient(135deg,#f0f4ff,#faf5ff);border-radius:12px;margin-bottom:20px}
 .profile-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:34px;font-weight:800;flex-shrink:0;overflow:hidden;border:3px solid #fff;box-shadow:var(--shadow)}
 .profile-avatar img{width:100%;height:100%;object-fit:cover}
@@ -161,6 +161,12 @@ tbody tr:last-child td{border-bottom:none}
 .att-status[data-s=""]{background:#f1f5f9;color:#cbd5e1}
 .att-status[data-s="ส"],.att-status[data-s="อ"]{background:#e2e8f0;color:#64748b}
 .att-status[data-s="H"]{background:#fef3c7;color:#92400e}
+.teacher-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:center;transition:all .2s}
+.teacher-card:hover{box-shadow:var(--shadow-lg)}
+.teacher-card .avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800;flex-shrink:0;overflow:hidden}
+.teacher-card .avatar img{width:100%;height:100%;object-fit:cover}
+.teacher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.teacher-classes{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 .toast{position:fixed;bottom:28px;right:28px;background:#0f172a;color:#fff;padding:16px 22px;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.25);font-size:14px;font-weight:600;transform:translateY(120px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:9999;max-width:420px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success{background:linear-gradient(135deg,#10b981,#059669)}
@@ -177,44 +183,42 @@ tbody tr:last-child td{border-bottom:none}
 .photo-upload .placeholder{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:grid;place-items:center;font-size:42px;color:#94a3b8}
 .photo-upload label{cursor:pointer;font-size:12.5px;color:var(--primary);font-weight:700}
 .photo-upload input[type="file"]{display:none}
-.teacher-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:center;transition:all .2s}
-.teacher-card:hover{box-shadow:var(--shadow-lg)}
-.teacher-card .avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800;flex-shrink:0;overflow:hidden}
-.teacher-card .avatar img{width:100%;height:100%;object-fit:cover}
-.teacher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.info-banner{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:12px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;font-size:13.5px;font-weight:600;color:#78350f}
+.info-banner .icon{font-size:22px}
 
 /* ============ PRINT ============ */
 @media print {
-  @page { size: A4; margin: 10mm; }
-  body{background:#fff;font-size:11px}
-  .navbar,.no-print,.btn,.tabs,.filter-bar,.modal-close,.modal-footer,.sidebar{display:none!important}
-  .container{max-width:none;padding:0}
-  .card{box-shadow:none;border:1px solid #000;margin-bottom:6px;padding:8px;page-break-inside:avoid}
-  .page-title{font-size:14px}
-  .page-sub{font-size:10px}
-  h2,h3,.card-title{font-size:11px!important}
-  table{font-size:9px}
-  th,td{padding:3px 4px;border:1px solid #000}
-  th{background:#eee!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .charts-grid{display:block!important;page-break-before:always}
-  .chart-card{page-break-inside:avoid;margin-bottom:10px;padding:6px}
-  .chart-canvas-wrap{height:220px!important}
-  .chart-canvas-wrap.tall{height:260px!important}
-  .att-status{width:16px;height:16px;line-height:16px;font-size:9px}
-  .stat-row{gap:4px}
-  .stat-mini{padding:5px}
-  .stat-mini .value{font-size:14px}
-  .stat-mini .label{font-size:8px}
-  .print-only{display:block!important}
-  .no-print{display:none!important}
-  .print-header{display:block!important;text-align:center;margin-bottom:8px}
-  .print-signature{display:block!important;margin-top:14px;text-align:right}
-  .print-signature img{max-height:48px}
+  @page { size: A4; margin: 6mm 8mm; }
+  html, body { background: #fff; }
+  body { font-size: 10px; }
+  .navbar, .no-print, .btn, .tabs, .filter-bar, .modal-close, .modal-footer, .sync-status, .info-banner { display: none !important; }
+  .container { max-width: none; padding: 0; }
+  .card { box-shadow: none; border: 0; margin-bottom: 0; padding: 0; page-break-inside: auto; }
+  .page-title, .page-sub { display: none; }
+  .print-header { display: block !important; text-align: center; margin-bottom: 6px; }
+  .print-header img.logo { max-height: 48px; margin-bottom: 2px; }
+  .print-header h2 { font-size: 13px; margin-bottom: 1px; font-weight: 800; }
+  .print-header p { font-size: 10px; color: #333; margin: 0; line-height: 1.3; }
+  h2, h3, .card-title { font-size: 11px !important; margin-bottom: 4px !important; }
+  .table-wrap { max-height: none !important; overflow: visible !important; border: 0 !important; }
+  table { font-size: 9px; width: 100%; }
+  th, td { padding: 2px 4px !important; border: 1px solid #000 !important; line-height: 1.2; }
+  th { background: #e5e7eb !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 8.5px; }
+  tfoot td { background: #f3f4f6 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .charts-grid { display: none !important; }
+  .att-status { width: auto; height: auto; padding: 1px 5px; font-size: 8px; line-height: 1.2; display: inline-block; }
+  .stat-row { gap: 3px; margin-bottom: 6px; }
+  .stat-mini { padding: 3px; }
+  .stat-mini .value { font-size: 12px; }
+  .stat-mini .label { font-size: 7px; }
+  .print-signature { display: block !important; margin-top: 12px; text-align: right; font-size: 10px; }
+  .print-signature img { max-height: 40px; display: block; margin-left: auto; }
+  .print-signature div { line-height: 1.4; }
 }
-.print-only,.print-header,.print-signature{display:none}
-.print-header img.logo{max-height:60px;margin-bottom:4px}
-.print-header h2{font-size:14px;margin-bottom:2px}
-.print-header p{font-size:10px;color:#333}
+.print-only, .print-header, .print-signature { display: none }
+.print-header img.logo { max-height: 60px; margin-bottom: 4px; }
+.print-header h2 { font-size: 14px; margin-bottom: 2px; }
+.print-header p { font-size: 10px; color: #333 }
 
 @media(max-width:768px){
   .container{padding:16px;padding-bottom:60px}
@@ -267,15 +271,16 @@ tbody tr:last-child td{border-bottom:none}
       <p id="heroSub">โรงเรียนบ้านถิ่นสำราญ · อำเภอดอยเต่า · จังหวัดเชียงใหม่</p>
       <div class="hero-stats">
         <div class="hero-stat"><div class="hero-stat-value" id="heroStudents">—</div><div class="hero-stat-label">นักเรียนทั้งหมด</div></div>
-        <div class="hero-stat"><div class="hero-stat-value" id="heroPresent">—</div><div class="hero-stat-label">มาเรียนวันนี้</div></div>
+        <div class="hero-stat"><div class="hero-stat-value" id="heroPresent">—</div><div class="hero-stat-label">มาเรียน</div></div>
         <div class="hero-stat"><div class="hero-stat-value" id="heroPercent">—</div><div class="hero-stat-label">ร้อยละการมาเรียน</div></div>
       </div>
+      <div class="hero-latest" id="heroLatest">📅 กำลังโหลดข้อมูล...</div>
     </div>
     <div class="home-grid">
       <div class="home-card" onclick="navigate('attendance')"><div class="home-card-icon">✏️</div><h2>บันทึกการมาเรียน</h2><p>ครูกรอกสถานะนักเรียนรายวัน</p></div>
       <div class="home-card" onclick="navigate('dashboard')"><div class="home-card-icon">📊</div><h2>Dashboard</h2><p>ดูกราฟสถิติแบบเรียลไทม์</p></div>
       <div class="home-card" onclick="navigate('info')"><div class="home-card-icon">👤</div><h2>ข้อมูลนักเรียน</h2><p>ค้นหาและดูรายงานรายบุคคล</p></div>
-      <div class="home-card" onclick="navigate('reports')"><div class="home-card-icon">📑</div><h2>รายงาน</h2><p>ตารางรายวันแบบ ปพ.5</p></div>
+      <div class="home-card" onclick="navigate('reports')"><div class="home-card-icon">📑</div><h2>รายงานการมาเรียน</h2><p>ตารางรายวันแบบ ปพ.5</p></div>
     </div>
   </div>
 </div>
@@ -293,9 +298,7 @@ tbody tr:last-child td{border-bottom:none}
         <button class="btn btn-primary" onclick="window.print()">🖨️ ปริ้น PDF</button>
       </div>
     </div>
-    <div class="print-header">
-      <div id="dashPrintHeader"></div>
-    </div>
+    <div class="print-header" id="dashPrintHeader"></div>
     <div class="kpi-grid">
       <div class="kpi green"><div class="kpi-label">มาเรียน</div><div class="kpi-value" id="kpiPresent">—</div><div class="kpi-sub" id="kpiPresentPct">—</div></div>
       <div class="kpi yellow"><div class="kpi-label">ลา</div><div class="kpi-value" id="kpiLeave">—</div><div class="kpi-sub">คน</div></div>
@@ -343,11 +346,11 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- ============ INFO (ดูข้อมูลนักเรียน) ============ -->
+<!-- ============ INFO ============ -->
 <div class="page" id="page-info">
   <div class="container">
     <h1 class="page-title">ข้อมูลนักเรียน</h1>
-    <p class="page-sub">ค้นหาและดูรายงานการมาเรียนรายบุคคล · เลือกช่วงวันที่สำหรับ ปพ.</p>
+    <p class="page-sub">ค้นหาและดูรายงานการมาเรียนรายบุคคล</p>
     <div class="card">
       <div class="filter-bar">
         <label>ชั้น:</label><select id="infoClass"><option value="">ทุกชั้น</option></select>
@@ -393,7 +396,7 @@ tbody tr:last-child td{border-bottom:none}
 <div class="page" id="page-teachers">
   <div class="container">
     <h1 class="page-title">ครูประจำชั้น</h1>
-    <p class="page-sub">จัดการข้อมูลครู · รูปถ่าย · ลายเซ็น</p>
+    <p class="page-sub">จัดการข้อมูลครู · รูปถ่าย · ลายเซ็น · ระดับชั้นที่ดูแล</p>
     <div class="card">
       <div class="filter-bar">
         <button class="btn btn-primary" onclick="openTeacherModal()" style="margin-left:auto">➕ เพิ่มครูใหม่</button>
@@ -407,11 +410,11 @@ tbody tr:last-child td{border-bottom:none}
 <div class="page" id="page-reports">
   <div class="container">
     <h1 class="page-title">รายงานการมาเรียน</h1>
-    <p class="page-sub">เลือกขอบเขต · ช่วงเดือน-ปี ที่ต้องการดูรายงาน</p>
+    <p class="page-sub">เลือกขอบเขต · ช่วงเดือน-ปี · พิมพ์ ปพ.5</p>
 
-    <div class="tabs no-print">
-      <button class="tab active" data-tab="summary" onclick="switchReportTab('summary')">📊 สรุปตามชั้น</button>
-      <button class="tab" data-tab="daily" onclick="switchReportTab('daily')">📋 ตารางรายวัน (ปพ.5)</button>
+    <div class="info-banner no-print">
+      <span class="icon">💡</span>
+      <span>เมื่อสั่งพิมพ์ ให้เลือก "บันทึกเป็น PDF" และยกเลิกติ๊ก <b>"Headers and footers"</b> ในหน้าตั้งค่าเครื่องพิมพ์ เพื่อให้รายงานพอดีใน 1 หน้า A4</span>
     </div>
 
     <div class="card no-print">
@@ -588,8 +591,23 @@ tbody tr:last-child td{border-bottom:none}
           <div class="form-group"><label>นามสกุล</label><input type="text" id="t_lastName"></div>
         </div>
         <div class="form-grid cols-2" style="margin-top:14px">
-          <div class="form-group"><label>ตำแหน่ง</label><input type="text" id="t_position" placeholder="เช่น ครูประจำชั้น ป.1"></div>
-          <div class="form-group"><label>ชั้นที่ดูแล</label><select id="t_class"><option value="">- ไม่ระบุ -</option></select></div>
+          <div class="form-group">
+            <label>ตำแหน่ง</label>
+            <select id="t_position">
+              <option value="">- เลือก -</option>
+              <option value="ครูอัตราจ้าง">ครูอัตราจ้าง</option>
+              <option value="พนักงานราชการ">พนักงานราชการ</option>
+              <option value="ครู คศ.1">ครู คศ.1</option>
+              <option value="ครู คศ.2">ครู คศ.2</option>
+              <option value="ครู คศ.3">ครู คศ.3</option>
+              <option value="ครู คศ.4">ครู คศ.4</option>
+              <option value="ครู คศ.5">ครู คศ.5</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:14px">
+          <label>ชั้นที่ดูแล (เลือกได้หลายชั้น)</label>
+          <div class="checkbox-group" id="t_classes_checkboxes"></div>
         </div>
       </div>
       <div class="modal-footer">
@@ -618,6 +636,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbwGYru5e0EVDhVrxUYEF6Ur
 const CLASSES = ['อ.2','อ.3','ป.1','ป.2','ป.3','ป.4','ป.5','ป.6'];
 const CLASS_LABELS = {'อ.2':'อนุบาล 2','อ.3':'อนุบาล 3','ป.1':'ประถมศึกษาปีที่ 1','ป.2':'ประถมศึกษาปีที่ 2','ป.3':'ประถมศึกษาปีที่ 3','ป.4':'ประถมศึกษาปีที่ 4','ป.5':'ประถมศึกษาปีที่ 5','ป.6':'ประถมศึกษาปีที่ 6'};
 const MONTHS_TH = ['','มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+const MONTHS_SHORT = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 const STATUS_LABELS = { '/':'มา', 'ล':'ลา', 'ข':'ขาด', 'ป':'ป่วย' };
 
 let SCHOOL_SETTINGS = {};
@@ -647,7 +666,6 @@ const API = {
   addStudent(data) { return this.call('addStudent', {}, 'POST', data); },
   updateStudent(data) { return this.call('updateStudent', {}, 'POST', data); },
   deleteStudent(data) { return this.call('deleteStudent', {}, 'POST', data); },
-  updateStudentPhoto(row, photo) { return this.call('updateStudentPhoto', {}, 'POST', { row, photo }); },
   syncStructure() { return this.call('syncStructure'); },
   getTeachers() { return this.call('getTeachers'); },
   getTeacherByRow(row) { return this.call('getTeacherByRow', { row }); },
@@ -659,9 +677,9 @@ const API = {
   getAttendance(date, cls) { return this.call('getAttendance', { date, class: cls || '' }); },
   saveAttendance(payload) { return this.call('saveAttendance', {}, 'POST', payload); },
   getDashboard(date, range) { return this.call('getDashboard', { date: date || '', range: range || '30d' }); },
-  getMonthlyReport(m, y) { return this.call('getMonthlyReport', { month: m, year: y }); },
   getStudentReport(studentRow, fromDate, toDate) { return this.call('getStudentReport', { studentRow, fromDate: fromDate || '', toDate: toDate || '' }); },
   getClassDailyTable(cls, fm, fy, tm, ty) { return this.call('getClassDailyTable', { class: cls || 'all', fromMonth: fm, fromYear: fy, toMonth: tm, toYear: ty }); },
+  getHomeStats() { return this.call('getHomeStats'); },
   getSyncVersion() { return this.call('getSyncVersion'); }
 };
 
@@ -674,10 +692,9 @@ function showToast(msg, type = 'success') {
   clearTimeout(el._t); el._t = setTimeout(() => el.className = 'toast ' + type, 3500);
 }
 function todayISO() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
-function formatThaiDate(iso) { if (!iso) return ''; const [y,m,d] = iso.split('-'); return `${+d} ${MONTHS_TH[+m].slice(0,3)}. ${+y+543}`; }
+function formatThaiDate(iso) { if (!iso) return ''; const [y,m,d] = iso.split('-'); return `${+d} ${MONTHS_SHORT[+m]} ${+y+543}`; }
 function escapeHtml(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function setSyncStatus(ok, text) { $('syncDot').className = 'sync-dot' + (ok ? '' : ' offline'); $('syncText').textContent = text || (ok ? 'พร้อมใช้งาน' : 'ออฟไลน์'); }
-
 function fileToBase64(file, maxWidth = 400) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -728,18 +745,14 @@ async function loadSettings() {
     applySettings();
   } catch (e) { showToast('⚠️ ' + e.message, 'error'); }
 }
-
 function applySettings() {
   if (SCHOOL_SETTINGS.school_name) {
     $('brandName').textContent = SCHOOL_SETTINGS.school_name.replace('โรงเรียน', '').trim() || 'บ้านถิ่นสำราญ';
-    $('heroTitle').textContent = 'ระบบบันทึกการมาเรียน';
     $('heroSub').textContent = `${SCHOOL_SETTINGS.school_name} · ${SCHOOL_SETTINGS.school_address || ''}`;
   }
   if (SCHOOL_SETTINGS.school_logo) {
     $('brandLogo').innerHTML = `<img src="${SCHOOL_SETTINGS.school_logo}" alt="logo">`;
   }
-
-  // Fill settings form
   if ($('setSchoolName')) {
     $('setSchoolName').value = SCHOOL_SETTINGS.school_name || '';
     $('setSchoolAddress').value = SCHOOL_SETTINGS.school_address || '';
@@ -748,7 +761,6 @@ function applySettings() {
     $('directorSigPreview').innerHTML = SCHOOL_SETTINGS.director_signature ? `<img src="${SCHOOL_SETTINGS.director_signature}" style="width:100%;height:100%;object-fit:contain">` : '✍️';
   }
 }
-
 let _logoTemp = null, _directorSigTemp = null;
 async function handleLogoUpload(e) {
   if (!e.target.files[0]) return;
@@ -762,7 +774,6 @@ async function handleDirectorSigUpload(e) {
   $('directorSigPreview').innerHTML = `<img src="${_directorSigTemp}" style="width:100%;height:100%;object-fit:contain">`;
 }
 function clearDirectorSig() { _directorSigTemp = ''; $('directorSigPreview').innerHTML = '✍️'; }
-
 async function saveSettings() {
   try {
     const updates = {
@@ -772,10 +783,7 @@ async function saveSettings() {
     };
     if (_logoTemp !== null) updates.school_logo = _logoTemp;
     if (_directorSigTemp !== null) updates.director_signature = _directorSigTemp;
-
-    for (const [k, v] of Object.entries(updates)) {
-      await API.setSetting(k, v);
-    }
+    for (const [k, v] of Object.entries(updates)) await API.setSetting(k, v);
     showToast('✅ บันทึกการตั้งค่าสำเร็จ');
     await loadSettings();
   } catch (e) { showToast('❌ ' + e.message, 'error'); }
@@ -808,7 +816,6 @@ async function loadAttendance() {
   try {
     const res = await API.getAttendance(currentDate, currentClass);
     currentStudents = res.records.map(r => ({ ...r, status: r.status || '' }));
-    // โหลด photo cache
     if (!Object.keys(STUDENT_PHOTO_CACHE).length) {
       const all = await API.getStudentsFull();
       all.forEach(s => { if (s.photo) STUDENT_PHOTO_CACHE[s.row] = s.photo; });
@@ -816,19 +823,17 @@ async function loadAttendance() {
     renderTable(); setSyncStatus(true, 'พร้อมใช้งาน');
   } catch (e) {
     $('tbody').innerHTML = `<tr><td colspan="4" style="text-align:center;padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</td></tr>`;
-    setSyncStatus(false, 'เชื่อมต่อไม่ได้');
   }
 }
-
 function renderTable() {
   const tbody = $('tbody');
   if (!currentStudents.length) {
-    tbody.innerHTML = `<tr><td colspan="4"><div class="empty-state"><div class="empty-state-icon">👥</div><h3>ไม่พบนักเรียนในชั้นนี้</h3><p>ไปที่เมนู "จัดการนักเรียน" เพื่อเพิ่ม</p></div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="4"><div class="empty-state"><div class="empty-state-icon">👥</div><h3>ไม่พบนักเรียนในชั้นนี้</h3></div></td></tr>`;
     updateCounters(); return;
   }
   tbody.innerHTML = currentStudents.map((s, idx) => {
     const photo = STUDENT_PHOTO_CACHE[s.row];
-    const avatar = photo ? `<img src="${photo}" style="width:44px;height:44px;border-radius:50%;object-fit:cover">` : `<div style="width:44px;height:44px;border-radius:50%;background:#e2e8f0;display:grid;place-items:center;font-size:18px">👤</div>`;
+    const avatar = photo ? `<img src="${photo}" style="width:44px;height:44px;border-radius:50%;object-fit:cover">` : `<div style="width:44px;height:44px;border-radius:50%;background:#e2e8f0;display:grid;place-items:center">👤</div>`;
     return `<tr data-idx="${idx}">
       <td>${idx + 1}</td>
       <td>${avatar}</td>
@@ -836,7 +841,6 @@ function renderTable() {
       <td><div class="status-group">${statusBtn('/', s.status)}${statusBtn('ล', s.status)}${statusBtn('ข', s.status)}${statusBtn('ป', s.status)}</div></td>
     </tr>`;
   }).join('');
-
   tbody.querySelectorAll('.status-btn').forEach(btn => {
     btn.onclick = e => {
       const rowIdx = +e.target.closest('tr').dataset.idx;
@@ -861,7 +865,7 @@ async function saveAll() {
   try {
     const res = await API.saveAttendance({ date: currentDate, class: currentClass, records: toSave.map(s => ({ studentRow: s.row, status: s.status })) });
     if (res.ok) { showToast(`✅ บันทึกสำเร็จ ${res.saved} คน`); markSheetModified(); }
-    else throw new Error(res.error || 'บันทึกไม่สำเร็จ');
+    else throw new Error(res.error);
   } catch (e) { showToast('❌ ' + e.message, 'error'); }
   finally { btn.disabled = false; btn.innerHTML = '💾 บันทึกทั้งหมด'; }
 }
@@ -882,45 +886,32 @@ function initInfoPage() {
   }
   loadInfoStudents();
 }
-
 async function loadInfoStudents() {
-  $('infoTbody').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px"><span class="loading dark"></span> กำลังโหลด...</td></tr>`;
+  $('infoTbody').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px"><span class="loading dark"></span></td></tr>`;
   try {
     allInfoStudents = await API.getStudentsFull();
     allInfoStudents.forEach(s => { if (s.photo) STUDENT_PHOTO_CACHE[s.row] = s.photo; });
     renderInfoStudents();
-    setSyncStatus(true, 'พร้อมใช้งาน');
   } catch (e) {
     $('infoTbody').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</td></tr>`;
   }
 }
-
 function renderInfoStudents() {
   const cls = $('infoClass').value;
   const q = $('infoSearch').value.trim().toLowerCase();
   let list = allInfoStudents;
   if (cls) list = list.filter(s => s.class === cls);
-  if (q) list = list.filter(s =>
-    (s.fullName||'').toLowerCase().includes(q) || (s.nickname||'').toLowerCase().includes(q) ||
-    (s.guardianName||'').toLowerCase().includes(q) || (s.fatherName||'').toLowerCase().includes(q) || (s.motherName||'').toLowerCase().includes(q));
-
+  if (q) list = list.filter(s => (s.fullName||'').toLowerCase().includes(q) || (s.nickname||'').toLowerCase().includes(q) || (s.guardianName||'').toLowerCase().includes(q));
   $('infoCount').innerHTML = `รายชื่อนักเรียน <span class="badge blue">${list.length} คน</span>`;
-  if (!list.length) {
-    $('infoTbody').innerHTML = `<tr><td colspan="7"><div class="empty-state"><div class="empty-state-icon">🔍</div><h3>ไม่พบนักเรียน</h3></div></td></tr>`;
-    return;
-  }
+  if (!list.length) { $('infoTbody').innerHTML = `<tr><td colspan="7"><div class="empty-state"><div class="empty-state-icon">🔍</div><h3>ไม่พบนักเรียน</h3></div></td></tr>`; return; }
   $('infoTbody').innerHTML = list.map(s => {
-    const photo = s.photo || STUDENT_PHOTO_CACHE[s.row];
+    const photo = s.photo;
     const avatar = photo ? `<img src="${photo}" style="width:42px;height:42px;border-radius:50%;object-fit:cover">` : `<div style="width:42px;height:42px;border-radius:50%;background:#e2e8f0;display:grid;place-items:center">👤</div>`;
-    return `<tr>
-      <td>${escapeHtml(s.no)}</td>
-      <td>${avatar}</td>
-      <td><b>${escapeHtml(s.fullName || '-')}</b></td>
+    return `<tr><td>${escapeHtml(s.no)}</td><td>${avatar}</td><td><b>${escapeHtml(s.fullName || '-')}</b></td>
       <td><span class="badge blue">${escapeHtml(s.class)}</span></td>
       <td>${escapeHtml(s.nickname || '-')}</td>
       <td>${escapeHtml(s.guardianName || '-')}</td>
-      <td><button class="btn btn-primary btn-sm" onclick="viewProfile(${s.row})">📋 ดู</button></td>
-    </tr>`;
+      <td><button class="btn btn-primary btn-sm" onclick="viewProfile(${s.row})">📋 ดู</button></td></tr>`;
   }).join('');
 }
 
@@ -933,29 +924,20 @@ async function viewProfile(row) {
   try {
     const data = await API.getStudentReport(row, '', todayISO());
     renderProfile(data);
-  } catch (e) {
-    $('profileModalBody').innerHTML = `<div style="padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</div>`;
-  }
+  } catch (e) { $('profileModalBody').innerHTML = `<div style="padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</div>`; }
 }
 function closeProfileModal() { $('profileModalOverlay').classList.remove('show'); }
-
 async function reloadProfile(row, fromDate, toDate) {
   $('profileModalBody').innerHTML = `<div style="padding:60px;text-align:center"><span class="loading dark"></span></div>`;
-  try {
-    const data = await API.getStudentReport(row, fromDate, toDate);
-    renderProfile(data);
-  } catch (e) {
-    $('profileModalBody').innerHTML = `<div style="padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</div>`;
-  }
+  try { const data = await API.getStudentReport(row, fromDate, toDate); renderProfile(data); }
+  catch (e) { $('profileModalBody').innerHTML = `<div style="padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</div>`; }
 }
-
 function renderProfile(data) {
   const s = data.student;
   const sum = data.summary;
-  const photo = s.photo || STUDENT_PHOTO_CACHE[s.row];
+  const photo = s.photo;
   const initial = (s.firstName || s.nickname || '?').charAt(0);
   const avatarHtml = photo ? `<img src="${photo}">` : escapeHtml(initial);
-
   const infoItem = (label, value) => `<div class="info-item"><div class="info-label">${label}</div><div class="info-value ${!value ? 'empty' : ''}">${escapeHtml(value || '—')}</div></div>`;
 
   let tableRows = '';
@@ -969,8 +951,7 @@ function renderProfile(data) {
     </tr>`;
   });
 
-  // ครูประจำชั้น
-  const teacher = TEACHER_LIST_CACHE.find(t => t.class === s.class);
+  const teacher = TEACHER_LIST_CACHE.find(t => t.classes.indexOf(s.class) >= 0);
 
   $('profileModalTitle').textContent = `📋 รายงาน: ${s.fullName || s.nickname || '(ไม่ระบุชื่อ)'}`;
   $('profileModalBody').innerHTML = `
@@ -991,7 +972,6 @@ function renderProfile(data) {
         </div>
       </div>
     </div>
-
     <div class="form-section no-print">
       <div class="form-section-title">📅 เลือกช่วงวันที่</div>
       <div class="filter-bar">
@@ -1002,7 +982,6 @@ function renderProfile(data) {
         <button class="btn btn-ghost btn-sm" onclick="window.print()">🖨️ พิมพ์</button>
       </div>
     </div>
-
     <div class="stat-row">
       <div class="stat-mini present"><div class="label">มา</div><div class="value">${sum.present}</div></div>
       <div class="stat-mini leave"><div class="label">ลา</div><div class="value">${sum.leave}</div></div>
@@ -1011,7 +990,6 @@ function renderProfile(data) {
       <div class="stat-mini"><div class="label">รวม</div><div class="value">${sum.total}</div></div>
       <div class="stat-mini"><div class="label">ร้อยละ</div><div class="value">${sum.percent}%</div></div>
     </div>
-
     <div class="form-section">
       <div class="form-section-title">👤 ข้อมูลส่วนตัว</div>
       <div class="info-grid">
@@ -1047,12 +1025,11 @@ function renderProfile(data) {
         </table>
       </div>
     </div>
-
     <div class="print-signature">
       ${teacher && teacher.signature ? `<img src="${teacher.signature}">` : ''}
       <div>ลงชื่อ ....................................................</div>
       <div>(${escapeHtml(teacher ? teacher.fullName : '................................')})</div>
-      <div>ครูประจำชั้น</div>
+      <div>${teacher ? escapeHtml(teacher.position || 'ครูประจำชั้น') : 'ครูประจำชั้น'}</div>
     </div>
   `;
 }
@@ -1076,52 +1053,36 @@ function initStudents() {
   }
   loadStudents();
 }
-
 async function loadStudents() {
-  $('studentTbody').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px"><span class="loading dark"></span> กำลังโหลด...</td></tr>`;
+  $('studentTbody').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px"><span class="loading dark"></span></td></tr>`;
   try {
     allStudents = await API.getStudentsFull();
     allStudents.forEach(s => { if (s.photo) STUDENT_PHOTO_CACHE[s.row] = s.photo; });
     renderStudents();
-    setSyncStatus(true, 'พร้อมใช้งาน');
-  } catch (e) {
-    $('studentTbody').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</td></tr>`;
-  }
+  } catch (e) { $('studentTbody').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--red)">⚠️ ${escapeHtml(e.message)}</td></tr>`; }
 }
-
 function renderStudents() {
   const cls = $('filterClassStudents').value;
   const q = $('searchStudent').value.trim().toLowerCase();
   let list = allStudents;
   if (cls) list = list.filter(s => s.class === cls);
   if (q) list = list.filter(s => (s.fullName||'').toLowerCase().includes(q) || (s.nickname||'').toLowerCase().includes(q) || (s.guardianName||'').toLowerCase().includes(q));
-
   $('studentCount').innerHTML = `รายชื่อนักเรียน <span class="badge blue">${list.length} คน</span>`;
-  if (!list.length) {
-    $('studentTbody').innerHTML = `<tr><td colspan="7"><div class="empty-state"><div class="empty-state-icon">👥</div><h3>ไม่พบนักเรียน</h3></div></td></tr>`;
-    return;
-  }
+  if (!list.length) { $('studentTbody').innerHTML = `<tr><td colspan="7"><div class="empty-state"><div class="empty-state-icon">👥</div><h3>ไม่พบนักเรียน</h3></div></td></tr>`; return; }
   $('studentTbody').innerHTML = list.map(s => {
     const photo = s.photo;
     const avatar = photo ? `<img src="${photo}" style="width:42px;height:42px;border-radius:50%;object-fit:cover">` : `<div style="width:42px;height:42px;border-radius:50%;background:#e2e8f0;display:grid;place-items:center">👤</div>`;
-    return `<tr>
-      <td>${escapeHtml(s.no)}</td>
-      <td>${avatar}</td>
-      <td><b>${escapeHtml(s.fullName || '-')}</b></td>
+    return `<tr><td>${escapeHtml(s.no)}</td><td>${avatar}</td><td><b>${escapeHtml(s.fullName || '-')}</b></td>
       <td><span class="badge blue">${escapeHtml(s.class)}</span></td>
       <td>${escapeHtml(s.nickname || '-')}</td>
       <td>${escapeHtml(s.guardianName || '-')}</td>
-      <td>
-        <div class="action-btns">
-          <button class="icon-btn view" title="ดูข้อมูล" onclick="viewProfile(${s.row})">👁️</button>
-          <button class="icon-btn edit" title="แก้ไข" onclick="editStudent(${s.row})">✏️</button>
-          <button class="icon-btn del" title="ลบ" onclick="deleteStudent(${s.row}, '${escapeHtml(s.fullName || '').replace(/'/g,"\\'")}')">🗑️</button>
-        </div>
-      </td>
-    </tr>`;
+      <td><div class="action-btns">
+        <button class="icon-btn view" onclick="viewProfile(${s.row})">👁️</button>
+        <button class="icon-btn edit" onclick="editStudent(${s.row})">✏️</button>
+        <button class="icon-btn del" onclick="deleteStudent(${s.row}, '${escapeHtml(s.fullName || '').replace(/'/g,"\\'")}')">🗑️</button>
+      </div></td></tr>`;
   }).join('');
 }
-
 function openStudentModal(student = null) {
   $('studentForm').reset();
   $('f_row').value = ''; $('f_no').value = ''; $('f_photo').value = '';
@@ -1140,17 +1101,13 @@ function openStudentModal(student = null) {
   $('studentModalOverlay').classList.add('show');
 }
 function closeStudentModal() { $('studentModalOverlay').classList.remove('show'); }
-async function editStudent(row) {
-  try { const s = await API.getStudentByRow(row); openStudentModal(s); }
-  catch (e) { showToast('⚠️ ' + e.message, 'error'); }
-}
+async function editStudent(row) { try { const s = await API.getStudentByRow(row); openStudentModal(s); } catch (e) { showToast('⚠️ ' + e.message, 'error'); } }
 async function handleStudentPhotoUpload(e) {
   if (!e.target.files[0]) return;
   _studentPhotoTemp = await fileToBase64(e.target.files[0], 300);
   $('studentPhotoPreview').innerHTML = `<img src="${_studentPhotoTemp}">`;
 }
 function clearStudentPhoto() { _studentPhotoTemp = ''; $('studentPhotoPreview').innerHTML = '👤'; }
-
 function getFormData() {
   const keys = ['prefix','firstName','lastName','class','nickname','idCard','ethnicity','nationality','religion','birthDay','birthMonth','birthYear','fatherName','fatherJob','motherName','motherJob','guardianName','guardianJob','relation','phone','houseNo','road','soi','moo','tambon','amphoe','province','postalCode'];
   const data = {}; keys.forEach(k => data[k] = $('f_' + k)?.value.trim() || '');
@@ -1164,31 +1121,26 @@ async function saveStudent() {
   const data = getFormData();
   if (!data.firstName && !data.nickname) { showToast('⚠️ ต้องระบุชื่อ', 'error'); return; }
   if (!data.class) { showToast('⚠️ ต้องเลือกชั้น', 'error'); return; }
-  const btn = $('btnSaveStudent'); btn.disabled = true; btn.innerHTML = '<span class="loading"></span> กำลังบันทึก...';
+  const btn = $('btnSaveStudent'); btn.disabled = true; btn.innerHTML = '<span class="loading"></span>';
   try {
     const res = data.row ? await API.updateStudent(data) : await API.addStudent(data);
-    if (res.ok) {
-      showToast(data.row ? '✅ แก้ไขสำเร็จ' : `✅ เพิ่มนักเรียนสำเร็จ (ที่ ${res.no})`);
-      closeStudentModal(); markSheetModified();
-      setTimeout(loadStudents, 1000);
-    } else throw new Error(res.error || 'บันทึกไม่สำเร็จ');
+    if (res.ok) { showToast(data.row ? '✅ แก้ไขสำเร็จ' : `✅ เพิ่มนักเรียนสำเร็จ (ที่ ${res.no})`); closeStudentModal(); markSheetModified(); setTimeout(loadStudents, 1000); }
+    else throw new Error(res.error);
   } catch (e) { showToast('❌ ' + e.message, 'error'); }
   finally { btn.disabled = false; btn.innerHTML = '💾 บันทึก'; }
 }
 async function deleteStudent(row, name) {
-  if (!confirm(`⚠️ ยืนยันการลบ "${name}"?\n\nลบจากชีทข้อมูล + ชีทเดือนทุกชีท\nไม่สามารถกู้คืนได้!`)) return;
+  if (!confirm(`⚠️ ยืนยันลบ "${name}"?\n\nไม่สามารถกู้คืนได้!`)) return;
   try {
     const res = await API.deleteStudent({ row });
     if (res.ok) { showToast('🗑️ ลบสำเร็จ'); markSheetModified(); setTimeout(loadStudents, 1000); }
-    else throw new Error(res.error || 'ลบไม่สำเร็จ');
   } catch (e) { showToast('❌ ' + e.message, 'error'); }
 }
 async function syncStructure() {
   if (!confirm('⚙️ ซิงค์โครงสร้าง?')) return;
   const btn = event.target; btn.disabled = true;
   try { const res = await API.syncStructure(); showToast(`✅ ซิงค์เสร็จ (${res.totalStudents} คน)`); }
-  catch (e) { showToast('❌ ' + e.message, 'error'); }
-  finally { btn.disabled = false; }
+  catch (e) { showToast('❌ ' + e.message, 'error'); } finally { btn.disabled = false; }
 }
 
 /* ============================================================
@@ -1198,27 +1150,23 @@ let _teacherPhotoTemp = null, _teacherSigTemp = null;
 
 async function loadTeachers() {
   $('teachersGrid').innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px"><span class="loading dark"></span></div>`;
-  try {
-    TEACHER_LIST_CACHE = await API.getTeachers();
-    renderTeachers();
-  } catch (e) { showToast('⚠️ ' + e.message, 'error'); }
+  try { TEACHER_LIST_CACHE = await API.getTeachers(); renderTeachers(); } catch (e) { showToast('⚠️ ' + e.message, 'error'); }
 }
-
 function renderTeachers() {
   if (!TEACHER_LIST_CACHE.length) {
-    $('teachersGrid').innerHTML = `<div style="grid-column:1/-1"><div class="empty-state"><div class="empty-state-icon">👨‍🏫</div><h3>ยังไม่มีข้อมูลครู</h3><p>กดปุ่ม "เพิ่มครูใหม่" เพื่อเริ่มต้น</p></div></div>`;
+    $('teachersGrid').innerHTML = `<div style="grid-column:1/-1"><div class="empty-state"><div class="empty-state-icon">👨‍🏫</div><h3>ยังไม่มีข้อมูลครู</h3></div></div>`;
     return;
   }
   $('teachersGrid').innerHTML = TEACHER_LIST_CACHE.map(t => {
     const initial = (t.firstName || '?').charAt(0);
     const avatar = t.photo ? `<img src="${t.photo}">` : initial;
-    return `
-      <div class="teacher-card">
+    const classesBadges = (t.classes || []).map(c => `<span class="badge blue">${CLASS_LABELS[c] || c}</span>`).join('');
+    return `<div class="teacher-card">
         <div class="avatar">${avatar}</div>
         <div style="flex:1;min-width:0">
           <div style="font-weight:700">${escapeHtml(t.fullName || '-')}</div>
           <div style="font-size:12.5px;color:var(--muted)">${escapeHtml(t.position || '-')}</div>
-          ${t.class ? `<div style="font-size:11.5px;color:var(--primary);font-weight:600">🏫 ${CLASS_LABELS[t.class] || t.class}</div>` : ''}
+          ${classesBadges ? `<div class="teacher-classes">${classesBadges}</div>` : ''}
         </div>
         <div class="action-btns">
           <button class="icon-btn edit" onclick="editTeacher(${t.row})">✏️</button>
@@ -1227,7 +1175,13 @@ function renderTeachers() {
       </div>`;
   }).join('');
 }
-
+function buildTeacherClassCheckboxes(selected = []) {
+  const container = $('t_classes_checkboxes');
+  container.innerHTML = CLASSES.map(c => {
+    const checked = selected.indexOf(c) >= 0 ? 'checked' : '';
+    return `<label><input type="checkbox" value="${c}" ${checked}> ${CLASS_LABELS[c]}</label>`;
+  }).join('');
+}
 function openTeacherModal(t = null) {
   $('teacherForm').reset();
   $('t_row').value = ''; $('t_id').value = '';
@@ -1236,26 +1190,18 @@ function openTeacherModal(t = null) {
   $('teacherModalTitle').textContent = t ? 'แก้ไขข้อมูลครู' : 'เพิ่มครูใหม่';
   $('teacherPhotoPreview').innerHTML = '👤';
   $('teacherSigPreview').innerHTML = '✍️';
-
-  const tclass = $('t_class');
-  if (!tclass.options.length) {
-    CLASSES.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = CLASS_LABELS[c]; tclass.appendChild(o); });
-  }
-
+  buildTeacherClassCheckboxes(t ? (t.classes || []) : []);
   if (t) {
     $('t_row').value = t.row || ''; $('t_id').value = t.id || '';
     $('t_photo').value = t.photo || ''; $('t_signature').value = t.signature || '';
-    ['prefix','firstName','lastName','position','class'].forEach(k => { const el = $('t_' + k); if (el) el.value = t[k] || ''; });
+    ['prefix','firstName','lastName','position'].forEach(k => { const el = $('t_' + k); if (el) el.value = t[k] || ''; });
     if (t.photo) $('teacherPhotoPreview').innerHTML = `<img src="${t.photo}">`;
     if (t.signature) $('teacherSigPreview').innerHTML = `<img src="${t.signature}" style="object-fit:contain">`;
   }
   $('teacherModalOverlay').classList.add('show');
 }
 function closeTeacherModal() { $('teacherModalOverlay').classList.remove('show'); }
-async function editTeacher(row) {
-  try { const t = await API.getTeacherByRow(row); openTeacherModal(t); }
-  catch (e) { showToast('⚠️ ' + e.message, 'error'); }
-}
+async function editTeacher(row) { try { const t = await API.getTeacherByRow(row); openTeacherModal(t); } catch (e) { showToast('⚠️ ' + e.message, 'error'); } }
 async function handleTeacherPhotoUpload(e) {
   if (!e.target.files[0]) return;
   _teacherPhotoTemp = await fileToBase64(e.target.files[0], 300);
@@ -1268,39 +1214,32 @@ async function handleTeacherSigUpload(e) {
   $('teacherSigPreview').innerHTML = `<img src="${_teacherSigTemp}" style="object-fit:contain">`;
 }
 function clearTeacherSig() { _teacherSigTemp = ''; $('teacherSigPreview').innerHTML = '✍️'; }
-
 async function saveTeacher() {
+  const selectedClasses = Array.from($('t_classes_checkboxes').querySelectorAll('input:checked')).map(cb => cb.value);
   const data = {
     row: $('t_row').value ? +$('t_row').value : null,
     id: $('t_id').value ? +$('t_id').value : null,
-    prefix: $('t_prefix').value.trim(),
+    prefix: $('t_prefix').value,
     firstName: $('t_firstName').value.trim(),
     lastName: $('t_lastName').value.trim(),
-    position: $('t_position').value.trim(),
-    class: $('t_class').value,
+    position: $('t_position').value,
+    classes: selectedClasses,
     photo: _teacherPhotoTemp !== null ? _teacherPhotoTemp : ($('t_photo').value || ''),
     signature: _teacherSigTemp !== null ? _teacherSigTemp : ($('t_signature').value || '')
   };
   if (!data.firstName) { showToast('⚠️ ต้องระบุชื่อครู', 'error'); return; }
-  const btn = $('btnSaveTeacher'); btn.disabled = true; btn.innerHTML = '<span class="loading"></span> กำลังบันทึก...';
+  const btn = $('btnSaveTeacher'); btn.disabled = true; btn.innerHTML = '<span class="loading"></span>';
   try {
     const res = data.row ? await API.updateTeacher(data) : await API.addTeacher(data);
-    if (res.ok) {
-      showToast(data.row ? '✅ แก้ไขสำเร็จ' : `✅ เพิ่มครูสำเร็จ`);
-      closeTeacherModal(); markSheetModified();
-      setTimeout(loadTeachers, 1000);
-    } else throw new Error(res.error);
+    if (res.ok) { showToast(data.row ? '✅ แก้ไขสำเร็จ' : '✅ เพิ่มครูสำเร็จ'); closeTeacherModal(); markSheetModified(); setTimeout(loadTeachers, 1000); }
+    else throw new Error(res.error);
   } catch (e) { showToast('❌ ' + e.message, 'error'); }
   finally { btn.disabled = false; btn.innerHTML = '💾 บันทึก'; }
 }
 async function deleteTeacher(row, name) {
   if (!confirm(`⚠️ ยืนยันลบครู "${name}"?`)) return;
-  try {
-    await API.deleteTeacher({ row });
-    showToast('🗑️ ลบสำเร็จ');
-    markSheetModified();
-    setTimeout(loadTeachers, 1000);
-  } catch (e) { showToast('❌ ' + e.message, 'error'); }
+  try { await API.deleteTeacher({ row }); showToast('🗑️ ลบสำเร็จ'); markSheetModified(); setTimeout(loadTeachers, 1000); }
+  catch (e) { showToast('❌ ' + e.message, 'error'); }
 }
 
 /* ============================================================
@@ -1312,20 +1251,16 @@ function showChartEmpty(canvasId, msg) {
   const canvas = $(canvasId); if (!canvas) return;
   const parent = canvas.parentElement;
   canvas.style.display = 'none';
-  const old = parent.querySelector('.chart-empty');
-  if (old) old.remove();
-  const div = document.createElement('div');
-  div.className = 'chart-empty';
+  const old = parent.querySelector('.chart-empty'); if (old) old.remove();
+  const div = document.createElement('div'); div.className = 'chart-empty';
   div.innerHTML = `<div class="chart-empty-icon">📊</div><div>${escapeHtml(msg || 'ยังไม่มีข้อมูล')}</div>`;
   parent.appendChild(div);
 }
 function clearChartEmpty(canvasId) {
   const canvas = $(canvasId); if (!canvas) return;
   canvas.style.display = '';
-  const old = canvas.parentElement.querySelector('.chart-empty');
-  if (old) old.remove();
+  const old = canvas.parentElement.querySelector('.chart-empty'); if (old) old.remove();
 }
-
 async function loadDashboard() {
   const range = $('selRange').value;
   try {
@@ -1343,9 +1278,8 @@ async function loadDashboard() {
     renderTrend(data.trend); renderClassChart(data.today); renderDonut(data.totals);
     renderRanking(data.ranking); renderStack(data.trend);
     setSyncStatus(true, 'พร้อมใช้งาน');
-  } catch (e) { showToast('⚠️ ' + e.message, 'error'); setSyncStatus(false, 'เชื่อมต่อไม่ได้'); }
+  } catch (e) { showToast('⚠️ ' + e.message, 'error'); }
 }
-
 function renderTrend(trend) {
   destroyChart('trend'); clearChartEmpty('chartTrend');
   const valid = trend.filter(t => t.percent !== null);
@@ -1357,8 +1291,7 @@ function renderTrend(trend) {
       borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,.12)',
       fill: true, tension: .35, pointRadius: 4, pointHoverRadius: 7,
       pointBackgroundColor: '#fff', pointBorderColor: '#2563eb', pointBorderWidth: 2,
-      borderWidth: 2.5, spanGaps: true
-    }] },
+      borderWidth: 2.5, spanGaps: true }] },
     options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' },
       scales: { y: { beginAtZero: false, min: 50, max: 100, ticks: { callback: v => v + '%' } }, x: { ticks: { autoSkip: true, maxTicksLimit: 12 } } },
       plugins: { legend: { display: false } } }
@@ -1386,7 +1319,7 @@ function renderDonut(t) {
     data: { labels: ['มา','ลา','ขาด','ป่วย'], datasets: [{ data: [t.present,t.leave,t.absent,t.sick],
       backgroundColor: ['#10b981','#fbbf24','#ef4444','#f97316'], borderWidth: 3, borderColor: '#fff', hoverOffset: 8 }] },
     options: { responsive: true, maintainAspectRatio: false, cutout: '65%',
-      plugins: { legend: { position: 'bottom', labels: { font: { family: 'Sarabun' }, padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
+      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
   });
 }
 function renderRanking(ranking) {
@@ -1411,17 +1344,15 @@ function renderStack(trend) {
       datasets: [ mk('present','มา','#10b981'), mk('leave','ลา','#fbbf24'), mk('absent','ขาด','#ef4444'), mk('sick','ป่วย','#f97316') ] },
     options: { responsive: true, maintainAspectRatio: false,
       scales: { x: { stacked: true, ticks: { autoSkip: true, maxTicksLimit: 12 } }, y: { stacked: true, beginAtZero: true } },
-      plugins: { legend: { position: 'bottom', labels: { font: { family: 'Sarabun' }, padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
+      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
   });
 }
 
 /* ============================================================
- * REPORTS
+ * REPORTS (single tab)
  * ============================================================ */
-let monthlyChart = null;
 let dailyReportChart = null;
 let reportsInitialized = false;
-let currentReportTab = 'summary';
 
 function initReports() {
   if (!reportsInitialized) {
@@ -1441,12 +1372,6 @@ function initReports() {
   loadReport();
 }
 
-function switchReportTab(tab) {
-  currentReportTab = tab;
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
-  loadReport();
-}
-
 async function loadReport() {
   const scope = $('reportScope').value;
   const fm = +$('fromMonth').value;
@@ -1455,76 +1380,13 @@ async function loadReport() {
   const ty = +$('toYear').value;
   const c = $('reportContent');
   c.innerHTML = '<div class="card" style="text-align:center;padding:60px"><span class="loading dark"></span> กำลังโหลด...</div>';
-
   try {
-    if (currentReportTab === 'summary') {
-      const data = await API.getMonthlyReport(tm, ty);
-      renderSummaryReport(data, scope);
-    } else {
-      const data = await API.getClassDailyTable(scope, fm, fy, tm, ty);
-      renderDailyReport(data);
-    }
+    const data = await API.getClassDailyTable(scope, fm, fy, tm, ty);
+    renderDailyReport(data);
     setSyncStatus(true, 'พร้อมใช้งาน');
   } catch (e) {
     c.innerHTML = `<div class="card" style="color:var(--red);padding:40px">⚠️ ${escapeHtml(e.message)}</div>`;
   }
-}
-
-function renderSummaryReport(data, scope) {
-  const c = $('reportContent');
-  let classOrder = data.classOrder, byClass = data.byClass, scopeLabel = 'ทั้งโรงเรียน';
-  if (scope !== 'all') { classOrder = [scope]; byClass = { [scope]: data.byClass[scope] }; scopeLabel = CLASS_LABELS[scope]; }
-
-  const rows = classOrder.map(cls => {
-    const v = byClass[cls] || {};
-    const pct = v.percent || 0;
-    const color = pct >= 90 ? 'var(--green)' : pct >= 80 ? 'var(--yellow)' : 'var(--red)';
-    return `<tr><td><b>${CLASS_LABELS[cls]}</b></td><td>${v.total||0}</td>
-      <td style="color:var(--green);font-weight:700">${v.present||0}</td>
-      <td style="color:var(--yellow);font-weight:700">${v.leave||0}</td>
-      <td style="color:var(--red);font-weight:700">${v.absent||0}</td>
-      <td style="color:var(--orange);font-weight:700">${v.sick||0}</td>
-      <td><b style="color:${color}">${pct}%</b></td></tr>`;
-  }).join('');
-
-  c.innerHTML = `
-    <div class="print-header">
-      ${SCHOOL_SETTINGS.school_logo ? `<img src="${SCHOOL_SETTINGS.school_logo}" class="logo">` : ''}
-      <h2>${escapeHtml(SCHOOL_SETTINGS.school_name || 'โรงเรียนบ้านถิ่นสำราญ')}</h2>
-      <p>รายงานสถิติการมาเรียน · ${scopeLabel} · เดือน${data.monthLabel} ${data.year}</p>
-    </div>
-    <div class="card">
-      <h2 class="card-title">📋 สรุปภาพรวม ${scopeLabel} · เดือน${data.monthLabel} ${data.year}</h2>
-      <div class="table-wrap"><table>
-        <thead><tr><th>ชั้นเรียน</th><th>รวม</th><th>มา</th><th>ลา</th><th>ขาด</th><th>ป่วย</th><th>%</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table></div>
-    </div>
-    <div class="charts-grid">
-      <div class="chart-card"><h3>📊 เปรียบเทียบร้อยละ</h3><div class="chart-canvas-wrap"><canvas id="chartMonthClass"></canvas></div></div>
-      <div class="chart-card"><h3>🥧 สัดส่วนสถานะ</h3><div class="chart-canvas-wrap"><canvas id="chartMonthDonut"></canvas></div></div>
-    </div>`;
-
-  if (monthlyChart) monthlyChart.destroy();
-  const labels = classOrder.map(cl => CLASS_LABELS[cl]);
-  const values = classOrder.map(cl => byClass[cl]?.percent || 0);
-  monthlyChart = new Chart($('chartMonthClass'), {
-    type: 'bar',
-    data: { labels, datasets: [{ label: '% การมาเรียน', data: values, backgroundColor: values.map(v => v>=95?'#10b981':v>=80?'#fbbf24':'#ef4444'), borderRadius: 8 }] },
-    options: { responsive: true, maintainAspectRatio: false,
-      scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } }, plugins: { legend: { display: false } } }
-  });
-
-  const totalP = classOrder.reduce((s,cl)=>s+(byClass[cl]?.present||0),0);
-  const totalL = classOrder.reduce((s,cl)=>s+(byClass[cl]?.leave||0),0);
-  const totalA = classOrder.reduce((s,cl)=>s+(byClass[cl]?.absent||0),0);
-  const totalS = classOrder.reduce((s,cl)=>s+(byClass[cl]?.sick||0),0);
-  new Chart($('chartMonthDonut'), {
-    type: 'doughnut',
-    data: { labels:['มา','ลา','ขาด','ป่วย'], datasets:[{ data:[totalP,totalL,totalA,totalS], backgroundColor:['#10b981','#fbbf24','#ef4444','#f97316'], borderWidth:3, borderColor:'#fff', hoverOffset:8 }] },
-    options: { responsive: true, maintainAspectRatio: false, cutout: '65%',
-      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
-  });
 }
 
 function renderDailyReport(data) {
@@ -1538,38 +1400,38 @@ function renderDailyReport(data) {
     if (d.status === 'weekend') {
       return `<tr style="background:#f8fafc">
         <td>${d.day}</td>
-        <td>${formatThaiDate(d.date)}</td>
-        <td colspan="5" style="text-align:center;color:var(--muted);font-weight:600">— วันเสาร์/อาทิตย์ —</td>
+        <td>${d.monthShort} ${d.year}</td>
+        <td colspan="5" style="text-align:center;color:var(--muted);font-weight:600">— วันหยุดเสาร์/อาทิตย์ —</td>
         <td><span class="badge gray">${d.statusText}</span></td>
-        <td style="font-size:12px;color:var(--muted)">วันหยุด</td>
+        <td style="font-size:11px;color:var(--muted)">${escapeHtml(d.note || 'วันหยุด')}</td>
       </tr>`;
     }
     if (d.status === 'holiday') {
       return `<tr style="background:#fef9c3">
         <td>${d.day}</td>
-        <td>${formatThaiDate(d.date)}</td>
+        <td>${d.monthShort} ${d.year}</td>
         <td colspan="5" style="text-align:center;color:#92400e;font-weight:600">— ไม่มีการบันทึกการมาเรียน —</td>
         <td><span class="badge yellow">หยุด</span></td>
-        <td style="font-size:12px;color:#92400e">วันหยุด/ไม่มีการเรียน</td>
+        <td style="font-size:11px;color:#92400e">${escapeHtml(d.note || 'วันหยุด/ไม่มีการเรียน')}</td>
       </tr>`;
     }
     const pct = d.total ? +(d.present/d.total*100).toFixed(2) : 0;
     const color = pct >= 90 ? 'var(--green)' : pct >= 80 ? 'var(--yellow)' : 'var(--red)';
     return `<tr>
       <td>${d.day}</td>
-      <td>${formatThaiDate(d.date)}</td>
+      <td>${d.monthShort} ${d.year}</td>
       <td>${d.total}</td>
       <td style="color:var(--green);font-weight:700">${d.present}</td>
       <td style="color:var(--orange);font-weight:700">${d.sick}</td>
       <td style="color:var(--yellow);font-weight:700">${d.leave}</td>
       <td style="color:var(--red);font-weight:700">${d.absent}</td>
       <td><b style="color:${color}">${pct}%</b></td>
-      <td style="font-size:11.5px;color:var(--muted);max-width:280px">${escapeHtml(d.note || '')}</td>
+      <td style="font-size:11px;color:var(--muted);max-width:280px">${escapeHtml(d.note || '')}</td>
     </tr>`;
   }).join('');
 
   const totalDays = data.days.filter(d => d.status === 'normal').length;
-  const teacher = TEACHER_LIST_CACHE.find(t => t.class === data.class);
+  const teacher = TEACHER_LIST_CACHE.find(t => (t.classes || []).indexOf(data.class) >= 0);
 
   c.innerHTML = `
     <div class="print-header">
@@ -1580,22 +1442,18 @@ function renderDailyReport(data) {
       <p>${data.fromLabel} ถึง ${data.toLabel}</p>
     </div>
     <div class="card">
-      <h2 class="card-title" style="display:flex;justify-content:space-between;align-items:center">
-        <span>📋 สถิติการมาเรียน${data.classLabel !== 'ทั้งโรงเรียน' ? 'ของนักเรียนชั้น ' + data.classLabel : 'ของนักเรียนทั้งโรงเรียน'}</span>
-        <span style="font-size:13px;color:var(--muted);font-weight:500">${data.fromLabel} — ${data.toLabel}</span>
-      </h2>
       <div class="table-wrap" style="max-height:650px;overflow-y:auto;border:1px solid var(--border);border-radius:12px">
         <table>
           <thead>
             <tr>
-              <th style="width:60px">วันที่</th>
-              <th style="width:110px">วันเดือนปี</th>
-              <th style="width:80px">จำนวนเต็ม</th>
-              <th style="width:70px">มาเรียน</th>
-              <th style="width:60px">ป่วย</th>
-              <th style="width:60px">ลา</th>
-              <th style="width:60px">ขาด</th>
-              <th style="width:70px">%</th>
+              <th style="width:55px">วันที่</th>
+              <th style="width:95px">เดือน/ปี</th>
+              <th style="width:75px">จำนวนเต็ม</th>
+              <th style="width:65px">มาเรียน</th>
+              <th style="width:55px">ป่วย</th>
+              <th style="width:55px">ลา</th>
+              <th style="width:55px">ขาด</th>
+              <th style="width:65px">%</th>
               <th>หมายเหตุ</th>
             </tr>
           </thead>
@@ -1634,7 +1492,7 @@ function renderDailyReport(data) {
   dailyReportChart = new Chart($('chartDailyReport'), {
     type: 'line',
     data: {
-      labels: normalDays.map(d => d.day + '/' + d.monthLabel.slice(0,3)),
+      labels: normalDays.map(d => d.day + ' ' + d.monthShort),
       datasets: [
         { label: 'มาเรียน', data: normalDays.map(d => d.present), borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,.1)', fill: true, tension: .3, pointRadius: 3, borderWidth: 2 },
         { label: 'ป่วย', data: normalDays.map(d => d.sick), borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,.08)', fill: true, tension: .3, pointRadius: 3, borderWidth: 2 },
@@ -1653,7 +1511,6 @@ function renderDailyReport(data) {
  * ============================================================ */
 let lastSyncVersion = null;
 let pollTimer = null;
-
 async function checkSync() {
   try {
     const res = await API.getSyncVersion();
@@ -1673,6 +1530,7 @@ function refreshCurrentPage() {
   else if (currentPage === 'students') loadStudents();
   else if (currentPage === 'teachers') loadTeachers();
   else if (currentPage === 'reports') loadReport();
+  else if (currentPage === 'home') loadHomeStats();
 }
 function startPolling() {
   if (pollTimer) clearInterval(pollTimer);
@@ -1685,11 +1543,24 @@ function startPolling() {
  * ============================================================ */
 async function loadHomeStats() {
   try {
-    const [students, dash] = await Promise.all([API.getStudents(), API.getDashboard(todayISO(), '7d')]);
+    const [students, dash, home] = await Promise.all([
+      API.getStudents(),
+      API.getDashboard(todayISO(), '7d'),
+      API.getHomeStats()
+    ]);
     $('heroStudents').textContent = students.length;
     $('heroPresent').textContent = dash.totals.present;
     $('heroPercent').textContent = dash.totals.percent + '%';
-  } catch (e) {}
+
+    // แสดงวันล่าสุดที่มีการบันทึก
+    if (home.latestFound) {
+      const [y,m,d] = home.latestDate.split('-');
+      const thaiMonths = ['','มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+      $('heroLatest').innerHTML = `📅 <b>บันทึกการมาเรียนล่าสุด:</b> วันที่ ${+d} ${thaiMonths[+m]} ${+y+543}`;
+    } else {
+      $('heroLatest').innerHTML = `📅 <b>ยังไม่มีการบันทึกการมาเรียน</b>`;
+    }
+  } catch (e) { console.error(e); }
 }
 
 /* ============================================================
