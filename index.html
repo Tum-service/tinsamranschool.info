@@ -12,12 +12,12 @@
 body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
 a{color:inherit}button{font-family:inherit}
 .navbar{background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100}
-.navbar-inner{max-width:1500px;margin:0 auto;display:flex;align-items:center;gap:16px;height:70px;flex-wrap:wrap}
+.navbar-inner{max-width:1500px;margin:0 auto;display:flex;align-items:center;gap:14px;height:70px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:17px;color:var(--primary);text-decoration:none;cursor:pointer}
 .brand-logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#2563eb,#7c3aed);display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 4px 12px rgba(37,99,235,.3);overflow:hidden}
 .brand-logo img{width:100%;height:100%;object-fit:cover}
 .nav-links{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
-.nav-links a{padding:9px 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;transition:all .18s;cursor:pointer;display:flex;align-items:center;gap:5px;position:relative}
+.nav-links a{padding:9px 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;transition:all .18s;cursor:pointer;display:flex;align-items:center;gap:5px;position:relative;white-space:nowrap}
 .nav-links a:hover{background:#f1f5f9;color:var(--primary)}
 .nav-links a.active{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;box-shadow:0 4px 12px rgba(37,99,235,.25)}
 .nav-badge{background:var(--red);color:#fff;font-size:10px;font-weight:800;padding:1px 6px;border-radius:10px;line-height:1.4;min-width:18px;text-align:center}
@@ -84,6 +84,7 @@ tbody tr:last-child td{border-bottom:none}
 .kpi.yellow::before{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
 .kpi.red::before{background:linear-gradient(90deg,#ef4444,#dc2626)}
 .kpi.orange::before{background:linear-gradient(90deg,#f97316,#ea580c)}
+.kpi.purple::before{background:linear-gradient(90deg,#8b5cf6,#7c3aed)}
 .kpi-label{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
 .kpi-value{font-size:36px;font-weight:800;margin:6px 0;letter-spacing:-1px;line-height:1.1}
 .kpi-sub{font-size:12.5px;color:var(--muted);font-weight:500}
@@ -205,7 +206,7 @@ tbody tr:last-child td{border-bottom:none}
 .photo-upload label{cursor:pointer;font-size:12.5px;color:var(--primary);font-weight:700}
 .photo-upload input[type="file"]{display:none}
 .info-banner{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:12px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;font-size:13.5px;font-weight:600;color:#78350f}
-.info-banner .icon{font-size:22px}
+.info-banner .icon{font-size:22px;flex-shrink:0}
 .info-banner.danger{background:linear-gradient(135deg,#fee2e2,#fecaca);border-color:#fca5a5;color:#991b1b}
 .info-banner.success{background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-color:#6ee7b7;color:#065f46}
 .info-banner.info{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-color:#93c5fd;color:#1e40af}
@@ -235,7 +236,6 @@ tbody tr:last-child td{border-bottom:none}
 .auth-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(37,99,235,.35)}
 .auth-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .auth-footer{text-align:center;margin-top:20px;font-size:13px;color:var(--muted)}
-.auth-footer a{color:var(--primary);font-weight:700;cursor:pointer;text-decoration:none}
 .auth-info{background:var(--primary-light);padding:12px 14px;border-radius:10px;font-size:12.5px;color:#1e40af;margin-bottom:16px;display:flex;gap:8px;align-items:flex-start;font-weight:500}
 .auth-info .icon{font-size:16px;flex-shrink:0}
 .auth-class-box{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px;background:#f8fafc;border:1.5px solid var(--border);border-radius:10px;margin-top:6px}
@@ -291,10 +291,23 @@ tbody tr:last-child td{border-bottom:none}
 .user-role-badge.deputy_director{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff}
 .user-role-badge.teacher{background:#f1f5f9;color:#475569}
 
-/* Promotion page */
+/* Academic timeline */
+.academic-timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
+.timeline-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:20px;position:relative;transition:all .2s}
+.timeline-card.active{border-color:var(--green);box-shadow:0 4px 20px rgba(16,185,129,.2)}
+.timeline-card.inactive{border-color:var(--muted);opacity:.6}
+.timeline-card.future{border-color:var(--primary);border-style:dashed}
+.timeline-card h3{font-size:15px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.timeline-card .term-status{font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;margin-left:auto}
+.timeline-card .term-status.active{background:var(--green-light);color:#065f46}
+.timeline-card .term-status.inactive{background:#f1f5f9;color:var(--muted)}
+.timeline-card .term-status.future{background:var(--primary-light);color:#1e40af}
+.timeline-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);font-size:13.5px}
+.timeline-row:last-child{border-bottom:none}
+.timeline-row .label{color:var(--muted);font-weight:600}
+.timeline-row .value{font-weight:700;color:var(--text)}
 .promo-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
 .promo-step{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;transition:all .2s}
-.promo-step.active{border-color:var(--primary);box-shadow:0 4px 16px rgba(37,99,235,.15)}
 .promo-step-num{position:absolute;top:-12px;left:20px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;box-shadow:0 4px 12px rgba(37,99,235,.3)}
 .promo-step h3{font-size:15px;font-weight:700;margin:8px 0}
 .promo-step p{font-size:13px;color:var(--muted)}
@@ -369,7 +382,6 @@ tbody tr:last-child td{border-bottom:none}
       <button class="auth-tab" onclick="switchAuthTab('signup')">📝 สมัครสมาชิก</button>
     </div>
 
-    <!-- LOGIN -->
     <form class="auth-form active" id="loginForm" onsubmit="event.preventDefault();doLogin()">
       <div class="form-group">
         <label>ชื่อผู้ใช้</label>
@@ -384,12 +396,9 @@ tbody tr:last-child td{border-bottom:none}
         <span>จดจำการเข้าสู่ระบบ 30 วัน</span>
       </label>
       <button type="submit" class="auth-btn" id="btnLogin">🔐 เข้าสู่ระบบ</button>
-      <div class="auth-footer">
-        ลืมรหัสผ่าน? กรุณาติดต่อ<b>ผู้ดูแลระบบ</b>
-      </div>
+      <div class="auth-footer">ลืมรหัสผ่าน? กรุณาติดต่อ<b>ผู้ดูแลระบบ</b></div>
     </form>
 
-    <!-- SIGNUP -->
     <form class="auth-form" id="signupForm" onsubmit="event.preventDefault();doSignup()">
       <div class="auth-info">
         <span class="icon">ℹ️</span>
@@ -467,7 +476,7 @@ tbody tr:last-child td{border-bottom:none}
       <a data-page="reports" onclick="navigate('reports')">📑 <span class="label">รายงาน</span></a>
       <a data-page="users" id="navUsers" style="display:none" onclick="navigate('users')">🧑‍💼 <span class="label">ผู้ใช้</span> <span class="nav-badge" id="pendingUsersBadge" style="display:none">0</span></a>
       <a data-page="deletes" id="navDeletes" onclick="navigate('deletes')">🗑️ <span class="label">คำขอลบ</span> <span class="nav-badge" id="pendingDeletesBadge" style="display:none">0</span></a>
-      <a data-page="promotion" id="navPromotion" style="display:none" onclick="navigate('promotion')">🎓 <span class="label">เลื่อนชั้น</span></a>
+      <a data-page="academic" id="navAcademic" style="display:none" onclick="navigate('academic')">🎓 <span class="label">ปีการศึกษา</span></a>
       <a data-page="settings" id="navSettings" style="display:none" onclick="navigate('settings')">⚙️ <span class="label">ตั้งค่า</span></a>
     </div>
     <div class="sync-status" id="syncStatus">
@@ -649,10 +658,10 @@ tbody tr:last-child td{border-bottom:none}
         <select id="reportScope"><option value="all">🏫 ทั้งโรงเรียน</option></select>
         <label>จากเดือน:</label>
         <select id="fromMonth"></select>
-        <input type="number" id="fromYear" value="2569" min="2560" max="2580" style="width:90px">
+        <input type="number" id="fromYear" value="2569" min="2560" max="2600" style="width:90px">
         <label>ถึงเดือน:</label>
         <select id="toMonth"></select>
-        <input type="number" id="toYear" value="2569" min="2560" max="2580" style="width:90px">
+        <input type="number" id="toYear" value="2569" min="2560" max="2600" style="width:90px">
         <button class="btn btn-primary" onclick="loadReport()">📊 แสดง</button>
         <button class="btn btn-ghost" onclick="window.print()">🖨️ ปริ้น PDF (A4)</button>
       </div>
@@ -713,39 +722,68 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- PROMOTION -->
-<div class="page" id="page-promotion">
+<!-- ACADEMIC YEAR -->
+<div class="page" id="page-academic">
   <div class="container">
-    <h1 class="page-title">เลื่อนชั้น / เริ่มปีการศึกษาใหม่</h1>
-    <p class="page-sub">อัปเดตชั้นเรียนนักเรียน ครู และเริ่มปีการศึกษาใหม่</p>
+    <h1 class="page-title">จัดการปีการศึกษา</h1>
+    <p class="page-sub">ตั้งค่าวันเปิด-ปิดภาคเรียน · เลื่อนชั้น · เริ่มปีการศึกษาใหม่</p>
 
-    <div class="info-banner danger">
-      <span class="icon">⚠️</span>
-      <div>
-        <b>โปรดอ่านก่อนดำเนินการ!</b><br>
-        • ระบบจะ <b>สำรองข้อมูลอัตโนมัติ</b> ทุกชีทก่อนดำเนินการ<br>
-        • นักเรียนจะถูก <b>เลื่อนชั้นขึ้น 1 ระดับ</b> ทุกคน<br>
-        • นักเรียน ป.6 → <b>จบการศึกษาและลบออกจากระบบ</b><br>
-        • ครูประจำชั้นจะเลื่อนชั้นตามนักเรียน<br>
-        • <b>ไม่สามารถย้อนกลับได้</b> — ต้องสำรองก่อนเท่านั้น
+    <!-- Current Status -->
+    <div class="card" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-color:#93c5fd">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1e40af;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">ปีการศึกษาปัจจุบัน</div>
+          <div style="font-size:40px;font-weight:800;color:#1e40af;line-height:1" id="academicYearBig">—</div>
+          <div style="font-size:14px;font-weight:700;color:#1e40af;margin-top:6px" id="academicCurrentTerm">—</div>
+        </div>
+        <button class="btn btn-ghost" onclick="loadAcademicInfo()">🔄 โหลดใหม่</button>
       </div>
     </div>
 
+    <!-- Term Timeline -->
+    <div class="academic-timeline" id="academicTimeline"></div>
+
+    <!-- Set Term Dates -->
     <div class="card">
-      <h2 class="card-title">📊 ปีการศึกษาปัจจุบัน</h2>
-      <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
-        <div style="text-align:center;padding:20px 40px;background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-radius:12px;border:1px solid #93c5fd">
-          <div style="font-size:12px;font-weight:700;color:#1e40af;text-transform:uppercase;letter-spacing:.4px">ปีการศึกษาปัจจุบัน</div>
-          <div style="font-size:36px;font-weight:800;color:#1e40af;line-height:1.1" id="currentYearBig">—</div>
+      <h2 class="card-title">📅 ตั้งค่าวันเปิด-ปิดภาคเรียน</h2>
+      <div class="info-banner info">
+        <span class="icon">ℹ️</span>
+        <div>
+          <b>คำแนะนำ:</b> กรอกเฉพาะวันเริ่มต้นก่อนได้ · วันสิ้นสุดกรอกทีหลังเมื่อใกล้ปิดภาคเรียน<br>
+          ระบบจะตรวจสอบว่าวันนี้อยู่ในภาคเรียนใดโดยอัตโนมัติ
         </div>
-        <div style="text-align:center;padding:20px 40px;background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-radius:12px;border:1px solid #6ee7b7">
-          <div style="font-size:12px;font-weight:700;color:#065f46;text-transform:uppercase;letter-spacing:.4px">ปีถัดไป</div>
-          <div style="font-size:36px;font-weight:800;color:#065f46;line-height:1.1" id="nextYearBig">—</div>
+      </div>
+      <div class="form-grid" style="gap:20px">
+        <div class="form-section">
+          <div class="form-section-title">📘 ภาคเรียนที่ 1 (พ.ค. – ต.ค.)</div>
+          <div class="form-group" style="margin-bottom:14px">
+            <label>วันเปิดภาคเรียน</label>
+            <input type="date" id="setTerm1Start">
+          </div>
+          <div class="form-group">
+            <label>วันปิดภาคเรียน (กรอกทีหลังได้)</label>
+            <input type="date" id="setTerm1End">
+          </div>
         </div>
-        <button class="btn btn-primary" onclick="loadPromotionPreview()">🔄 โหลดข้อมูลล่าสุด</button>
+        <div class="form-section">
+          <div class="form-section-title">📗 ภาคเรียนที่ 2 (พ.ย. – มี.ค.)</div>
+          <div class="form-group" style="margin-bottom:14px">
+            <label>วันเปิดภาคเรียน</label>
+            <input type="date" id="setTerm2Start">
+          </div>
+          <div class="form-group">
+            <label>วันปิดภาคเรียน (กรอกทีหลังได้)</label>
+            <input type="date" id="setTerm2End">
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="saveTermDates()">💾 บันทึกวันภาคเรียน</button>
+        <button class="btn btn-ghost" onclick="loadAcademicInfo()">↺ รีเซ็ต</button>
       </div>
     </div>
 
+    <!-- Preview Promotion -->
     <div class="card">
       <h2 class="card-title">📋 ตัวอย่างการเลื่อนชั้น (Preview)</h2>
       <div id="promoBreakdown" class="promo-breakdown"></div>
@@ -754,21 +792,31 @@ tbody tr:last-child td{border-bottom:none}
       </div>
     </div>
 
-    <div class="card">
-      <h2 class="card-title">🚀 ดำเนินการเลื่อนชั้น</h2>
-      <p style="color:var(--muted);font-size:13.5px;margin-bottom:16px">
-        เมื่อกดปุ่มด้านล่าง ระบบจะ:<br>
-        1. สำรองข้อมูลทุกชีท (ข้อมูล, พค, มิย, ..., มีค) เก็บไว้ชื่อ <code>ชีทเดิม_ปี</code><br>
-        2. เลื่อนชั้นนักเรียนทุกคนขึ้น 1 ระดับ (ป.6 จบการศึกษา)<br>
-        3. ล้างข้อมูลการมาเรียนในชีทเดือน (เก็บแค่ชื่อ-เลขที่)<br>
-        4. เลื่อนชั้นครูประจำชั้นตามนักเรียน<br>
-        5. อัปเดตปีการศึกษา
-      </p>
-      <button class="btn btn-danger" id="btnPromote" onclick="confirmPromotion()">🚀 เริ่มปีการศึกษาใหม่</button>
+    <!-- Start New Academic Year -->
+    <div class="card" style="border-color:#fca5a5">
+      <h2 class="card-title" style="color:var(--red)">🚀 เริ่มปีการศึกษาใหม่</h2>
+      <div class="info-banner danger">
+        <span class="icon">⚠️</span>
+        <div>
+          <b>โปรดอ่านก่อนดำเนินการ!</b><br>
+          เมื่อกดปุ่มนี้ ระบบจะทำอัตโนมัติ:<br>
+          1. <b>สำรองไฟล์ทั้งหมด</b> → โฟลเดอร์ <code>Archive_ระบบมาเรียน</code> ใน Google Drive<br>
+          2. ย้ายชีทเก่า (1-XX, 2-XX, สรุปXX) ไปเป็น <code>[Archive] ...</code><br>
+          3. <b>ลบข้อมูลการมาเรียนของปีเก่า</b> ออกจากไฟล์หลัก<br>
+          4. เลื่อนชั้นนักเรียนทุกคนขึ้น 1 ระดับ (ป.6 จบการศึกษาและลบออก)<br>
+          5. เลื่อนชั้นครูประจำชั้นตามนักเรียน<br>
+          6. <b>สร้างชีทใหม่</b> 1-XX, 2-XX, สรุปXX ในไฟล์สถิติอัตโนมัติ<br>
+          7. รีเซ็ตวันภาคเรียน (ต้องกรอกใหม่)<br><br>
+          <b style="color:#dc2626">※ ไม่สามารถย้อนกลับได้! ต้องสำรองก่อนเท่านั้น</b>
+        </div>
+      </div>
+      <div id="promoWarningBox" style="margin-bottom:16px"></div>
+      <button class="btn btn-danger" id="btnPromote" onclick="confirmPromotion()" style="font-size:16px;padding:14px 28px">🚀 เริ่มปีการศึกษาใหม่</button>
     </div>
 
+    <!-- History -->
     <div class="card">
-      <h2 class="card-title">📜 ประวัติการเลื่อนชั้น</h2>
+      <h2 class="card-title">📜 ประวัติการเริ่มปีการศึกษา</h2>
       <div id="promoHistory"></div>
     </div>
   </div>
@@ -1150,6 +1198,29 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
+<!-- MODAL: Confirm Promotion -->
+<div class="modal-overlay" id="promoConfirmOverlay">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <div class="modal-title" style="color:var(--red)">⚠️ ยืนยันเริ่มปีการศึกษาใหม่</div>
+    </div>
+    <div class="modal-body">
+      <div class="info-banner danger">
+        <span class="icon">⚠️</span>
+        <span>กรุณาพิมพ์ <b>START</b> เพื่อยืนยันการเริ่มปีการศึกษาใหม่<br>การดำเนินการนี้ไม่สามารถย้อนกลับได้!</span>
+      </div>
+      <div class="form-group">
+        <label>พิมพ์ <b style="color:var(--red)">START</b> เพื่อยืนยัน</label>
+        <input type="text" id="promoConfirmText" placeholder="START" autocomplete="off">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-ghost" onclick="closePromoConfirm()">ยกเลิก</button>
+      <button type="button" class="btn btn-danger" id="btnConfirmPromoFinal" onclick="finalizePromotion()">🚀 ยืนยันเริ่มปีใหม่</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1219,6 +1290,7 @@ const API = {
   addStudent(data) { return this.call('addStudent', {}, 'POST', data); },
   updateStudent(data) { return this.call('updateStudent', {}, 'POST', data); },
   syncStructure() { return this.call('syncStructure'); },
+  cleanEmptyRows() { return this.call('cleanEmptyRows'); },
 
   requestDeleteStudent(data) { return this.call('requestDeleteStudent', {}, 'POST', data); },
   getDeleteRequests() { return this.call('getDeleteRequests'); },
@@ -1236,19 +1308,20 @@ const API = {
   getSettings() { return this.call('getSettings'); },
   setSetting(key, value) { return this.call('setSetting', {}, 'POST', { key, value }); },
 
+  /* Academic */
+  getAcademicYearInfo() { return this.call('getAcademicYearInfo'); },
+  setTermDates(data) { return this.call('setTermDates', {}, 'POST', data); },
+  startNewAcademicYear(data) { return this.call('startNewAcademicYear', {}, 'POST', data || {}); },
+  getArchiveHistory() { return this.call('getArchiveHistory'); },
+  previewPromotion() { return this.call('previewPromotion'); },
+
   getAttendance(date, cls) { return this.call('getAttendance', { date, class: cls || '' }); },
   saveAttendance(payload) { return this.call('saveAttendance', {}, 'POST', payload); },
   getDashboard(date, range) { return this.call('getDashboard', { date: date || '', range: range || '30d' }); },
   getStudentReport(studentRow, fromDate, toDate) { return this.call('getStudentReport', { studentRow, fromDate: fromDate || '', toDate: toDate || '' }); },
   getClassDailyTable(cls, fm, fy, tm, ty) { return this.call('getClassDailyTable', { class: cls || 'all', fromMonth: fm, fromYear: fy, toMonth: tm, toYear: ty }); },
   getHomeStats() { return this.call('getHomeStats'); },
-  getSyncVersion() { return this.call('getSyncVersion'); },
-
-  /* Promotion */
-  getCurrentAcademicYear() { return this.call('getCurrentAcademicYear'); },
-  previewPromotion() { return this.call('previewPromotion'); },
-  startNewAcademicYear(data) { return this.call('startNewAcademicYear', {}, 'POST', data || {}); },
-  getPromotionHistory() { return this.call('getPromotionHistory'); }
+  getSyncVersion() { return this.call('getSyncVersion'); }
 };
 
 /* ============================================================
@@ -1307,16 +1380,13 @@ async function doLogin() {
   const password = $('loginPassword').value;
   const remember = $('rememberMe').checked;
   if (!username || !password) { showToast('กรุณากรอกชื่อผู้ใช้และรหัสผ่าน', 'error'); return; }
-
   const btn = $('btnLogin'); btn.disabled = true;
   const orig = btn.innerHTML; btn.innerHTML = '<span class="loading"></span> กำลังเข้าสู่ระบบ...';
   try {
     const res = await API.login({ username, password });
     if (!res.ok) throw new Error('เข้าสู่ระบบไม่สำเร็จ');
-
     CURRENT_TOKEN = res.token;
     CURRENT_USER = res.user;
-
     if (remember) {
       localStorage.setItem(LS_KEY_TOKEN, res.token);
       localStorage.setItem(LS_KEY_USER, JSON.stringify(res.user));
@@ -1349,14 +1419,12 @@ async function doSignup() {
   const role = $('suRole').value;
   const position = $('suPosition').value;
   const classes = Array.from($('suClassesBox').querySelectorAll('input:checked')).map(cb => cb.value);
-
   if (!username || !password || !name) { showToast('กรุณากรอกข้อมูลให้ครบ', 'error'); return; }
   if (password !== password2) { showToast('รหัสผ่านทั้งสองไม่ตรงกัน', 'error'); return; }
   if (password.length < 4) { showToast('รหัสผ่านอย่างน้อย 4 ตัวอักษร', 'error'); return; }
   if (username.length < 3) { showToast('ชื่อผู้ใช้ต้องมี 3 ตัวอักษรขึ้นไป', 'error'); return; }
   if (/\s/.test(username)) { showToast('ชื่อผู้ใช้ห้ามมีช่องว่าง', 'error'); return; }
   if (username.indexOf('@') >= 0) { showToast('ชื่อผู้ใช้ห้ามมี @ (ห้ามใช้อีเมล)', 'error'); return; }
-
   const btn = $('btnSignup'); btn.disabled = true;
   const orig = btn.innerHTML; btn.innerHTML = '<span class="loading"></span> กำลังสมัคร...';
   try {
@@ -1418,7 +1486,7 @@ async function enterApp() {
   updateUserUI();
   await loadSettings();
   try { TEACHER_LIST_CACHE = await API.getTeachers(); } catch(e) {}
-  try { const y = await API.getCurrentAcademicYear(); CURRENT_YEAR = y.year || 2569; } catch(e) {}
+  try { const info = await API.getAcademicYearInfo(); CURRENT_YEAR = info.academicYear || 2569; } catch(e) {}
   updateNavVisibility();
   loadHomeStats();
   startPolling();
@@ -1438,7 +1506,7 @@ function updateUserUI() {
 function updateNavVisibility() {
   $('navUsers').style.display = isManager() ? '' : 'none';
   $('navSettings').style.display = isManager() ? '' : 'none';
-  $('navPromotion').style.display = isAdmin() ? '' : 'none';
+  $('navAcademic').style.display = isAdmin() ? '' : 'none';
 }
 
 function toggleUserMenu(e) {
@@ -1504,7 +1572,7 @@ function navigate(page) {
   if (page === 'reports') initReports();
   if (page === 'users') loadUsers();
   if (page === 'deletes') loadDeleteRequests();
-  if (page === 'promotion') initPromotion();
+  if (page === 'academic') initAcademic();
   if (page === 'settings') loadSettings();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1519,11 +1587,12 @@ async function loadHomeStats() {
     $('heroPresent').textContent = dash.totals.present;
     $('heroPercent').textContent = dash.totals.percent + '%';
     let yearInfo = home.academicYear ? ` · ปีการศึกษา ${home.academicYear}` : '';
+    let termInfo = home.currentTerm && home.currentTerm.term ? ` · ${home.currentTerm.label}` : '';
     if (home.latestFound) {
       const [y,m,d] = home.latestDate.split('-');
-      $('heroLatest').innerHTML = `📅 <b>บันทึกการมาเรียนล่าสุด:</b> วันที่ ${+d} ${MONTHS_TH[+m]} ${+y+543}${yearInfo}`;
+      $('heroLatest').innerHTML = `📅 <b>บันทึกการมาเรียนล่าสุด:</b> วันที่ ${+d} ${MONTHS_TH[+m]} ${+y+543}${yearInfo}${termInfo}`;
     } else {
-      $('heroLatest').innerHTML = `📅 <b>ยังไม่มีการบันทึกการมาเรียน</b>${yearInfo}`;
+      $('heroLatest').innerHTML = `📅 <b>ยังไม่มีการบันทึกการมาเรียน</b>${yearInfo}${termInfo}`;
     }
   } catch(e) { console.error(e); }
 }
@@ -1865,7 +1934,6 @@ function requestDeleteStudent(row, name) {
   $('deleteHoldBtn').disabled = false;
   $('deleteHoldBtn').querySelector('.hold-label').innerHTML = '🔴 กดค้าง 5 วินาที';
   $('deleteTeacherName').value = '';
-
   const student = allStudents.find(s => s.row === row);
   const avatar = student && student.photo ? `<img src="${student.photo}">` : (student && student.firstName ? escapeHtml(student.firstName.charAt(0)) : '👤');
   $('deleteStudentInfo').innerHTML = `
@@ -1876,11 +1944,7 @@ function requestDeleteStudent(row, name) {
     </div>`;
   $('deleteModalOverlay').classList.add('show');
 }
-function closeDeleteModal() {
-  cancelDeleteHold();
-  _deleteTarget = null;
-  $('deleteModalOverlay').classList.remove('show');
-}
+function closeDeleteModal() { cancelDeleteHold(); _deleteTarget = null; $('deleteModalOverlay').classList.remove('show'); }
 function startDeleteHold(e) {
   if (!_deleteTarget) return;
   if (_holdCurrentRound >= HOLD_ROUNDS) return;
@@ -1890,7 +1954,6 @@ function startDeleteHold(e) {
   if (_holdCurrentRound === 0) $('holdDot1').className = 'hold-dot active';
   else if (_holdCurrentRound === 1) $('holdDot2').className = 'hold-dot active';
   else if (_holdCurrentRound === 2) $('holdDot3').className = 'hold-dot active';
-
   const step = () => {
     const elapsed = Date.now() - _holdStart;
     const pct = Math.min(100, (elapsed / HOLD_DURATION) * 100);
@@ -1933,14 +1996,12 @@ async function submitDeleteRequest() {
   const teacherName = $('deleteTeacherName').value.trim();
   if (!teacherName) { showToast('กรุณาพิมพ์ชื่อครูประจำชั้น', 'error'); return; }
   if (teacherName.length < 2) { showToast('ชื่อต้องมีอย่างน้อย 2 ตัวอักษร', 'error'); return; }
-
   const btn = $('btnConfirmRequest'); btn.disabled = true;
   const orig = btn.innerHTML; btn.innerHTML = '<span class="loading"></span> กำลังส่ง...';
   try {
     const res = await API.requestDeleteStudent({ studentRow: _deleteTarget.row, teacherName });
     showToast(res.message || 'ส่งคำขอสำเร็จ รอการอนุมัติ', 'success', 5000);
-    closeDeleteModal();
-    updateBadges();
+    closeDeleteModal(); updateBadges();
   } catch(e) { showToast('❌ ' + e.message, 'error', 5000); }
   finally { btn.disabled = false; btn.innerHTML = orig; }
 }
@@ -1996,7 +2057,7 @@ function renderDeleteRequestCard(r) {
   </div>`;
 }
 async function approveDeleteReq(id) {
-  if (!confirm(`⚠️ ยืนยันการอนุมัติคำขอ #${id}?\n\nเมื่ออนุมัติแล้ว นักเรียนจะถูกลบออกจากระบบทันที (ไม่สามารถกู้คืนได้)`)) return;
+  if (!confirm(`⚠️ ยืนยันการอนุมัติคำขอ #${id}?\n\nเมื่ออนุมัติแล้ว นักเรียนจะถูกลบออกจากระบบทันที`)) return;
   try {
     const res = await API.approveDelete({ requestId: id });
     showToast(res.message || 'อนุมัติสำเร็จ');
@@ -2033,9 +2094,7 @@ async function loadUsers() {
     allUsers = users;
     const adminCount = admins.count !== undefined ? admins.count : (admins || 0);
     $('usersSubtitle').innerHTML = `จัดการบัญชี · อนุมัติผู้ใช้ · โอนสิทธิ์ · <span class="badge ${adminCount>=2?'red':'green'}">Admin: ${adminCount}/2</span>`;
-    renderUsers();
-    renderPendingUsers();
-    updateBadges();
+    renderUsers(); renderPendingUsers(); updateBadges();
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
 function renderUsers() {
@@ -2043,10 +2102,7 @@ function renderUsers() {
   let list = allUsers.filter(u => u.status !== 'pending');
   if (q) list = list.filter(u => (u.name||'').toLowerCase().includes(q) || (u.username||'').toLowerCase().includes(q));
   $('userCount').innerHTML = `รายชื่อผู้ใช้ <span class="badge blue">${list.length} คน</span>`;
-  if (!list.length) {
-    $('userGrid').innerHTML = `<div style="grid-column:1/-1"><div class="empty-state"><div class="empty-state-icon">🧑‍💼</div><h3>ไม่พบผู้ใช้</h3></div></div>`;
-    return;
-  }
+  if (!list.length) { $('userGrid').innerHTML = `<div style="grid-column:1/-1"><div class="empty-state"><div class="empty-state-icon">🧑‍💼</div><h3>ไม่พบผู้ใช้</h3></div></div>`; return; }
   $('userGrid').innerHTML = list.map(u => {
     const avatar = u.photo ? `<img src="${u.photo}">` : escapeHtml((u.name||'?').charAt(0));
     const canTransfer = isAdmin() && u.role === 'teacher' && u.status === 'active' && u.username !== CURRENT_USER.username;
@@ -2099,23 +2155,17 @@ async function approveUserReq(row) {
   if (!u) return;
   if (u.role === 'admin') {
     const adminCount = allUsers.filter(x => x.role === 'admin' && x.status === 'active').length;
-    if (adminCount >= 2) { showToast('มี Admin ครบ 2 คนแล้ว กรุณาเปลี่ยน role ก่อนอนุมัติ', 'error'); return; }
+    if (adminCount >= 2) { showToast('มี Admin ครบ 2 คนแล้ว', 'error'); return; }
   }
   if (!confirm(`อนุมัติผู้ใช้ "${u.name}" เป็น "${u.roleLabel}"?`)) return;
-  try {
-    const res = await API.approveUser({ row });
-    showToast(res.message || 'อนุมัติสำเร็จ');
-    loadUsers();
-  } catch(e) { showToast('❌ ' + e.message, 'error'); }
+  try { const res = await API.approveUser({ row }); showToast(res.message || 'อนุมัติสำเร็จ'); loadUsers(); }
+  catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
 async function rejectUserReq(row) {
   const u = allUsers.find(x => x.row === row);
   if (!confirm(`ปฏิเสธคำขอของ "${u.name}"?`)) return;
-  try {
-    await API.rejectUser({ row });
-    showToast('ปฏิเสธคำขอสำเร็จ');
-    loadUsers();
-  } catch(e) { showToast('❌ ' + e.message, 'error'); }
+  try { await API.rejectUser({ row }); showToast('ปฏิเสธสำเร็จ'); loadUsers(); }
+  catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
 function openUserModal(user = null) {
   $('userForm').reset();
@@ -2161,8 +2211,7 @@ async function saveUser() {
     role: $('u_role').value,
     position: $('u_position').value,
     status: $('u_status').value,
-    classes,
-    photo: _userPhotoTemp !== null ? _userPhotoTemp : ($('u_photo').value || '')
+    classes, photo: _userPhotoTemp !== null ? _userPhotoTemp : ($('u_photo').value || '')
   };
   if (!data.row && !data.password) { showToast('ต้องกรอกรหัสผ่านสำหรับผู้ใช้ใหม่', 'error'); return; }
   if (!data.name) { showToast('ต้องระบุชื่อ-สกุล', 'error'); return; }
@@ -2175,12 +2224,9 @@ async function saveUser() {
   finally { btn.disabled = false; btn.innerHTML = '💾 บันทึก'; }
 }
 async function deleteUserReq(row, name) {
-  if (!confirm(`⚠️ ลบผู้ใช้ "${name}"?\n\nไม่สามารถกู้คืนได้!`)) return;
-  try {
-    await API.deleteUser({ row });
-    showToast('ลบผู้ใช้สำเร็จ');
-    loadUsers();
-  } catch(e) { showToast('❌ ' + e.message, 'error'); }
+  if (!confirm(`⚠️ ลบผู้ใช้ "${name}"?`)) return;
+  try { await API.deleteUser({ row }); showToast('ลบผู้ใช้สำเร็จ'); loadUsers(); }
+  catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
 
 /* ============================================================
@@ -2198,7 +2244,7 @@ function closeTransferModal() { $('transferModalOverlay').classList.remove('show
 async function confirmTransfer() {
   const targetRow = +$('transferTarget').value;
   if (!targetRow) return;
-  if (!confirm('⚠️ ยืนยันการโอนสิทธิ์?\n\nคุณจะกลายเป็น "ครู" ทันที\nไม่สามารถย้อนกลับได้!')) return;
+  if (!confirm('⚠️ ยืนยันการโอนสิทธิ์?\n\nคุณจะกลายเป็น "ครู" ทันที')) return;
   try {
     const res = await API.transferAdmin({ targetRow });
     showToast(res.message || 'โอนสิทธิ์สำเร็จ', 'success', 5000);
@@ -2249,8 +2295,7 @@ function openTeacherModal(t = null) {
   $('t_row').value = ''; $('t_id').value = ''; $('t_photo').value = ''; $('t_signature').value = '';
   _teacherPhotoTemp = null; _teacherSigTemp = null;
   $('teacherModalTitle').textContent = t ? 'แก้ไขข้อมูลครู' : 'เพิ่มครูใหม่';
-  $('teacherPhotoPreview').innerHTML = '👤';
-  $('teacherSigPreview').innerHTML = '✍️';
+  $('teacherPhotoPreview').innerHTML = '👤'; $('teacherSigPreview').innerHTML = '✍️';
   buildTeacherClassCheckboxes(t ? (t.classes || []) : []);
   if (t) {
     $('t_row').value = t.row || ''; $('t_id').value = t.id || '';
@@ -2290,30 +2335,86 @@ async function saveTeacher() {
   finally { btn.disabled = false; btn.innerHTML = '💾 บันทึก'; }
 }
 async function deleteTeacherReq(row, name) {
-  if (!confirm(`⚠️ ลบครู "${name}"?\n\nไม่สามารถกู้คืนได้!`)) return;
+  if (!confirm(`⚠️ ลบครู "${name}"?`)) return;
   try { await API.deleteTeacher({ row }); showToast('ลบสำเร็จ'); setTimeout(loadTeachers, 800); }
   catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
 
 /* ============================================================
- * PROMOTION
+ * ACADEMIC YEAR
  * ============================================================ */
-async function initPromotion() {
+async function initAcademic() {
   if (!isAdmin()) { showToast('เฉพาะผู้ดูแลระบบ', 'error'); navigate('home'); return; }
+  await loadAcademicInfo();
+  await loadPromotionPreview();
+  await loadPromotionHistory();
+}
+async function loadAcademicInfo() {
   try {
-    const y = await API.getCurrentAcademicYear();
-    CURRENT_YEAR = y.year || 2569;
-    $('currentYearBig').textContent = CURRENT_YEAR;
-    $('nextYearBig').textContent = CURRENT_YEAR + 1;
-  } catch(e) {}
-  loadPromotionPreview();
-  loadPromotionHistory();
+    const info = await API.getAcademicYearInfo();
+    CURRENT_YEAR = info.academicYear || 2569;
+    $('academicYearBig').textContent = info.academicYear || '—';
+    const termLabel = info.currentTerm && info.currentTerm.term ? info.currentTerm.label : 'นอกภาคเรียน';
+    const termIcon = info.currentTerm && info.currentTerm.term === 1 ? '📘' : info.currentTerm && info.currentTerm.term === 2 ? '📗' : '⏸️';
+    $('academicCurrentTerm').innerHTML = `${termIcon} ${termLabel}`;
+    $('setTerm1Start').value = info.term1Start || '';
+    $('setTerm1End').value = info.term1End || '';
+    $('setTerm2Start').value = info.term2Start || '';
+    $('setTerm2End').value = info.term2End || '';
+    renderAcademicTimeline(info);
+  } catch(e) { showToast('⚠️ ' + e.message, 'error'); }
+}
+function renderAcademicTimeline(info) {
+  const today = todayISO();
+  const t1s = info.term1Start, t1e = info.term1End;
+  const t2s = info.term2Start, t2e = info.term2End;
+  const getStatus = (s, e) => {
+    if (!s) return {cls:'future', label:'ยังไม่เริ่ม'};
+    if (s && !e) {
+      if (today < s) return {cls:'future', label:'รอเริ่ม'};
+      return {cls:'active', label:'กำลังเรียน'};
+    }
+    if (s && e) {
+      if (today < s) return {cls:'future', label:'รอเริ่ม'};
+      if (today > e) return {cls:'inactive', label:'จบแล้ว'};
+      return {cls:'active', label:'กำลังเรียน'};
+    }
+    return {cls:'future', label:'—'};
+  };
+  const s1 = getStatus(t1s, t1e);
+  const s2 = getStatus(t2s, t2e);
+  $('academicTimeline').innerHTML = `
+    <div class="timeline-card ${s1.cls}">
+      <h3>📘 ภาคเรียนที่ 1 <span class="term-status ${s1.cls}">${s1.label}</span></h3>
+      <div class="timeline-row"><span class="label">วันเปิด</span><span class="value">${t1s ? formatThaiDate(t1s) : '— ยังไม่ตั้ง'}</span></div>
+      <div class="timeline-row"><span class="label">วันปิด</span><span class="value">${t1e ? formatThaiDate(t1e) : '— ยังไม่ตั้ง'}</span></div>
+      <div class="timeline-row"><span class="label">ระยะเวลา</span><span class="value">${t1s && t1e ? Math.round((new Date(t1e)-new Date(t1s))/86400000)+1 + ' วัน' : '—'}</span></div>
+    </div>
+    <div class="timeline-card ${s2.cls}">
+      <h3>📗 ภาคเรียนที่ 2 <span class="term-status ${s2.cls}">${s2.label}</span></h3>
+      <div class="timeline-row"><span class="label">วันเปิด</span><span class="value">${t2s ? formatThaiDate(t2s) : '— ยังไม่ตั้ง'}</span></div>
+      <div class="timeline-row"><span class="label">วันปิด</span><span class="value">${t2e ? formatThaiDate(t2e) : '— ยังไม่ตั้ง'}</span></div>
+      <div class="timeline-row"><span class="label">ระยะเวลา</span><span class="value">${t2s && t2e ? Math.round((new Date(t2e)-new Date(t2s))/86400000)+1 + ' วัน' : '—'}</span></div>
+    </div>`;
+}
+async function saveTermDates() {
+  const data = {
+    term1Start: $('setTerm1Start').value,
+    term1End: $('setTerm1End').value,
+    term2Start: $('setTerm2Start').value,
+    term2End: $('setTerm2End').value
+  };
+  if (!data.term1Start && !data.term2Start) { showToast('กรุณากรอกวันเปิดภาคเรียนอย่างน้อย 1 ภาค', 'error'); return; }
+  try {
+    const res = await API.setTermDates(data);
+    showToast(res.message || 'บันทึกสำเร็จ');
+    await loadAcademicInfo();
+  } catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
 async function loadPromotionPreview() {
   try {
     const data = await API.previewPromotion();
-    $('currentYearBig').textContent = data.currentYear;
-    $('nextYearBig').textContent = data.nextYear;
+    $('academicYearBig').textContent = data.currentYear;
     const breakdown = data.breakdown || {};
     $('promoBreakdown').innerHTML = CLASSES.map(c => {
       const count = breakdown[c] || 0;
@@ -2325,16 +2426,18 @@ async function loadPromotionPreview() {
       </div>`;
     }).join('');
     const totalStudents = Object.values(breakdown).reduce((s,v)=>s+v,0);
-    $('promoSummary').innerHTML = `
-      📊 สรุป: นักเรียนทั้งหมด <b>${totalStudents} คน</b> · 
-      จะถูกเลื่อนชั้น <b>${totalStudents - (data.graduates||0)} คน</b> · 
-      จบการศึกษา <b style="color:#dc2626">${data.graduates || 0} คน</b>
-    `;
+    $('promoSummary').innerHTML = `📊 สรุป: นักเรียนทั้งหมด <b>${totalStudents} คน</b> · จะถูกเลื่อนชั้น <b>${totalStudents - (data.graduates||0)} คน</b> · จบการศึกษา <b style="color:#dc2626">${data.graduates || 0} คน</b>`;
+    $('promoWarningBox').innerHTML = `
+      <div style="padding:16px;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:12px;font-size:14px;font-weight:600;color:#78350f">
+        <div style="margin-bottom:6px">📋 <b>ปีการศึกษาใหม่ที่จะเริ่ม:</b> ${data.nextYear}</div>
+        <div>📦 <b>จะ Archive ทั้ง 2 ไฟล์:</b> บันทึกมาเรียน_${data.currentYear} + สถิติการมาเรียน_${data.currentYear}</div>
+        <div>🗂️ <b>จะสร้างชีทใหม่:</b> 1-${String(data.nextYear).slice(-2)}, 2-${String(data.currentYear).slice(-2)}, สรุป${String(data.currentYear).slice(-2)}</div>
+      </div>`;
   } catch(e) { $('promoSummary').innerHTML = `⚠️ ${escapeHtml(e.message)}`; }
 }
 async function loadPromotionHistory() {
   try {
-    const list = await API.getPromotionHistory();
+    const list = await API.getArchiveHistory();
     if (!list.length) {
       $('promoHistory').innerHTML = `<div class="empty-state" style="padding:40px"><div class="empty-state-icon">📜</div><h3>ยังไม่มีประวัติ</h3></div>`;
       return;
@@ -2352,18 +2455,26 @@ async function loadPromotionHistory() {
     </table></div>`;
   } catch(e) {}
 }
-async function confirmPromotion() {
-  if (!confirm(`⚠️ ยืนยันการเลื่อนชั้น?\n\nระบบจะ:\n• สำรองข้อมูลทุกชีท\n• เลื่อนชั้นนักเรียน\n• ล้างข้อมูลการมาเรียน\n• เลื่อนชั้นครู\n• เปลี่ยนปีการศึกษา\n\nไม่สามารถย้อนกลับได้!`)) return;
-  if (!confirm(`ยืนยันครั้งสุดท้าย?\n\nกด OK เพื่อเริ่มปีการศึกษาใหม่`)) return;
-
-  const btn = $('btnPromote'); btn.disabled = true;
+function confirmPromotion() {
+  $('promoConfirmText').value = '';
+  $('promoConfirmOverlay').classList.add('show');
+  setTimeout(() => $('promoConfirmText').focus(), 100);
+}
+function closePromoConfirm() { $('promoConfirmOverlay').classList.remove('show'); }
+async function finalizePromotion() {
+  const text = $('promoConfirmText').value.trim();
+  if (text !== 'START') { showToast('กรุณาพิมพ์ START ให้ถูกต้อง', 'error'); return; }
+  const btn = $('btnConfirmPromoFinal'); btn.disabled = true;
   const orig = btn.innerHTML; btn.innerHTML = '<span class="loading"></span> กำลังดำเนินการ...';
   try {
     const res = await API.startNewAcademicYear({});
-    showToast(res.message || 'เริ่มปีการศึกษาใหม่สำเร็จ', 'success', 6000);
-    CURRENT_YEAR = res.newYear;
-    setTimeout(() => { loadPromotionPreview(); loadPromotionHistory(); }, 1500);
-  } catch(e) { showToast('❌ ' + e.message, 'error', 6000); }
+    showToast(res.message || 'เริ่มปีการศึกษาใหม่สำเร็จ', 'success', 8000);
+    closePromoConfirm();
+    setTimeout(() => {
+      loadAcademicInfo(); loadPromotionPreview(); loadPromotionHistory();
+      loadHomeStats();
+    }, 1500);
+  } catch(e) { showToast('❌ ' + e.message, 'error', 8000); }
   finally { btn.disabled = false; btn.innerHTML = orig; }
 }
 
@@ -2395,7 +2506,7 @@ async function loadDashboard() {
     $('kpiLeave').textContent = data.totals.leave;
     $('kpiAbsent').textContent = data.totals.absent;
     $('kpiSick').textContent = data.totals.sick;
-    $('dashboardDateLabel').textContent = `ข้อมูล ณ วันที่ ${formatThaiDate(data.date)}`;
+    $('dashboardDateLabel').textContent = `ข้อมูล ณ วันที่ ${formatThaiDate(data.date)} · ปีการศึกษา ${CURRENT_YEAR}`;
     $('dashPrintHeader').innerHTML = `
       ${SCHOOL_SETTINGS.school_logo ? `<img src="${SCHOOL_SETTINGS.school_logo}" class="logo">` : ''}
       <h2>${escapeHtml(SCHOOL_SETTINGS.school_name || 'โรงเรียนบ้านถิ่นสำราญ')}</h2>
@@ -2488,6 +2599,8 @@ function initReports() {
     fromMonth.value = now.getMonth() + 1;
     toMonth.value = now.getMonth() + 1;
     CLASSES.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = CLASS_LABELS[c]; selScope.appendChild(o); });
+    $('fromYear').value = CURRENT_YEAR;
+    $('toYear').value = CURRENT_YEAR;
   }
   loadReport();
 }
@@ -2694,7 +2807,7 @@ function refreshCurrentPage() {
   else if (currentPage === 'reports') loadReport();
   else if (currentPage === 'users') loadUsers();
   else if (currentPage === 'deletes') loadDeleteRequests();
-  else if (currentPage === 'promotion') { loadPromotionPreview(); loadPromotionHistory(); }
+  else if (currentPage === 'academic') { loadAcademicInfo(); loadPromotionPreview(); loadPromotionHistory(); }
   else if (currentPage === 'home') loadHomeStats();
 }
 function startPolling() {
@@ -2709,9 +2822,7 @@ function startPolling() {
 function buildSignupClasses() {
   const box = $('suClassesBox');
   if (!box) return;
-  box.innerHTML = CLASSES.map(c => 
-    `<label><input type="checkbox" value="${c}"> ${CLASS_LABELS[c]}</label>`
-  ).join('');
+  box.innerHTML = CLASSES.map(c => `<label><input type="checkbox" value="${c}"> ${CLASS_LABELS[c]}</label>`).join('');
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -2737,6 +2848,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeStudentModal(); closeProfileModal(); closeTeacherModal();
     closeUserModal(); closeTransferModal(); closeMyProfileModal(); closeChangePwdModal();
+    closePromoConfirm();
   }
 });
 </script>
