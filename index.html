@@ -2,28 +2,33 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>ระบบบันทึกการมาเรียน — โรงเรียนบ้านถิ่นสำราญ</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
-:root{--primary:#2563eb;--primary-dark:#1e40af;--primary-light:#dbeafe;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--green:#10b981;--green-light:#d1fae5;--yellow:#f59e0b;--yellow-light:#fef3c7;--red:#ef4444;--red-light:#fee2e2;--orange:#f97316;--orange-light:#ffedd5;--purple:#8b5cf6;--purple-light:#ede9fe;--shadow:0 2px 8px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);--shadow-lg:0 12px 32px rgba(0,0,0,.1);--radius:14px}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+:root{--primary:#2563eb;--primary-dark:#1e40af;--primary-light:#dbeafe;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--green:#10b981;--green-light:#d1fae5;--yellow:#f59e0b;--yellow-light:#fef3c7;--red:#ef4444;--red-light:#fee2e2;--orange:#f97316;--orange-light:#ffedd5;--purple:#8b5cf6;--purple-light:#ede9fe;--shadow:0 2px 8px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);--shadow-lg:0 12px 32px rgba(0,0,0,.1);--radius:14px;--safe-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden}
 a{color:inherit}button{font-family:inherit}
-.navbar{background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100}
-.navbar-inner{max-width:1500px;margin:0 auto;display:flex;align-items:center;gap:14px;height:70px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:17px;color:var(--primary);text-decoration:none;cursor:pointer}
+.navbar{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100}
+.navbar-inner{max-width:1500px;margin:0 auto;display:flex;align-items:center;gap:14px;height:70px;flex-wrap:nowrap}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:17px;color:var(--primary);text-decoration:none;cursor:pointer;flex-shrink:0}
 .brand-logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#2563eb,#7c3aed);display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 4px 12px rgba(37,99,235,.3);overflow:hidden}
 .brand-logo img{width:100%;height:100%;object-fit:cover}
-.nav-links{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+.nav-links{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
 .nav-links a{padding:9px 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;transition:all .18s;cursor:pointer;display:flex;align-items:center;gap:5px;position:relative;white-space:nowrap}
 .nav-links a:hover{background:#f1f5f9;color:var(--primary)}
 .nav-links a.active{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;box-shadow:0 4px 12px rgba(37,99,235,.25)}
 .nav-badge{background:var(--red);color:#fff;font-size:10px;font-weight:800;padding:1px 6px;border-radius:10px;line-height:1.4;min-width:18px;text-align:center}
-.nav-user{display:flex;align-items:center;gap:8px;padding:6px 12px;background:#f8fafc;border:1px solid var(--border);border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;position:relative}
+.nav-user{display:flex;align-items:center;gap:8px;padding:6px 12px;background:#f8fafc;border:1px solid var(--border);border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;position:relative;flex-shrink:0}
 .nav-user:hover{background:#f1f5f9}
-.nav-user-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;overflow:hidden}
+.nav-user-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;overflow:hidden;flex-shrink:0}
 .nav-user-avatar img{width:100%;height:100%;object-fit:cover}
 .nav-user-info{display:flex;flex-direction:column;line-height:1.2}
 .nav-user-info .name{font-size:12.5px}
@@ -35,7 +40,7 @@ a{color:inherit}button{font-family:inherit}
 .nav-user-menu button.danger{color:var(--red)}
 .nav-user-menu button.danger:hover{background:var(--red-light)}
 .nav-user-menu hr{border:none;border-top:1px solid var(--border);margin:6px 0}
-.sync-status{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:#059669;padding:5px 10px;background:var(--green-light);border-radius:20px}
+.sync-status{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:#059669;padding:5px 10px;background:var(--green-light);border-radius:20px;flex-shrink:0}
 .sync-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 .sync-dot.offline{background:var(--red);animation:none}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
@@ -51,7 +56,7 @@ a{color:inherit}button{font-family:inherit}
 .filter-bar label{font-size:13.5px;font-weight:600;color:var(--muted)}
 .filter-bar select,.filter-bar input{padding:9px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;background:#fff;color:var(--text);font-weight:500}
 .filter-bar select:focus,.filter-bar input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
-.btn{padding:10px 20px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn{padding:10px 20px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;min-height:44px}
 .btn-primary{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;box-shadow:0 4px 12px rgba(37,99,235,.25)}
 .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(37,99,235,.35)}
 .btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
@@ -62,19 +67,22 @@ a{color:inherit}button{font-family:inherit}
 .btn-danger{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff}
 .btn-danger:hover{transform:translateY(-1px)}
 .btn-warning{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
-.btn-sm{padding:7px 14px;font-size:13px}
-.btn-xs{padding:5px 10px;font-size:12px;border-radius:8px}
-.status-group{display:inline-flex;gap:6px}
+.btn-sm{padding:8px 14px;font-size:13px;min-height:38px}
+.btn-xs{padding:6px 10px;font-size:12px;border-radius:8px;min-height:32px}
+.status-group{display:inline-flex;gap:6px;flex-wrap:wrap}
 .status-btn{width:46px;height:46px;border-radius:12px;border:2px solid var(--border);background:#fff;font-weight:800;font-size:16px;cursor:pointer;transition:all .15s;color:var(--muted)}
 .status-btn:hover{transform:translateY(-2px);border-color:var(--primary)}
 .status-btn.active[data-s="/"]{background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-color:transparent}
 .status-btn.active[data-s="ล"]{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#fff;border-color:transparent}
 .status-btn.active[data-s="ข"]{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border-color:transparent}
 .status-btn.active[data-s="ป"]{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border-color:transparent}
-.table-wrap{overflow-x:auto;border-radius:var(--radius)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);scrollbar-width:thin}
+.table-wrap::-webkit-scrollbar{height:8px}
+.table-wrap::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}
+.table-wrap::-webkit-scrollbar-track{background:#f1f5f9;border-radius:4px}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--border)}
-th{background:#f8fafc;font-weight:700;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;position:sticky;top:0}
+th{background:#f8fafc;font-weight:700;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
 tbody tr:hover{background:#fafbfc}
 tbody tr:last-child td{border-bottom:none}
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
@@ -98,6 +106,7 @@ tbody tr:last-child td{border-bottom:none}
 .home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
 .home-card{background:var(--card);border-radius:var(--radius);padding:32px 24px;box-shadow:var(--shadow);border:1px solid var(--border);cursor:pointer;transition:all .25s;text-align:center}
 .home-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--primary)}
+.home-card:active{transform:translateY(-2px)}
 .home-card-icon{font-size:52px;margin-bottom:14px;display:block}
 .home-card h2{font-size:17px;margin-bottom:6px;font-weight:700}
 .home-card p{color:var(--muted);font-size:13.5px}
@@ -110,14 +119,14 @@ tbody tr:last-child td{border-bottom:none}
 .hero-stat-value{font-size:28px;font-weight:800;line-height:1}
 .hero-stat-label{font-size:12.5px;opacity:.8;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
 .hero-latest{margin-top:16px;padding:10px 16px;background:rgba(255,255,255,.15);border-radius:10px;display:inline-block;position:relative;font-size:14px;font-weight:600}
-.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;z-index:1000;padding:24px;overflow-y:auto}
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;z-index:1000;padding:24px;overflow-y:auto}
 .modal-overlay.show{display:flex}
-.modal{background:#fff;border-radius:16px;max-width:900px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 24px 64px rgba(0,0,0,.25)}
+.modal{background:#fff;border-radius:16px;max-width:900px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 24px 64px rgba(0,0,0,.25);-webkit-overflow-scrolling:touch}
 .modal-sm{max-width:480px}
 .modal-lg{max-width:1200px}
-.modal-header{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:2}
-.modal-title{font-size:18px;font-weight:800}
-.modal-close{background:#f1f5f9;border:none;width:36px;height:36px;border-radius:10px;font-size:20px;cursor:pointer;color:var(--muted);display:grid;place-items:center}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:2;border-radius:16px 16px 0 0}
+.modal-title{font-size:18px;font-weight:800;padding-right:12px}
+.modal-close{background:#f1f5f9;border:none;width:40px;height:40px;border-radius:10px;font-size:22px;cursor:pointer;color:var(--muted);display:grid;place-items:center;flex-shrink:0}
 .modal-close:hover{background:#fee2e2;color:var(--red)}
 .modal-body{padding:24px 26px}
 .modal-footer{display:flex;gap:12px;justify-content:flex-end;padding:18px 26px;border-top:1px solid var(--border);background:#f8fafc;position:sticky;bottom:0}
@@ -132,9 +141,9 @@ tbody tr:last-child td{border-bottom:none}
 .form-group input,.form-group select,.form-group textarea{padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;background:#fff;width:100%}
 .form-group input:focus,.form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 .checkbox-group{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;padding:12px;background:#f8fafc;border:1.5px solid var(--border);border-radius:10px}
-.checkbox-group label{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;transition:background .15s}
+.checkbox-group label{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;transition:background .15s;min-height:40px}
 .checkbox-group label:hover{background:#e2e8f0}
-.checkbox-group input[type="checkbox"]{width:18px;height:18px;accent-color:var(--primary);cursor:pointer}
+.checkbox-group input[type="checkbox"]{width:18px;height:18px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11.5px;font-weight:700}
 .badge.blue{background:var(--primary-light);color:#1e40af}
 .badge.green{background:var(--green-light);color:#065f46}
@@ -143,8 +152,8 @@ tbody tr:last-child td{border-bottom:none}
 .badge.orange{background:var(--orange-light);color:#9a3412}
 .badge.gray{background:#f1f5f9;color:#475569}
 .badge.purple{background:var(--purple-light);color:#5b21b6}
-.action-btns{display:flex;gap:6px}
-.icon-btn{width:34px;height:34px;border-radius:9px;border:none;cursor:pointer;font-size:15px;display:grid;place-items:center;transition:all .15s}
+.action-btns{display:flex;gap:6px;flex-wrap:wrap}
+.icon-btn{width:40px;height:40px;border-radius:9px;border:none;cursor:pointer;font-size:15px;display:grid;place-items:center;transition:all .15s;flex-shrink:0}
 .icon-btn.view{background:#ede9fe;color:var(--purple)}.icon-btn.view:hover{background:var(--purple);color:#fff}
 .icon-btn.edit{background:var(--primary-light);color:var(--primary)}.icon-btn.edit:hover{background:var(--primary);color:#fff}
 .icon-btn.del{background:var(--red-light);color:var(--red)}.icon-btn.del:hover{background:var(--red);color:#fff}
@@ -190,7 +199,7 @@ tbody tr:last-child td{border-bottom:none}
 .teacher-card .avatar img{width:100%;height:100%;object-fit:cover}
 .teacher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
 .teacher-classes{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
-.toast{position:fixed;bottom:28px;right:28px;background:#0f172a;color:#fff;padding:16px 22px;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.25);font-size:14px;font-weight:600;transform:translateY(120px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:9999;max-width:420px}
+.toast{position:fixed;bottom:28px;right:28px;left:auto;background:#0f172a;color:#fff;padding:16px 22px;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.25);font-size:14px;font-weight:600;transform:translateY(120px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:9999;max-width:420px;pointer-events:none}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success{background:linear-gradient(135deg,#10b981,#059669)}
 .toast.error{background:linear-gradient(135deg,#ef4444,#dc2626)}
@@ -201,12 +210,13 @@ tbody tr:last-child td{border-bottom:none}
 .empty-state{padding:60px 20px;text-align:center;color:var(--muted)}
 .empty-state-icon{font-size:64px;margin-bottom:12px;opacity:.35}
 .empty-state h3{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
+.empty-state p{margin-bottom:16px;font-size:13.5px}
 .photo-upload{display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px;border:2px dashed var(--border);border-radius:12px;background:#f8fafc}
 .photo-upload img{width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:var(--shadow)}
 .photo-upload .placeholder{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:grid;place-items:center;font-size:42px;color:#94a3b8;overflow:hidden}
 .photo-upload label{cursor:pointer;font-size:12.5px;color:var(--primary);font-weight:700}
 .photo-upload input[type="file"]{display:none}
-.info-banner{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:12px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;font-size:13.5px;font-weight:600;color:#78350f}
+.info-banner{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:12px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:flex-start;gap:12px;font-size:13.5px;font-weight:600;color:#78350f}
 .info-banner .icon{font-size:22px;flex-shrink:0}
 .info-banner.danger{background:linear-gradient(135deg,#fee2e2,#fecaca);border-color:#fca5a5;color:#991b1b}
 .info-banner.success{background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-color:#6ee7b7;color:#065f46}
@@ -223,26 +233,26 @@ tbody tr:last-child td{border-bottom:none}
 .auth-title{text-align:center;font-size:22px;font-weight:800;margin-bottom:4px}
 .auth-subtitle{text-align:center;font-size:13.5px;color:var(--muted);margin-bottom:24px}
 .auth-tabs{display:flex;background:#f1f5f9;border-radius:12px;padding:4px;margin-bottom:24px}
-.auth-tab{flex:1;padding:10px;border:none;background:none;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;border-radius:8px;font-family:inherit;transition:all .15s}
+.auth-tab{flex:1;padding:12px;border:none;background:none;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;border-radius:8px;font-family:inherit;transition:all .15s;min-height:44px}
 .auth-tab.active{background:#fff;color:var(--primary);box-shadow:0 2px 6px rgba(0,0,0,.08)}
 .auth-form{display:none}
 .auth-form.active{display:block}
 .auth-form .form-group{margin-bottom:14px}
 .auth-form .form-group label{font-size:13px;font-weight:600;margin-bottom:6px;display:block}
-.auth-form .form-group input,.auth-form .form-group select{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14.5px;font-family:inherit;background:#fff;width:100%}
+.auth-form .form-group input,.auth-form .form-group select{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:16px;font-family:inherit;background:#fff;width:100%}
 .auth-form .form-group input:focus,.auth-form .form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
-.auth-checkbox{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:13.5px;font-weight:600;cursor:pointer;user-select:none}
-.auth-checkbox input{width:18px;height:18px;accent-color:var(--primary);cursor:pointer}
-.auth-btn{width:100%;padding:14px;border-radius:10px;border:none;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 4px 12px rgba(37,99,235,.25);transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.auth-checkbox{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:13.5px;font-weight:600;cursor:pointer;user-select:none;-webkit-user-select:none;min-height:44px}
+.auth-checkbox input{width:20px;height:20px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
+.auth-btn{width:100%;padding:14px;border-radius:10px;border:none;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 4px 12px rgba(37,99,235,.25);transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px}
 .auth-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(37,99,235,.35)}
 .auth-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .auth-footer{text-align:center;margin-top:20px;font-size:13px;color:var(--muted)}
 .auth-info{background:var(--primary-light);padding:12px 14px;border-radius:10px;font-size:12.5px;color:#1e40af;margin-bottom:16px;display:flex;gap:8px;align-items:flex-start;font-weight:500}
 .auth-info .icon{font-size:16px;flex-shrink:0}
 .auth-class-box{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px;background:#f8fafc;border:1.5px solid var(--border);border-radius:10px;margin-top:6px}
-.auth-class-box label{display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:12.5px;font-weight:600}
+.auth-class-box label{display:flex;align-items:center;gap:6px;padding:8px;border-radius:6px;cursor:pointer;font-size:12.5px;font-weight:600;min-height:40px}
 .auth-class-box label:hover{background:#e2e8f0}
-.auth-class-box input[type="checkbox"]{width:16px;height:16px;accent-color:var(--primary);cursor:pointer}
+.auth-class-box input[type="checkbox"]{width:16px;height:16px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
 
 /* Delete modal */
 .delete-modal-icon{font-size:64px;text-align:center;margin:4px 0 12px}
@@ -259,7 +269,7 @@ tbody tr:last-child td{border-bottom:none}
 .hold-dot.done{background:var(--green);border-color:var(--green);box-shadow:0 0 0 4px rgba(16,185,129,.2)}
 .hold-dot.active{background:var(--yellow);border-color:var(--yellow);animation:pulse-dot 1s infinite}
 @keyframes pulse-dot{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
-.delete-hold-btn{position:relative;overflow:hidden;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;padding:14px 24px;border-radius:10px;border:none;font-weight:700;font-size:14.5px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:8px;width:100%;justify-content:center;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .1s;margin-top:12px}
+.delete-hold-btn{position:relative;overflow:hidden;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;padding:14px 24px;border-radius:10px;border:none;font-weight:700;font-size:14.5px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:8px;width:100%;justify-content:center;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .1s;margin-top:12px;min-height:52px;touch-action:none}
 .delete-hold-btn .hold-progress{position:absolute;top:0;left:0;height:100%;width:0;background:rgba(0,0,0,.3);pointer-events:none}
 .delete-hold-btn .hold-label{position:relative;z-index:1;display:flex;align-items:center;gap:8px;pointer-events:none}
 .delete-hold-btn:active{transform:scale(.98)}
@@ -298,16 +308,15 @@ tbody tr:last-child td{border-bottom:none}
 .timeline-card.active{border-color:var(--green);box-shadow:0 4px 20px rgba(16,185,129,.2)}
 .timeline-card.inactive{border-color:var(--muted);opacity:.6}
 .timeline-card.future{border-color:var(--primary);border-style:dashed}
-.timeline-card h3{font-size:15px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.timeline-card h3{font-size:15px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .timeline-card .term-status{font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;margin-left:auto}
 .timeline-card .term-status.active{background:var(--green-light);color:#065f46}
 .timeline-card .term-status.inactive{background:#f1f5f9;color:var(--muted)}
 .timeline-card .term-status.future{background:var(--primary-light);color:#1e40af}
-.timeline-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);font-size:13.5px}
+.timeline-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);font-size:13.5px;gap:12px}
 .timeline-row:last-child{border-bottom:none}
 .timeline-row .label{color:var(--muted);font-weight:600}
-.timeline-row .value{font-weight:700;color:var(--text)}
-.promo-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
+.timeline-row .value{font-weight:700;color:var(--text);text-align:right}
 .promo-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:14px}
 .promo-class-card{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
 .promo-class-card .from{font-size:12px;color:var(--muted);font-weight:600}
@@ -318,16 +327,16 @@ tbody tr:last-child td{border-bottom:none}
 .archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
 .archive-year-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px;transition:all .2s}
 .archive-year-card:hover{box-shadow:var(--shadow-lg);border-color:var(--primary)}
-.archive-year-card .year-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--primary-light)}
+.archive-year-card .year-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--primary-light);gap:8px;flex-wrap:wrap}
 .archive-year-card .year-title{font-size:18px;font-weight:800;color:var(--primary)}
 .archive-year-card .file-list{display:flex;flex-direction:column;gap:8px}
 .archive-year-card .file-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;background:#f8fafc;border:1px solid var(--border);font-size:13px}
 .archive-year-card .file-item:hover{background:#f1f5f9}
-.archive-year-card .file-item .file-icon{font-size:20px}
+.archive-year-card .file-item .file-icon{font-size:20px;flex-shrink:0}
 .archive-year-card .file-item .file-info{flex:1;min-width:0}
 .archive-year-card .file-item .file-name{font-weight:600;color:var(--text);word-break:break-all;font-size:12.5px}
 .archive-year-card .file-item .file-size{font-size:11px;color:var(--muted)}
-.archive-year-card .file-item a{color:var(--primary);font-weight:700;text-decoration:none;font-size:12px;padding:4px 10px;border-radius:6px;background:var(--primary-light)}
+.archive-year-card .file-item a{color:var(--primary);font-weight:700;text-decoration:none;font-size:12px;padding:8px 14px;border-radius:8px;background:var(--primary-light);flex-shrink:0;min-height:36px;display:inline-flex;align-items:center;justify-content:center}
 .archive-year-card .file-item a:hover{background:var(--primary);color:#fff}
 
 /* Print */
@@ -359,25 +368,283 @@ tbody tr:last-child td{border-bottom:none}
 .print-header h2{font-size:14px;margin-bottom:2px}
 .print-header p{font-size:10px;color:#333}
 
-@media(max-width:768px){
-  .container{padding:16px;padding-bottom:60px}
+/* ============================================================
+ * RESPONSIVE — TABLET
+ * ============================================================ */
+@media(max-width:1024px){
+  .container{padding:20px 18px 80px}
   .charts-grid{grid-template-columns:1fr}
-  .kpi-value{font-size:28px}
-  .nav-links a{padding:7px 8px;font-size:12px}
-  .nav-links a span.label{display:none}
-  .navbar-inner{gap:8px;height:60px}
-  .brand span{display:none}
-  .form-grid,.form-grid.cols-3,.form-grid.cols-4{grid-template-columns:1fr}
-  .modal-body,.modal-header{padding:18px}
-  .modal{border-radius:0;max-height:100vh}
-  .modal-overlay{padding:0}
-  .profile-header{flex-direction:column;text-align:center}
-  .hero{padding:24px;text-align:center}
-  .hero-stats{justify-content:center}
-  .auth-card{padding:28px 20px}
-  .user-grid,.teacher-grid,.archive-grid{grid-template-columns:1fr}
+  .form-grid.cols-4{grid-template-columns:repeat(2,1fr)}
+  .nav-links a .label{display:none}
+  .nav-links a{padding:10px 12px;font-size:16px}
+  .user-grid,.teacher-grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+}
+
+/* ============================================================
+ * RESPONSIVE — MOBILE (PHONE)
+ * ============================================================ */
+@media(max-width:640px){
+  :root{--radius:12px}
+
+  /* --- Navbar --- */
+  .navbar{padding:0 12px}
+  .navbar-inner{height:60px;gap:8px}
+  .brand{gap:8px;font-size:15px}
+  .brand-logo{width:38px;height:38px;font-size:18px}
+  .brand span:not(.brand-logo){display:none}
+  .sync-status{padding:4px 8px;font-size:10px;gap:4px}
+  .sync-status span:not(.sync-dot){display:none}
+  .nav-user{padding:4px;border-radius:50%;background:transparent;border:none;gap:0}
+  .nav-user-avatar{width:36px;height:36px;font-size:14px}
   .nav-user-info{display:none}
+  .nav-user > span:last-child{display:none}
+  .nav-user-menu{right:-8px;min-width:200px}
+
+  /* --- Bottom Navigation --- */
+  .nav-links{
+    position:fixed;
+    bottom:0;left:0;right:0;
+    background:rgba(255,255,255,.98);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-top:1px solid var(--border);
+    border-bottom:none;
+    padding:6px 4px calc(6px + var(--safe-bottom));
+    margin:0;
+    z-index:99;
+    justify-content:space-around;
+    gap:0;
+    box-shadow:0 -4px 20px rgba(0,0,0,.08);
+    overflow-x:auto;
+    overflow-y:hidden;
+    scrollbar-width:none;
+    flex-wrap:nowrap;
+  }
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{
+    flex-direction:column;
+    font-size:9.5px;
+    padding:6px 4px;
+    min-width:58px;
+    gap:2px;
+    border-radius:8px;
+    flex-shrink:0;
+  }
+  .nav-links a .label{
+    display:block !important;
+    font-size:9.5px;
+    font-weight:600;
+    line-height:1.1;
+    white-space:nowrap;
+  }
+  .nav-links a.active{
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    color:#fff;
+  }
+  .nav-links a.active .label{display:block !important}
+  .nav-badge{
+    position:absolute;
+    top:2px;right:6px;
+    font-size:9px;
+    padding:0 4px;
+    min-width:14px;
+    line-height:1.4;
+  }
+
+  /* --- Container --- */
+  .container{padding:16px 14px calc(100px + var(--safe-bottom))}
+  .page-title{font-size:20px;line-height:1.3}
+  .page-sub{font-size:12.5px;margin-bottom:16px}
+
+  /* --- Hero --- */
+  .hero{padding:20px;border-radius:14px;margin-bottom:16px}
+  .hero h1{font-size:20px;line-height:1.3}
+  .hero p{font-size:13px}
+  .hero-stats{gap:16px;justify-content:space-between;margin-top:14px}
+  .hero-stat{flex:1;min-width:0}
+  .hero-stat-value{font-size:24px}
+  .hero-stat-label{font-size:9.5px}
+  .hero-latest{font-size:12px;padding:8px 12px;line-height:1.5;display:block}
+
+  /* --- Cards --- */
+  .card{padding:16px;border-radius:12px;margin-bottom:14px}
+  .card-title{font-size:14.5px;margin-bottom:12px}
+
+  /* --- Filter Bar --- */
+  .filter-bar{flex-direction:column;align-items:stretch;gap:10px}
+  .filter-bar label{font-size:12.5px;margin-bottom:-4px}
+  .filter-bar select,.filter-bar input{width:100%;padding:11px 14px;font-size:15px}
+  .filter-bar .btn{width:100%;justify-content:center;margin-left:0 !important}
+  .filter-bar .search-box{min-width:auto;max-width:none;width:100%}
+
+  /* --- Form --- */
+  .form-grid,.form-grid.cols-3,.form-grid.cols-4{grid-template-columns:1fr;gap:12px}
+  .form-group input,.form-group select,.form-group textarea{
+    font-size:16px !important;
+    padding:12px 14px;
+    min-height:46px;
+  }
+  .form-group label{font-size:12.5px}
+  .form-section{margin-bottom:18px}
+  .form-section-title{font-size:13px;padding-bottom:6px;margin-bottom:10px}
+  .checkbox-group{grid-template-columns:repeat(2,1fr);padding:10px;gap:6px}
+  .checkbox-group label{padding:8px;font-size:12.5px;min-height:42px}
+
+  /* --- Buttons --- */
+  .btn{padding:11px 18px;font-size:14px;min-height:46px}
+  .btn-sm{padding:9px 14px;font-size:13px;min-height:40px}
+  .action-btns{gap:8px}
+  .icon-btn{width:42px;height:42px;font-size:16px}
+
+  /* --- Status buttons --- */
+  .status-group{gap:6px}
+  .status-btn{width:52px;height:52px;font-size:17px;border-radius:12px}
+
+  /* --- KPI Grid --- */
+  .kpi-grid{grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+  .kpi{padding:16px}
+  .kpi-label{font-size:11px}
+  .kpi-value{font-size:26px;margin:4px 0}
+  .kpi-sub{font-size:11px}
+
+  /* --- Charts --- */
+  .charts-grid{grid-template-columns:1fr;gap:14px;margin-bottom:16px}
+  .chart-card{padding:16px}
+  .chart-card h3{font-size:14px;margin-bottom:12px}
+  .chart-canvas-wrap{height:240px}
+  .chart-canvas-wrap.tall{height:300px}
+
+  /* --- Home cards --- */
+  .home-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .home-card{padding:18px 12px}
+  .home-card-icon{font-size:38px;margin-bottom:8px}
+  .home-card h2{font-size:14px}
+  .home-card p{font-size:11.5px;line-height:1.4}
+
+  /* --- Modal (bottom sheet style) --- */
+  .modal-overlay{padding:0;align-items:flex-end}
+  .modal{
+    border-radius:20px 20px 0 0;
+    max-height:94vh;
+    width:100%;
+    max-width:100%;
+    animation:slideUp .25s ease-out;
+  }
+  @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+  .modal-header{padding:16px 18px;border-radius:20px 20px 0 0}
+  .modal-title{font-size:16px}
+  .modal-close{width:38px;height:38px;font-size:20px}
+  .modal-body{padding:16px 18px}
+  .modal-footer{
+    padding:12px 18px calc(12px + var(--safe-bottom));
+    flex-direction:column-reverse;
+    border-radius:0;
+    gap:8px;
+  }
+  .modal-footer .btn{width:100%}
+
+  /* --- Table --- */
+  .table-wrap{
+    margin:0 -16px;
+    padding:0 16px;
+    border-radius:0;
+  }
+  table{font-size:13px;min-width:600px}
+  th,td{padding:10px 12px}
+  th{font-size:11px;padding:10px 12px}
+
+  /* --- Profile header --- */
+  .profile-header{
+    flex-direction:column;
+    text-align:center;
+    padding:16px;
+    gap:12px;
+  }
+  .profile-avatar{width:72px;height:72px;font-size:28px}
+  .profile-info h2{font-size:17px}
+  .profile-meta{justify-content:center;font-size:12.5px;gap:10px}
+  .info-grid{grid-template-columns:1fr}
+
+  /* --- Stat row --- */
+  .stat-row{grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+  .stat-mini{padding:10px 6px}
+  .stat-mini .label{font-size:10px}
+  .stat-mini .value{font-size:20px}
+
+  /* --- Teacher & User cards --- */
+  .teacher-grid,.user-grid{grid-template-columns:1fr;gap:10px}
+  .teacher-card,.user-card{padding:12px;gap:12px}
+  .teacher-card .avatar,.user-card .avatar{width:52px;height:52px;font-size:20px}
+  .user-card > div:last-child{flex-direction:row !important}
+  .action-btns{flex-direction:row !important}
+
+  /* --- Delete request card --- */
+  .del-req-card{flex-direction:column;gap:10px;padding:14px}
+  .del-req-card .actions{width:100%}
+  .del-req-card .actions .btn{flex:1;justify-content:center}
+
+  /* --- Archive card mobile --- */
+  .archive-grid{grid-template-columns:1fr;gap:12px}
+  .archive-year-card{padding:14px}
+  .archive-year-card .year-header{flex-direction:column;align-items:stretch;gap:8px}
+  .archive-year-card .year-title{font-size:16px;text-align:center}
+  .archive-year-card .year-header .btn{width:100%;justify-content:center}
+  .archive-year-card .file-item{
+    flex-wrap:wrap;
+    padding:12px;
+    gap:8px;
+  }
+  .archive-year-card .file-item .file-info{width:100%;flex-basis:100%;order:2}
+  .archive-year-card .file-item .file-icon{order:1}
+  .archive-year-card .file-item a{
+    width:100%;
+    padding:11px;
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    order:3;
+    flex-basis:100%;
+  }
+
+  /* --- Auth --- */
+  .auth-page{padding:12px;align-items:flex-start;padding-top:24px}
+  .auth-card{padding:24px 18px;border-radius:16px;max-height:none}
+  .auth-logo{width:64px;height:64px;font-size:30px;margin-bottom:14px}
+  .auth-title{font-size:19px}
+  .auth-subtitle{font-size:12.5px;margin-bottom:18px}
+  .auth-tab{font-size:13px;padding:10px}
   .auth-class-box{grid-template-columns:repeat(2,1fr)}
+  .auth-form .form-group input,.auth-form .form-group select{font-size:16px}
+
+  /* --- Academic timeline --- */
+  .academic-timeline{grid-template-columns:1fr;gap:12px}
+  .timeline-card{padding:16px}
+  .timeline-card h3{font-size:14px}
+  .timeline-row{font-size:13px}
+  .promo-breakdown{grid-template-columns:repeat(2,1fr);gap:8px}
+  .promo-class-card{padding:10px}
+  .promo-class-card .count{font-size:18px}
+
+  /* --- Toast --- */
+  .toast{
+    left:14px;right:14px;bottom:calc(80px + var(--safe-bottom));
+    max-width:none;
+    font-size:13px;
+    padding:14px 18px;
+    transform:translateY(200%);
+  }
+  .toast.show{transform:translateY(0)}
+}
+
+/* Small phones */
+@media(max-width:380px){
+  .nav-links a{min-width:52px;padding:6px 2px;font-size:9px}
+  .nav-links a .label{font-size:8.5px}
+  .home-grid{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:repeat(2,1fr)}
+  .brand span:not(.brand-logo){display:inline;font-size:13px}
 }
 </style>
 </head>
@@ -419,7 +686,7 @@ tbody tr:last-child td{border-bottom:none}
       </div>
       <div class="form-group">
         <label>ชื่อผู้ใช้ <span style="color:var(--red)">*</span></label>
-        <input type="text" id="suUsername" placeholder="อย่างน้อย 3 ตัวอักษร (ไทย/อังกฤษ/ตัวเลข)" required>
+        <input type="text" id="suUsername" placeholder="อย่างน้อย 3 ตัวอักษร" required>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -482,9 +749,9 @@ tbody tr:last-child td{border-bottom:none}
     <div class="nav-links">
       <a data-page="home" onclick="navigate('home')">🏠 <span class="label">หน้าหลัก</span></a>
       <a data-page="dashboard" onclick="navigate('dashboard')">📊 <span class="label">Dashboard</span></a>
-      <a data-page="attendance" onclick="navigate('attendance')">✏️ <span class="label">บันทึกการมาเรียน</span></a>
-      <a data-page="info" onclick="navigate('info')">👤 <span class="label">ข้อมูลนักเรียน</span></a>
-      <a data-page="students" onclick="navigate('students')">👥 <span class="label">จัดการนักเรียน</span></a>
+      <a data-page="attendance" onclick="navigate('attendance')">✏️ <span class="label">บันทึก</span></a>
+      <a data-page="info" onclick="navigate('info')">👤 <span class="label">ข้อมูล</span></a>
+      <a data-page="students" onclick="navigate('students')">👥 <span class="label">นักเรียน</span></a>
       <a data-page="teachers" onclick="navigate('teachers')">👨‍🏫 <span class="label">ครู</span></a>
       <a data-page="reports" onclick="navigate('reports')">📑 <span class="label">รายงาน</span></a>
       <a data-page="archive" id="navArchive" onclick="navigate('archive')">📦 <span class="label">Archive</span></a>
@@ -521,17 +788,17 @@ tbody tr:last-child td{border-bottom:none}
       <h1 id="heroTitle">ระบบบันทึกการมาเรียน</h1>
       <p id="heroSub">โรงเรียนบ้านถิ่นสำราญ · อำเภอดอยเต่า · จังหวัดเชียงใหม่</p>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="hero-stat-value" id="heroStudents">—</div><div class="hero-stat-label">นักเรียนทั้งหมด</div></div>
+        <div class="hero-stat"><div class="hero-stat-value" id="heroStudents">—</div><div class="hero-stat-label">นักเรียน</div></div>
         <div class="hero-stat"><div class="hero-stat-value" id="heroPresent">—</div><div class="hero-stat-label">มาเรียน</div></div>
-        <div class="hero-stat"><div class="hero-stat-value" id="heroPercent">—</div><div class="hero-stat-label">ร้อยละการมาเรียน</div></div>
+        <div class="hero-stat"><div class="hero-stat-value" id="heroPercent">—</div><div class="hero-stat-label">ร้อยละ</div></div>
       </div>
-      <div class="hero-latest" id="heroLatest">📅 กำลังโหลดข้อมูล...</div>
+      <div class="hero-latest" id="heroLatest">📅 กำลังโหลด...</div>
     </div>
     <div class="home-grid">
-      <div class="home-card" onclick="navigate('attendance')"><div class="home-card-icon">✏️</div><h2>บันทึกการมาเรียน</h2><p>ครูกรอกสถานะนักเรียนรายวัน</p></div>
-      <div class="home-card" onclick="navigate('dashboard')"><div class="home-card-icon">📊</div><h2>Dashboard</h2><p>ดูกราฟสถิติแบบเรียลไทม์</p></div>
-      <div class="home-card" onclick="navigate('info')"><div class="home-card-icon">👤</div><h2>ข้อมูลนักเรียน</h2><p>ค้นหาและดูรายงานรายบุคคล</p></div>
-      <div class="home-card" onclick="navigate('archive')"><div class="home-card-icon">📦</div><h2>Archive ย้อนหลัง</h2><p>ดูข้อมูลปีการศึกษาที่ผ่านมา</p></div>
+      <div class="home-card" onclick="navigate('attendance')"><div class="home-card-icon">✏️</div><h2>บันทึกการมาเรียน</h2><p>กรอกสถานะรายวัน</p></div>
+      <div class="home-card" onclick="navigate('dashboard')"><div class="home-card-icon">📊</div><h2>Dashboard</h2><p>กราฟสถิติเรียลไทม์</p></div>
+      <div class="home-card" onclick="navigate('info')"><div class="home-card-icon">👤</div><h2>ข้อมูลนักเรียน</h2><p>ค้นหารายบุคคล</p></div>
+      <div class="home-card" onclick="navigate('archive')"><div class="home-card-icon">📦</div><h2>Archive</h2><p>ดูข้อมูลย้อนหลัง</p></div>
     </div>
   </div>
 </div>
@@ -558,7 +825,7 @@ tbody tr:last-child td{border-bottom:none}
     </div>
     <div class="charts-grid">
       <div class="chart-card" style="grid-column:1/-1"><h3>📈 แนวโน้มการมาเรียน (%)</h3><div class="chart-canvas-wrap"><canvas id="chartTrend"></canvas></div></div>
-      <div class="chart-card"><h3>📊 เปรียบเทียบแต่ละชั้นเรียน (%)</h3><div class="chart-canvas-wrap"><canvas id="chartClass"></canvas></div></div>
+      <div class="chart-card"><h3>📊 เปรียบเทียบแต่ละชั้น (%)</h3><div class="chart-canvas-wrap"><canvas id="chartClass"></canvas></div></div>
       <div class="chart-card"><h3>🥧 สัดส่วนสถานะ</h3><div class="chart-canvas-wrap"><canvas id="chartDonut"></canvas></div></div>
       <div class="chart-card"><h3>🏆 อันดับชั้นเรียน (30 วัน)</h3><div class="chart-canvas-wrap"><canvas id="chartRank"></canvas></div></div>
       <div class="chart-card"><h3>📉 สถานะรายวัน (Stacked)</h3><div class="chart-canvas-wrap"><canvas id="chartStack"></canvas></div></div>
@@ -576,7 +843,7 @@ tbody tr:last-child td{border-bottom:none}
         <label>ชั้น:</label><select id="selClass"></select>
         <label>วันที่:</label><input type="date" id="selDate">
         <button class="btn btn-ghost" onclick="setToday()">วันนี้</button>
-        <button class="btn btn-primary" id="btnSave" style="margin-left:auto" onclick="saveAll()">💾 บันทึกทั้งหมด</button>
+        <button class="btn btn-primary" id="btnSave" onclick="saveAll()">💾 บันทึกทั้งหมด</button>
       </div>
     </div>
     <div class="card">
@@ -590,7 +857,7 @@ tbody tr:last-child td{border-bottom:none}
         </div>
       </div>
       <div class="table-wrap">
-        <table><thead><tr><th style="width:60px">ที่</th><th style="width:70px">รูป</th><th>ชื่อ-สกุล</th><th style="width:300px">สถานะ</th></tr></thead>
+        <table><thead><tr><th style="width:60px">ที่</th><th style="width:70px">รูป</th><th>ชื่อ-สกุล</th><th style="width:260px">สถานะ</th></tr></thead>
         <tbody id="tbody"></tbody></table>
       </div>
     </div>
@@ -630,13 +897,13 @@ tbody tr:last-child td{border-bottom:none}
         <div class="search-box"><input type="text" id="searchStudent" placeholder="ค้นหาชื่อ / ชื่อเล่น..."></div>
         <button class="btn btn-ghost" onclick="loadStudents()">🔄 โหลดใหม่</button>
         <button class="btn btn-ghost" onclick="syncStructure()" id="btnSync">⚙️ ซิงค์โครงสร้าง</button>
-        <button class="btn btn-primary" onclick="openStudentModal()" style="margin-left:auto">➕ เพิ่มนักเรียนใหม่</button>
+        <button class="btn btn-primary" onclick="openStudentModal()">➕ เพิ่มนักเรียนใหม่</button>
       </div>
     </div>
     <div class="card">
       <h2 class="card-title" id="studentCount">รายชื่อนักเรียน</h2>
       <div class="table-wrap"><table>
-        <thead><tr><th style="width:50px">ที่</th><th style="width:70px">รูป</th><th>ชื่อ-สกุล</th><th style="width:100px">ชั้น</th><th style="width:130px">ชื่อเล่น</th><th style="width:180px">ผู้ปกครอง</th><th style="width:120px">จัดการ</th></tr></thead>
+        <thead><tr><th style="width:50px">ที่</th><th style="width:70px">รูป</th><th>ชื่อ-สกุล</th><th style="width:100px">ชั้น</th><th style="width:130px">ชื่อเล่น</th><th style="width:180px">ผู้ปกครอง</th><th style="width:130px">จัดการ</th></tr></thead>
         <tbody id="studentTbody"></tbody>
       </table></div>
     </div>
@@ -650,7 +917,7 @@ tbody tr:last-child td{border-bottom:none}
     <p class="page-sub">จัดการข้อมูลครู · รูปถ่าย · ลายเซ็น · ชั้นที่ดูแล</p>
     <div class="card">
       <div class="filter-bar">
-        <button class="btn btn-primary" onclick="openTeacherModal()" style="margin-left:auto" id="btnAddTeacher">➕ เพิ่มครูใหม่</button>
+        <button class="btn btn-primary" onclick="openTeacherModal()" id="btnAddTeacher">➕ เพิ่มครูใหม่</button>
       </div>
     </div>
     <div id="teachersGrid" class="teacher-grid"></div>
@@ -676,12 +943,12 @@ tbody tr:last-child td{border-bottom:none}
         <select id="reportScope"><option value="all">🏫 ทั้งโรงเรียน</option></select>
         <label>จากเดือน:</label>
         <select id="fromMonth"></select>
-        <input type="number" id="fromYear" value="2569" min="2560" max="2600" style="width:90px">
+        <input type="number" id="fromYear" value="2569" min="2560" max="2600">
         <label>ถึงเดือน:</label>
         <select id="toMonth"></select>
-        <input type="number" id="toYear" value="2569" min="2560" max="2600" style="width:90px">
+        <input type="number" id="toYear" value="2569" min="2560" max="2600">
         <button class="btn btn-primary" onclick="loadReport()">📊 แสดง</button>
-        <button class="btn btn-ghost" onclick="window.print()">🖨️ ปริ้น PDF (A4)</button>
+        <button class="btn btn-ghost" onclick="window.print()">🖨️ ปริ้น PDF</button>
       </div>
     </div>
     <div id="reportContent"></div>
@@ -697,7 +964,7 @@ tbody tr:last-child td{border-bottom:none}
     <div class="info-banner purple">
       <span class="icon">📦</span>
       <div>
-        <b>โฟลเดอร์ Archive ทั้งหมดอยู่ที่ Google Drive</b><br>
+        <b>โฟลเดอร์ Archive อยู่ที่ Google Drive</b><br>
         ชื่อโฟลเดอร์: <code>Archive_ระบบมาเรียน/ปีการศึกษา_XXXX/</code><br>
         ไฟล์จะถูกเก็บเป็น 2 ไฟล์: บันทึกมาเรียน + สถิติการมาเรียน
       </div>
@@ -706,7 +973,7 @@ tbody tr:last-child td{border-bottom:none}
     <div class="card">
       <div class="filter-bar">
         <button class="btn btn-ghost" onclick="loadArchiveList()">🔄 โหลดใหม่</button>
-        <button class="btn btn-primary" onclick="openArchiveRootFolder()" id="btnOpenRootFolder" style="margin-left:auto">📁 เปิดโฟลเดอร์ Archive</button>
+        <button class="btn btn-primary" onclick="openArchiveRootFolder()" id="btnOpenRootFolder">📁 เปิดโฟลเดอร์ Archive</button>
       </div>
     </div>
 
@@ -733,7 +1000,7 @@ tbody tr:last-child td{border-bottom:none}
         <label>ค้นหา:</label>
         <div class="search-box"><input type="text" id="searchUser" placeholder="ชื่อ / ชื่อผู้ใช้..." oninput="renderUsers()"></div>
         <button class="btn btn-ghost" onclick="loadUsers()">🔄 โหลดใหม่</button>
-        <button class="btn btn-primary" onclick="openUserModal()" style="margin-left:auto" id="btnAddUser">➕ เพิ่มผู้ใช้</button>
+        <button class="btn btn-primary" onclick="openUserModal()" id="btnAddUser">➕ เพิ่มผู้ใช้</button>
       </div>
     </div>
 
@@ -1166,7 +1433,7 @@ tbody tr:last-child td{border-bottom:none}
         <div class="round-text" id="roundText">รอบที่ 1 จาก 3</div>
         <button type="button" class="delete-hold-btn" id="deleteHoldBtn"
                 onmousedown="startDeleteHold(event)" ontouchstart="startDeleteHold(event);event.preventDefault()"
-                onmouseup="cancelDeleteHold()" ontouchend="cancelDeleteHold()"
+                onmouseup="cancelDeleteHold()" ontouchend="cancelDeleteHold()" ontouchcancel="cancelDeleteHold()"
                 onmouseleave="cancelDeleteHold()"
                 oncontextmenu="return false">
           <div class="hold-progress" id="holdProgress"></div>
@@ -1559,7 +1826,7 @@ function updateNavVisibility() {
   $('navUsers').style.display = isManager() ? '' : 'none';
   $('navSettings').style.display = isManager() ? '' : 'none';
   $('navAcademic').style.display = isAdmin() ? '' : 'none';
-  $('navArchive').style.display = ''; // ทุกคนดูได้
+  $('navArchive').style.display = '';
 }
 
 function toggleUserMenu(e) {
@@ -1644,9 +1911,9 @@ async function loadHomeStats() {
     let termInfo = home.currentTerm && home.currentTerm.term ? ` · ${home.currentTerm.label}` : '';
     if (home.latestFound) {
       const [y,m,d] = home.latestDate.split('-');
-      $('heroLatest').innerHTML = `📅 <b>บันทึกการมาเรียนล่าสุด:</b> วันที่ ${+d} ${MONTHS_TH[+m]} ${+y+543}${yearInfo}${termInfo}`;
+      $('heroLatest').innerHTML = `📅 <b>บันทึกล่าสุด:</b> ${+d} ${MONTHS_TH[+m]} ${+y+543}${yearInfo}${termInfo}`;
     } else {
-      $('heroLatest').innerHTML = `📅 <b>ยังไม่มีการบันทึกการมาเรียน</b>${yearInfo}${termInfo}`;
+      $('heroLatest').innerHTML = `📅 <b>ยังไม่มีการบันทึก</b>${yearInfo}${termInfo}`;
     }
   } catch(e) { console.error(e); }
 }
@@ -2174,7 +2441,7 @@ function renderUsers() {
         <div style="font-size:12px;color:var(--muted);margin-top:2px">@${escapeHtml(u.username)} ${u.phone ? ' · 📞 ' + escapeHtml(u.phone) : ''}</div>
         ${classesBadges ? `<div class="teacher-classes">${classesBadges}</div>` : ''}
       </div>
-      <div class="action-btns" style="flex-direction:column">
+      <div class="action-btns">
         <button class="icon-btn edit" title="แก้ไข" onclick="editUser(${u.row})">✏️</button>
         ${canTransfer ? `<button class="icon-btn" style="background:var(--purple-light);color:var(--purple)" title="โอน Admin" onclick="openTransferModal(${u.row})">🔄</button>` : ''}
         ${canDelete ? `<button class="icon-btn del" title="ลบ" onclick="deleteUserReq(${u.row}, '${escapeHtml(u.name||'').replace(/'/g,"\\'")}')">🗑️</button>` : ''}
@@ -2476,7 +2743,7 @@ async function loadPromotionPreview() {
       return `<div class="promo-class-card">
         <div class="from">${CLASS_LABELS[c]}</div>
         <div class="count">${count} คน</div>
-        <div class="to">→ ${next==='จบ'?'🎓 จบการศึกษา':CLASS_LABELS[next]}</div>
+        <div class="to">→ ${next==='จบ'?'🎓 จบ':CLASS_LABELS[next]}</div>
       </div>`;
     }).join('');
     const totalStudents = Object.values(breakdown).reduce((s,v)=>s+v,0);
@@ -2541,46 +2808,60 @@ async function loadArchiveList() {
   try {
     const data = await API.listArchiveFolderContents();
     if (!data || !data.years || !data.years.length) {
-      container.innerHTML = `<div class="card"><div class="empty-state">
-        <div class="empty-state-icon">📦</div>
-        <h3>ยังไม่มีข้อมูล Archive</h3>
-        <p>เมื่อเริ่มปีการศึกษาใหม่ ระบบจะ Archive ข้อมูลอัตโนมัติ</p>
-      </div></div>`;
+      container.innerHTML = `
+        <div class="card">
+          <div class="empty-state">
+            <div class="empty-state-icon">📦</div>
+            <h3>ยังไม่มีข้อมูล Archive</h3>
+            <p>เมื่อเริ่มปีการศึกษาใหม่ ระบบจะ Archive ข้อมูลอัตโนมัติ</p>
+            <button class="btn btn-primary" onclick="loadArchiveList()">🔄 โหลดใหม่</button>
+          </div>
+        </div>`;
       $('btnOpenRootFolder').style.display = 'none';
       return;
     }
     $('btnOpenRootFolder').style.display = '';
-    $('btnOpenRootFolder').onclick = () => window.open(data.root.url, '_blank');
+    $('btnOpenRootFolder').dataset.url = data.root.url;
 
     container.innerHTML = `<div class="archive-grid">
       ${data.years.map(y => `
         <div class="archive-year-card">
           <div class="year-header">
             <div class="year-title">📅 ปีการศึกษา ${y.year}</div>
-            <button class="btn btn-ghost btn-xs" onclick="window.open('${y.folderUrl}','_blank')">📁 เปิดโฟลเดอร์</button>
+            <button class="btn btn-ghost btn-sm" onclick="window.open('${y.folderUrl}','_blank')">📁 เปิดโฟลเดอร์</button>
           </div>
           <div class="file-list">
-            ${y.files.map(f => {
+            ${y.files.length ? y.files.map(f => {
               const isAtt = f.name.indexOf('บันทึกมาเรียน')>=0;
+              const sizeKB = f.size ? (f.size/1024).toFixed(1) + ' KB' : '—';
               return `<div class="file-item">
                 <div class="file-icon">${isAtt?'📘':'📊'}</div>
                 <div class="file-info">
                   <div class="file-name">${escapeHtml(f.name)}</div>
-                  <div class="file-size">${(f.size/1024).toFixed(1)} KB</div>
+                  <div class="file-size">${sizeKB}</div>
                 </div>
                 <a href="${f.url}" target="_blank">เปิด</a>
               </div>`;
-            }).join('')}
+            }).join('') : `<div style="text-align:center;padding:14px;color:var(--muted);font-size:12.5px">ไม่พบไฟล์ในโฟลเดอร์</div>`}
           </div>
         </div>
       `).join('')}
     </div>`;
   } catch(e) {
-    container.innerHTML = `<div class="card" style="color:var(--red);padding:40px">⚠️ ${escapeHtml(e.message)}</div>`;
+    container.innerHTML = `
+      <div class="card" style="text-align:center;padding:40px">
+        <div style="font-size:52px;opacity:.4;margin-bottom:12px">⚠️</div>
+        <h3 style="margin-bottom:8px;color:var(--red);font-size:16px">ไม่สามารถโหลดข้อมูล Archive ได้</h3>
+        <p style="color:var(--muted);margin-bottom:16px;font-size:13.5px">${escapeHtml(e.message)}</p>
+        <button class="btn btn-primary" onclick="loadArchiveList()">🔄 ลองอีกครั้ง</button>
+      </div>`;
   }
 }
 function openArchiveRootFolder() {
-  /* จะถูกตั้งค่าใน loadArchiveList */
+  const btn = $('btnOpenRootFolder');
+  const url = btn && btn.dataset.url;
+  if (url) window.open(url, '_blank');
+  else showToast('ยังไม่มีโฟลเดอร์ Archive', 'info');
 }
 
 /* ============================================================
@@ -3015,6 +3296,36 @@ document.addEventListener('keydown', e => {
     closePromoConfirm(); closeArchiveReportModal();
   }
 });
+
+/* ============================================================
+ * PULL-TO-REFRESH (Mobile)
+ * ============================================================ */
+let _pullStart = 0, _pullActive = false;
+document.addEventListener('touchstart', e => {
+  if (window.scrollY === 0 && $('appRoot').style.display !== 'none') {
+    _pullStart = e.touches[0].clientY;
+    _pullActive = true;
+  }
+}, { passive: true });
+document.addEventListener('touchmove', e => {
+  if (!_pullActive) return;
+  const diff = e.touches[0].clientY - _pullStart;
+  if (diff > 80 && window.scrollY === 0) {
+    _pullActive = false;
+    refreshCurrentPage();
+    showToast('รีเฟรชข้อมูลแล้ว', 'info', 1500);
+  }
+}, { passive: true });
+document.addEventListener('touchend', () => { _pullActive = false; });
+
+/* ============================================================
+ * AUTO HANDLE SESSION EXPIRED
+ * ============================================================ */
+const originalFetch = window.fetch;
+window.fetch = async function(...args) {
+  const res = await originalFetch.apply(this, args);
+  return res;
+};
 </script>
 </body>
 </html>
