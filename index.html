@@ -114,6 +114,7 @@ tbody tr:last-child td{border-bottom:none}
 .modal-overlay.show{display:flex}
 .modal{background:#fff;border-radius:16px;max-width:900px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 24px 64px rgba(0,0,0,.25)}
 .modal-sm{max-width:480px}
+.modal-lg{max-width:1200px}
 .modal-header{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:2}
 .modal-title{font-size:18px;font-weight:800}
 .modal-close{background:#f1f5f9;border:none;width:36px;height:36px;border-radius:10px;font-size:20px;cursor:pointer;color:var(--muted);display:grid;place-items:center}
@@ -307,15 +308,27 @@ tbody tr:last-child td{border-bottom:none}
 .timeline-row .label{color:var(--muted);font-weight:600}
 .timeline-row .value{font-weight:700;color:var(--text)}
 .promo-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
-.promo-step{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;transition:all .2s}
-.promo-step-num{position:absolute;top:-12px;left:20px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;box-shadow:0 4px 12px rgba(37,99,235,.3)}
-.promo-step h3{font-size:15px;font-weight:700;margin:8px 0}
-.promo-step p{font-size:13px;color:var(--muted)}
 .promo-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:14px}
 .promo-class-card{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
 .promo-class-card .from{font-size:12px;color:var(--muted);font-weight:600}
 .promo-class-card .count{font-size:20px;font-weight:800;color:var(--primary);margin:4px 0}
 .promo-class-card .to{font-size:13px;font-weight:700;color:var(--green)}
+
+/* Archive Viewer */
+.archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.archive-year-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px;transition:all .2s}
+.archive-year-card:hover{box-shadow:var(--shadow-lg);border-color:var(--primary)}
+.archive-year-card .year-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--primary-light)}
+.archive-year-card .year-title{font-size:18px;font-weight:800;color:var(--primary)}
+.archive-year-card .file-list{display:flex;flex-direction:column;gap:8px}
+.archive-year-card .file-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;background:#f8fafc;border:1px solid var(--border);font-size:13px}
+.archive-year-card .file-item:hover{background:#f1f5f9}
+.archive-year-card .file-item .file-icon{font-size:20px}
+.archive-year-card .file-item .file-info{flex:1;min-width:0}
+.archive-year-card .file-item .file-name{font-weight:600;color:var(--text);word-break:break-all;font-size:12.5px}
+.archive-year-card .file-item .file-size{font-size:11px;color:var(--muted)}
+.archive-year-card .file-item a{color:var(--primary);font-weight:700;text-decoration:none;font-size:12px;padding:4px 10px;border-radius:6px;background:var(--primary-light)}
+.archive-year-card .file-item a:hover{background:var(--primary);color:#fff}
 
 /* Print */
 @media print{
@@ -362,7 +375,7 @@ tbody tr:last-child td{border-bottom:none}
   .hero{padding:24px;text-align:center}
   .hero-stats{justify-content:center}
   .auth-card{padding:28px 20px}
-  .user-grid,.teacher-grid{grid-template-columns:1fr}
+  .user-grid,.teacher-grid,.archive-grid{grid-template-columns:1fr}
   .nav-user-info{display:none}
   .auth-class-box{grid-template-columns:repeat(2,1fr)}
 }
@@ -474,6 +487,7 @@ tbody tr:last-child td{border-bottom:none}
       <a data-page="students" onclick="navigate('students')">👥 <span class="label">จัดการนักเรียน</span></a>
       <a data-page="teachers" onclick="navigate('teachers')">👨‍🏫 <span class="label">ครู</span></a>
       <a data-page="reports" onclick="navigate('reports')">📑 <span class="label">รายงาน</span></a>
+      <a data-page="archive" id="navArchive" onclick="navigate('archive')">📦 <span class="label">Archive</span></a>
       <a data-page="users" id="navUsers" style="display:none" onclick="navigate('users')">🧑‍💼 <span class="label">ผู้ใช้</span> <span class="nav-badge" id="pendingUsersBadge" style="display:none">0</span></a>
       <a data-page="deletes" id="navDeletes" onclick="navigate('deletes')">🗑️ <span class="label">คำขอลบ</span> <span class="nav-badge" id="pendingDeletesBadge" style="display:none">0</span></a>
       <a data-page="academic" id="navAcademic" style="display:none" onclick="navigate('academic')">🎓 <span class="label">ปีการศึกษา</span></a>
@@ -517,7 +531,7 @@ tbody tr:last-child td{border-bottom:none}
       <div class="home-card" onclick="navigate('attendance')"><div class="home-card-icon">✏️</div><h2>บันทึกการมาเรียน</h2><p>ครูกรอกสถานะนักเรียนรายวัน</p></div>
       <div class="home-card" onclick="navigate('dashboard')"><div class="home-card-icon">📊</div><h2>Dashboard</h2><p>ดูกราฟสถิติแบบเรียลไทม์</p></div>
       <div class="home-card" onclick="navigate('info')"><div class="home-card-icon">👤</div><h2>ข้อมูลนักเรียน</h2><p>ค้นหาและดูรายงานรายบุคคล</p></div>
-      <div class="home-card" onclick="navigate('reports')"><div class="home-card-icon">📑</div><h2>รายงานการมาเรียน</h2><p>ตารางรายวันแบบ ปพ.5</p></div>
+      <div class="home-card" onclick="navigate('archive')"><div class="home-card-icon">📦</div><h2>Archive ย้อนหลัง</h2><p>ดูข้อมูลปีการศึกษาที่ผ่านมา</p></div>
     </div>
   </div>
 </div>
@@ -647,13 +661,17 @@ tbody tr:last-child td{border-bottom:none}
 <div class="page" id="page-reports">
   <div class="container">
     <h1 class="page-title">รายงานการมาเรียน</h1>
-    <p class="page-sub">เลือกขอบเขต · ช่วงเดือน-ปี · พิมพ์ ปพ.5</p>
+    <p class="page-sub">เลือกปีการศึกษา · ขอบเขต · ช่วงเดือน-ปี · พิมพ์ ปพ.5</p>
     <div class="info-banner no-print">
       <span class="icon">💡</span>
       <span>เมื่อสั่งพิมพ์ ให้เลือก "บันทึกเป็น PDF" และยกเลิกติ๊ก <b>"Headers and footers"</b> เพื่อให้รายงานพอดี 1 หน้า A4</span>
     </div>
     <div class="card no-print">
       <div class="filter-bar">
+        <label>ปีการศึกษา:</label>
+        <select id="reportAcademicYear" onchange="onReportYearChange()" style="min-width:220px">
+          <option value="current">📗 ปีปัจจุบัน</option>
+        </select>
         <label>ขอบเขต:</label>
         <select id="reportScope"><option value="all">🏫 ทั้งโรงเรียน</option></select>
         <label>จากเดือน:</label>
@@ -667,6 +685,32 @@ tbody tr:last-child td{border-bottom:none}
       </div>
     </div>
     <div id="reportContent"></div>
+  </div>
+</div>
+
+<!-- ARCHIVE -->
+<div class="page" id="page-archive">
+  <div class="container">
+    <h1 class="page-title">📦 Archive ปีการศึกษา</h1>
+    <p class="page-sub">ข้อมูลย้อนหลังทั้งหมด · เก็บใน Google Drive</p>
+
+    <div class="info-banner purple">
+      <span class="icon">📦</span>
+      <div>
+        <b>โฟลเดอร์ Archive ทั้งหมดอยู่ที่ Google Drive</b><br>
+        ชื่อโฟลเดอร์: <code>Archive_ระบบมาเรียน/ปีการศึกษา_XXXX/</code><br>
+        ไฟล์จะถูกเก็บเป็น 2 ไฟล์: บันทึกมาเรียน + สถิติการมาเรียน
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="filter-bar">
+        <button class="btn btn-ghost" onclick="loadArchiveList()">🔄 โหลดใหม่</button>
+        <button class="btn btn-primary" onclick="openArchiveRootFolder()" id="btnOpenRootFolder" style="margin-left:auto">📁 เปิดโฟลเดอร์ Archive</button>
+      </div>
+    </div>
+
+    <div id="archiveContent"></div>
   </div>
 </div>
 
@@ -728,7 +772,6 @@ tbody tr:last-child td{border-bottom:none}
     <h1 class="page-title">จัดการปีการศึกษา</h1>
     <p class="page-sub">ตั้งค่าวันเปิด-ปิดภาคเรียน · เลื่อนชั้น · เริ่มปีการศึกษาใหม่</p>
 
-    <!-- Current Status -->
     <div class="card" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-color:#93c5fd">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
         <div>
@@ -740,10 +783,8 @@ tbody tr:last-child td{border-bottom:none}
       </div>
     </div>
 
-    <!-- Term Timeline -->
     <div class="academic-timeline" id="academicTimeline"></div>
 
-    <!-- Set Term Dates -->
     <div class="card">
       <h2 class="card-title">📅 ตั้งค่าวันเปิด-ปิดภาคเรียน</h2>
       <div class="info-banner info">
@@ -783,7 +824,6 @@ tbody tr:last-child td{border-bottom:none}
       </div>
     </div>
 
-    <!-- Preview Promotion -->
     <div class="card">
       <h2 class="card-title">📋 ตัวอย่างการเลื่อนชั้น (Preview)</h2>
       <div id="promoBreakdown" class="promo-breakdown"></div>
@@ -792,7 +832,6 @@ tbody tr:last-child td{border-bottom:none}
       </div>
     </div>
 
-    <!-- Start New Academic Year -->
     <div class="card" style="border-color:#fca5a5">
       <h2 class="card-title" style="color:var(--red)">🚀 เริ่มปีการศึกษาใหม่</h2>
       <div class="info-banner danger">
@@ -800,7 +839,7 @@ tbody tr:last-child td{border-bottom:none}
         <div>
           <b>โปรดอ่านก่อนดำเนินการ!</b><br>
           เมื่อกดปุ่มนี้ ระบบจะทำอัตโนมัติ:<br>
-          1. <b>สำรองไฟล์ทั้งหมด</b> → โฟลเดอร์ <code>Archive_ระบบมาเรียน</code> ใน Google Drive<br>
+          1. <b>Archive ทั้ง 2 ไฟล์</b> → โฟลเดอร์ <code>Archive_ระบบมาเรียน/ปีการศึกษา_XXXX/</code><br>
           2. ย้ายชีทเก่า (1-XX, 2-XX, สรุปXX) ไปเป็น <code>[Archive] ...</code><br>
           3. <b>ลบข้อมูลการมาเรียนของปีเก่า</b> ออกจากไฟล์หลัก<br>
           4. เลื่อนชั้นนักเรียนทุกคนขึ้น 1 ระดับ (ป.6 จบการศึกษาและลบออก)<br>
@@ -814,7 +853,6 @@ tbody tr:last-child td{border-bottom:none}
       <button class="btn btn-danger" id="btnPromote" onclick="confirmPromotion()" style="font-size:16px;padding:14px 28px">🚀 เริ่มปีการศึกษาใหม่</button>
     </div>
 
-    <!-- History -->
     <div class="card">
       <h2 class="card-title">📜 ประวัติการเริ่มปีการศึกษา</h2>
       <div id="promoHistory"></div>
@@ -1099,7 +1137,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- MODAL: Delete Student (Hold 3 rounds) -->
+<!-- MODAL: Delete Student -->
 <div class="modal-overlay" id="deleteModalOverlay">
   <div class="modal modal-sm">
     <div class="modal-header">
@@ -1158,9 +1196,9 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<!-- MODAL: Profile -->
+<!-- MODAL: Profile (Student) -->
 <div class="modal-overlay" id="profileModalOverlay" onclick="if(event.target===this)closeProfileModal()">
-  <div class="modal" style="max-width:1100px">
+  <div class="modal modal-lg">
     <div class="modal-header"><div class="modal-title" id="profileModalTitle">รายงานรายบุคคล</div><button class="modal-close no-print" onclick="closeProfileModal()">×</button></div>
     <div class="modal-body" id="profileModalBody"></div>
   </div>
@@ -1218,6 +1256,14 @@ tbody tr:last-child td{border-bottom:none}
       <button type="button" class="btn btn-ghost" onclick="closePromoConfirm()">ยกเลิก</button>
       <button type="button" class="btn btn-danger" id="btnConfirmPromoFinal" onclick="finalizePromotion()">🚀 ยืนยันเริ่มปีใหม่</button>
     </div>
+  </div>
+</div>
+
+<!-- MODAL: Archive View (Report) -->
+<div class="modal-overlay" id="archiveReportModalOverlay" onclick="if(event.target===this)closeArchiveReportModal()">
+  <div class="modal modal-lg">
+    <div class="modal-header"><div class="modal-title" id="archiveReportTitle">📦 ข้อมูล Archive</div><button class="modal-close no-print" onclick="closeArchiveReportModal()">×</button></div>
+    <div class="modal-body" id="archiveReportBody"></div>
   </div>
 </div>
 
@@ -1308,18 +1354,27 @@ const API = {
   getSettings() { return this.call('getSettings'); },
   setSetting(key, value) { return this.call('setSetting', {}, 'POST', { key, value }); },
 
-  /* Academic */
   getAcademicYearInfo() { return this.call('getAcademicYearInfo'); },
   setTermDates(data) { return this.call('setTermDates', {}, 'POST', data); },
   startNewAcademicYear(data) { return this.call('startNewAcademicYear', {}, 'POST', data || {}); },
   getArchiveHistory() { return this.call('getArchiveHistory'); },
   previewPromotion() { return this.call('previewPromotion'); },
+  listArchivedYears() { return this.call('listArchivedYears'); },
+  listArchiveFolderContents() { return this.call('listArchiveFolderContents'); },
 
   getAttendance(date, cls) { return this.call('getAttendance', { date, class: cls || '' }); },
   saveAttendance(payload) { return this.call('saveAttendance', {}, 'POST', payload); },
   getDashboard(date, range) { return this.call('getDashboard', { date: date || '', range: range || '30d' }); },
   getStudentReport(studentRow, fromDate, toDate) { return this.call('getStudentReport', { studentRow, fromDate: fromDate || '', toDate: toDate || '' }); },
   getClassDailyTable(cls, fm, fy, tm, ty) { return this.call('getClassDailyTable', { class: cls || 'all', fromMonth: fm, fromYear: fy, toMonth: tm, toYear: ty }); },
+  getClassDailyTableWithYear(cls, fm, fy, tm, ty, academicYear) {
+    return this.call('getClassDailyTable', {
+      class: cls || 'all',
+      fromMonth: fm, fromYear: fy,
+      toMonth: tm, toYear: ty,
+      academicYear: academicYear || 'current'
+    });
+  },
   getHomeStats() { return this.call('getHomeStats'); },
   getSyncVersion() { return this.call('getSyncVersion'); }
 };
@@ -1424,12 +1479,12 @@ async function doSignup() {
   if (password.length < 4) { showToast('รหัสผ่านอย่างน้อย 4 ตัวอักษร', 'error'); return; }
   if (username.length < 3) { showToast('ชื่อผู้ใช้ต้องมี 3 ตัวอักษรขึ้นไป', 'error'); return; }
   if (/\s/.test(username)) { showToast('ชื่อผู้ใช้ห้ามมีช่องว่าง', 'error'); return; }
-  if (username.indexOf('@') >= 0) { showToast('ชื่อผู้ใช้ห้ามมี @ (ห้ามใช้อีเมล)', 'error'); return; }
+  if (username.indexOf('@') >= 0) { showToast('ชื่อผู้ใช้ห้ามมี @', 'error'); return; }
   const btn = $('btnSignup'); btn.disabled = true;
   const orig = btn.innerHTML; btn.innerHTML = '<span class="loading"></span> กำลังสมัคร...';
   try {
     const res = await API.signup({ username, password, name, phone, role, position, classes });
-    showToast(res.message || 'สมัครสำเร็จ รอการอนุมัติ', 'success', 5000);
+    showToast(res.message || 'สมัครสำเร็จ', 'success', 5000);
     $('signupForm').reset();
     switchAuthTab('login');
     $('loginUsername').value = username;
@@ -1454,14 +1509,12 @@ async function doLogout() {
 
 async function tryAutoLogin() {
   const remember = localStorage.getItem(LS_KEY_REMEMBER);
-  let token, userStr, expires;
+  let token, expires;
   if (remember) {
     token = localStorage.getItem(LS_KEY_TOKEN);
-    userStr = localStorage.getItem(LS_KEY_USER);
     expires = localStorage.getItem(LS_KEY_EXPIRES);
   } else {
     token = sessionStorage.getItem(LS_KEY_TOKEN);
-    userStr = sessionStorage.getItem(LS_KEY_USER);
     expires = sessionStorage.getItem(LS_KEY_EXPIRES);
   }
   if (!token) return false;
@@ -1471,8 +1524,6 @@ async function tryAutoLogin() {
     const res = await API.checkSession();
     if (!res.ok) return false;
     CURRENT_USER = res.user;
-    if (remember) localStorage.setItem(LS_KEY_USER, JSON.stringify(res.user));
-    else sessionStorage.setItem(LS_KEY_USER, JSON.stringify(res.user));
     return true;
   } catch(e) { return false; }
 }
@@ -1489,6 +1540,7 @@ async function enterApp() {
   try { const info = await API.getAcademicYearInfo(); CURRENT_YEAR = info.academicYear || 2569; } catch(e) {}
   updateNavVisibility();
   loadHomeStats();
+  loadReportYearOptions();
   startPolling();
   updateBadges();
 }
@@ -1507,6 +1559,7 @@ function updateNavVisibility() {
   $('navUsers').style.display = isManager() ? '' : 'none';
   $('navSettings').style.display = isManager() ? '' : 'none';
   $('navAcademic').style.display = isAdmin() ? '' : 'none';
+  $('navArchive').style.display = ''; // ทุกคนดูได้
 }
 
 function toggleUserMenu(e) {
@@ -1570,6 +1623,7 @@ function navigate(page) {
   if (page === 'students') initStudents();
   if (page === 'teachers') loadTeachers();
   if (page === 'reports') initReports();
+  if (page === 'archive') loadArchiveList();
   if (page === 'users') loadUsers();
   if (page === 'deletes') loadDeleteRequests();
   if (page === 'academic') initAcademic();
@@ -2000,7 +2054,7 @@ async function submitDeleteRequest() {
   const orig = btn.innerHTML; btn.innerHTML = '<span class="loading"></span> กำลังส่ง...';
   try {
     const res = await API.requestDeleteStudent({ studentRow: _deleteTarget.row, teacherName });
-    showToast(res.message || 'ส่งคำขอสำเร็จ รอการอนุมัติ', 'success', 5000);
+    showToast(res.message || 'ส่งคำขอสำเร็จ', 'success', 5000);
     closeDeleteModal(); updateBadges();
   } catch(e) { showToast('❌ ' + e.message, 'error', 5000); }
   finally { btn.disabled = false; btn.innerHTML = orig; }
@@ -2057,7 +2111,7 @@ function renderDeleteRequestCard(r) {
   </div>`;
 }
 async function approveDeleteReq(id) {
-  if (!confirm(`⚠️ ยืนยันการอนุมัติคำขอ #${id}?\n\nเมื่ออนุมัติแล้ว นักเรียนจะถูกลบออกจากระบบทันที`)) return;
+  if (!confirm(`⚠️ ยืนยันการอนุมัติคำขอ #${id}?`)) return;
   try {
     const res = await API.approveDelete({ requestId: id });
     showToast(res.message || 'อนุมัติสำเร็จ');
@@ -2139,7 +2193,7 @@ function renderPendingUsers() {
       <div class="avatar">${avatar}</div>
       <div style="flex:1;min-width:0">
         <div style="font-weight:700">${escapeHtml(u.name || '-')}</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px">@${escapeHtml(u.username)} · บทบาท: <b>${u.roleLabel}</b>${u.position ? ' · ' + escapeHtml(u.position) : ''}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">@${escapeHtml(u.username)} · <b>${u.roleLabel}</b>${u.position ? ' · ' + escapeHtml(u.position) : ''}</div>
         ${u.phone ? `<div style="font-size:12px;color:var(--muted)">📞 ${escapeHtml(u.phone)}</div>` : ''}
         ${classesBadges ? `<div class="teacher-classes">${classesBadges}</div>` : ''}
       </div>
@@ -2430,7 +2484,7 @@ async function loadPromotionPreview() {
     $('promoWarningBox').innerHTML = `
       <div style="padding:16px;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:12px;font-size:14px;font-weight:600;color:#78350f">
         <div style="margin-bottom:6px">📋 <b>ปีการศึกษาใหม่ที่จะเริ่ม:</b> ${data.nextYear}</div>
-        <div>📦 <b>จะ Archive ทั้ง 2 ไฟล์:</b> บันทึกมาเรียน_${data.currentYear} + สถิติการมาเรียน_${data.currentYear}</div>
+        <div>📦 <b>จะ Archive ทั้ง 2 ไฟล์:</b> เก็บในโฟลเดอร์ "Archive_ระบบมาเรียน/ปีการศึกษา_${data.currentYear}/"</div>
         <div>🗂️ <b>จะสร้างชีทใหม่:</b> 1-${String(data.nextYear).slice(-2)}, 2-${String(data.currentYear).slice(-2)}, สรุป${String(data.currentYear).slice(-2)}</div>
       </div>`;
   } catch(e) { $('promoSummary').innerHTML = `⚠️ ${escapeHtml(e.message)}`; }
@@ -2472,10 +2526,61 @@ async function finalizePromotion() {
     closePromoConfirm();
     setTimeout(() => {
       loadAcademicInfo(); loadPromotionPreview(); loadPromotionHistory();
-      loadHomeStats();
+      loadHomeStats(); loadReportYearOptions();
     }, 1500);
   } catch(e) { showToast('❌ ' + e.message, 'error', 8000); }
   finally { btn.disabled = false; btn.innerHTML = orig; }
+}
+
+/* ============================================================
+ * ARCHIVE PAGE
+ * ============================================================ */
+async function loadArchiveList() {
+  const container = $('archiveContent');
+  container.innerHTML = `<div class="card" style="text-align:center;padding:40px"><span class="loading dark"></span> กำลังโหลด...</div>`;
+  try {
+    const data = await API.listArchiveFolderContents();
+    if (!data || !data.years || !data.years.length) {
+      container.innerHTML = `<div class="card"><div class="empty-state">
+        <div class="empty-state-icon">📦</div>
+        <h3>ยังไม่มีข้อมูล Archive</h3>
+        <p>เมื่อเริ่มปีการศึกษาใหม่ ระบบจะ Archive ข้อมูลอัตโนมัติ</p>
+      </div></div>`;
+      $('btnOpenRootFolder').style.display = 'none';
+      return;
+    }
+    $('btnOpenRootFolder').style.display = '';
+    $('btnOpenRootFolder').onclick = () => window.open(data.root.url, '_blank');
+
+    container.innerHTML = `<div class="archive-grid">
+      ${data.years.map(y => `
+        <div class="archive-year-card">
+          <div class="year-header">
+            <div class="year-title">📅 ปีการศึกษา ${y.year}</div>
+            <button class="btn btn-ghost btn-xs" onclick="window.open('${y.folderUrl}','_blank')">📁 เปิดโฟลเดอร์</button>
+          </div>
+          <div class="file-list">
+            ${y.files.map(f => {
+              const isAtt = f.name.indexOf('บันทึกมาเรียน')>=0;
+              return `<div class="file-item">
+                <div class="file-icon">${isAtt?'📘':'📊'}</div>
+                <div class="file-info">
+                  <div class="file-name">${escapeHtml(f.name)}</div>
+                  <div class="file-size">${(f.size/1024).toFixed(1)} KB</div>
+                </div>
+                <a href="${f.url}" target="_blank">เปิด</a>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+  } catch(e) {
+    container.innerHTML = `<div class="card" style="color:var(--red);padding:40px">⚠️ ${escapeHtml(e.message)}</div>`;
+  }
+}
+function openArchiveRootFolder() {
+  /* จะถูกตั้งค่าใน loadArchiveList */
 }
 
 /* ============================================================
@@ -2587,6 +2692,47 @@ function renderStack(trend) {
  * REPORTS
  * ============================================================ */
 let dailyReportChart = null, reportsInit = false;
+
+async function loadReportYearOptions() {
+  const sel = $('reportAcademicYear');
+  if (!sel) return;
+  sel.innerHTML = '<option value="current">📗 ปีปัจจุบัน (' + CURRENT_YEAR + ')</option>';
+  try {
+    const years = await API.listArchivedYears();
+    years.forEach(y => {
+      const o = document.createElement('option');
+      o.value = y;
+      o.textContent = '📦 ปีการศึกษา ' + y + ' (Archive)';
+      sel.appendChild(o);
+    });
+    if (years.length === 0) {
+      const o = document.createElement('option');
+      o.value = '';
+      o.disabled = true;
+      o.textContent = '— ยังไม่มีข้อมูลย้อนหลัง —';
+      sel.appendChild(o);
+    }
+  } catch(e) {
+    console.error('Load archive years:', e);
+  }
+}
+
+function onReportYearChange() {
+  const y = $('reportAcademicYear').value;
+  if (y === 'current' || y === '') {
+    $('fromYear').value = CURRENT_YEAR;
+    $('toYear').value = CURRENT_YEAR;
+    $('fromMonth').value = 5;
+    $('toMonth').value = 3;
+  } else {
+    const year = parseInt(y);
+    $('fromYear').value = year;
+    $('toYear').value = year + 1;
+    $('fromMonth').value = 5;
+    $('toMonth').value = 3;
+  }
+}
+
 function initReports() {
   if (!reportsInit) {
     reportsInit = true;
@@ -2601,18 +2747,27 @@ function initReports() {
     CLASSES.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = CLASS_LABELS[c]; selScope.appendChild(o); });
     $('fromYear').value = CURRENT_YEAR;
     $('toYear').value = CURRENT_YEAR;
+    loadReportYearOptions();
   }
   loadReport();
 }
+
 async function loadReport() {
   const scope = $('reportScope').value;
+  const academicYear = $('reportAcademicYear').value;
   const fm = +$('fromMonth').value, fy = +$('fromYear').value;
   const tm = +$('toMonth').value, ty = +$('toYear').value;
   const c = $('reportContent');
   c.innerHTML = '<div class="card" style="text-align:center;padding:60px"><span class="loading dark"></span> กำลังโหลด...</div>';
-  try { const data = await API.getClassDailyTable(scope, fm, fy, tm, ty); renderDailyReport(data); setSyncStatus(true, 'พร้อมใช้งาน'); }
-  catch(e) { c.innerHTML = `<div class="card" style="color:var(--red);padding:40px">⚠️ ${escapeHtml(e.message)}</div>`; }
+  try {
+    const data = await API.getClassDailyTableWithYear(scope, fm, fy, tm, ty, academicYear);
+    renderDailyReport(data);
+    setSyncStatus(true, 'พร้อมใช้งาน');
+  } catch(e) {
+    c.innerHTML = `<div class="card" style="color:var(--red);padding:40px">⚠️ ${escapeHtml(e.message)}</div>`;
+  }
 }
+
 function renderDailyReport(data) {
   const c = $('reportContent');
   if (!data.days || !data.days.length) { c.innerHTML = `<div class="card"><div class="empty-state"><div class="empty-state-icon">📋</div><h3>ไม่พบข้อมูล</h3></div></div>`; return; }
@@ -2641,13 +2796,20 @@ function renderDailyReport(data) {
   }).join('');
   const totalDays = data.days.filter(d => d.status === 'normal').length;
   const teacher = (TEACHER_LIST_CACHE||[]).find(t => (t.classes||[]).indexOf(data.class) >= 0);
+  const archiveBadge = data.isArchive
+    ? `<div class="info-banner no-print" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#5b21b6;border-color:#c4b5fd">
+        <span class="icon">📦</span>
+        <span><b>ข้อมูลย้อนหลัง</b> — กำลังดูข้อมูลจาก Archive ปีการศึกษา ${data.academicYear}</span>
+       </div>`
+    : '';
   c.innerHTML = `
+    ${archiveBadge}
     <div class="print-header">
       ${SCHOOL_SETTINGS.school_logo ? `<img src="${SCHOOL_SETTINGS.school_logo}" class="logo">` : ''}
       <h2>${escapeHtml(SCHOOL_SETTINGS.school_name || 'โรงเรียนบ้านถิ่นสำราญ')}</h2>
       <p>${escapeHtml(SCHOOL_SETTINGS.school_address || '')}</p>
       <p><b>สถิติการมาเรียน${data.classLabel !== 'ทั้งโรงเรียน' ? 'ของนักเรียนชั้น ' + data.classLabel : 'ของนักเรียนทั้งโรงเรียน'}</b></p>
-      <p>${data.fromLabel} ถึง ${data.toLabel}</p>
+      <p>${data.fromLabel} ถึง ${data.toLabel}${data.isArchive ? ' (ข้อมูลย้อนหลัง)' : ''}</p>
     </div>
     <div class="card">
       <div class="table-wrap" style="max-height:650px;overflow-y:auto;border:1px solid var(--border);border-radius:12px">
@@ -2694,6 +2856,7 @@ function renderDailyReport(data) {
       plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
   });
 }
+function closeArchiveReportModal() { $('archiveReportModalOverlay').classList.remove('show'); }
 
 /* ============================================================
  * MY PROFILE
@@ -2805,6 +2968,7 @@ function refreshCurrentPage() {
   else if (currentPage === 'students') loadStudents();
   else if (currentPage === 'teachers') loadTeachers();
   else if (currentPage === 'reports') loadReport();
+  else if (currentPage === 'archive') loadArchiveList();
   else if (currentPage === 'users') loadUsers();
   else if (currentPage === 'deletes') loadDeleteRequests();
   else if (currentPage === 'academic') { loadAcademicInfo(); loadPromotionPreview(); loadPromotionHistory(); }
@@ -2848,7 +3012,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeStudentModal(); closeProfileModal(); closeTeacherModal();
     closeUserModal(); closeTransferModal(); closeMyProfileModal(); closeChangePwdModal();
-    closePromoConfirm();
+    closePromoConfirm(); closeArchiveReportModal();
   }
 });
 </script>
