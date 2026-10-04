@@ -16,10 +16,6 @@
   --primary:#2563eb;--primary-dark:#1e40af;--primary-light:#dbeafe;
   --success:#10b981;--warning:#f59e0b;--danger:#ef4444;--info:#3b82f6;
   --bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;
-  --status-present:#10b981;--status-present-bg:#d1fae5;
-  --status-leave:#f59e0b;--status-leave-bg:#fef3c7;
-  --status-absent:#ef4444;--status-absent-bg:#fee2e2;
-  --status-sick:#f97316;--status-sick-bg:#ffedd5;
   --green:#10b981;--green-light:#d1fae5;--yellow:#f59e0b;--yellow-light:#fef3c7;
   --red:#ef4444;--red-light:#fee2e2;--orange:#f97316;--orange-light:#ffedd5;
   --purple:#8b5cf6;--purple-light:#ede9fe;
@@ -27,7 +23,6 @@
   --shadow-sm:0 1px 2px rgba(0,0,0,.05);
   --shadow:0 4px 12px rgba(0,0,0,.08);
   --shadow-lg:0 12px 32px rgba(0,0,0,.12);
-  --shadow-xl:0 20px 60px rgba(0,0,0,.18);
   --safe-bottom:env(safe-area-inset-bottom,0px);
   --safe-top:env(safe-area-inset-top,0px);
 }
@@ -39,193 +34,56 @@ a{color:inherit}button{font-family:inherit}
 img{max-width:100%;height:auto;display:block}
 
 /* ============================================================
- * 🧭 NAVBAR + HAMBURGER
+ * 🧭 NAVBAR
  * ============================================================ */
-.navbar{
-  background:rgba(255,255,255,.85);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  padding:0 20px;
-  position:sticky;top:0;z-index:100;
-  padding-top:var(--safe-top);
-}
-.navbar-inner{
-  max-width:1500px;margin:0 auto;
-  display:flex;align-items:center;gap:14px;
-  height:68px;
-}
-.brand{
-  display:flex;align-items:center;gap:12px;
-  text-decoration:none;cursor:pointer;flex-shrink:0;
-  transition:opacity .15s;
-}
-.brand:hover{opacity:.85}
-.brand-logo{
-  width:44px;height:44px;border-radius:12px;
-  background:linear-gradient(135deg,#2563eb,#7c3aed);
-  display:grid;place-items:center;color:#fff;font-size:22px;
-  box-shadow:0 4px 12px rgba(37,99,235,.3);overflow:hidden;
-}
+.navbar{background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 20px;position:sticky;top:0;z-index:100;padding-top:var(--safe-top)}
+.navbar-inner{max-width:1500px;margin:0 auto;display:flex;align-items:center;gap:14px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:pointer;flex-shrink:0;transition:opacity .15s}
+.brand-logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#2563eb,#7c3aed);display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 4px 12px rgba(37,99,235,.3);overflow:hidden}
 .brand-logo img{width:100%;height:100%;object-fit:cover}
 .brand-text{display:flex;flex-direction:column;line-height:1.15}
-.brand-name{font-weight:800;font-size:15px;color:var(--text);letter-spacing:-.2px}
+.brand-name{font-weight:800;font-size:15px;letter-spacing:-.2px}
 .brand-sub{font-size:11px;color:var(--muted);font-weight:500}
 .nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
-.sync-status{
-  display:flex;align-items:center;gap:6px;
-  font-size:11.5px;font-weight:600;color:#059669;
-  padding:6px 12px;background:var(--green-light);
-  border-radius:20px;white-space:nowrap;
-}
+.sync-status{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:#059669;padding:6px 12px;background:var(--green-light);border-radius:20px;white-space:nowrap}
 .sync-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 .sync-dot.offline{background:var(--red);animation:none}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-
-/* Hamburger button */
-.hamburger{
-  width:44px;height:44px;border-radius:12px;
-  background:#f1f5f9;border:1.5px solid var(--border);
-  cursor:pointer;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:5px;
-  transition:all .18s;flex-shrink:0;padding:0;
-}
-.hamburger:hover{background:var(--primary-light);border-color:var(--primary)}
-.hamburger:active{transform:scale(.95)}
-.hamburger span{
-  display:block;width:20px;height:2.5px;background:var(--text);
-  border-radius:2px;transition:all .3s;
-}
-.hamburger:hover span{background:var(--primary)}
+.hamburger{width:44px;height:44px;border-radius:12px;background:#f1f5f9;border:1.5px solid var(--border);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex-shrink:0;padding:0}
+.hamburger span{display:block;width:20px;height:2.5px;background:var(--text);border-radius:2px;transition:all .3s}
 .hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
 
 /* ============================================================
- * 📂 DRAWER MENU (เลื่อนจากด้านขวา)
+ * 📂 DRAWER
  * ============================================================ */
-.drawer-overlay{
-  position:fixed;inset:0;
-  background:rgba(15,23,42,.55);
-  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
-  opacity:0;pointer-events:none;
-  transition:opacity .3s ease;
-  z-index:998;
-}
+.drawer-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s;z-index:998}
 .drawer-overlay.show{opacity:1;pointer-events:auto}
-
-.drawer{
-  position:fixed;top:0;right:0;bottom:0;
-  width:360px;max-width:88vw;
-  background:#fff;
-  box-shadow:-8px 0 40px rgba(0,0,0,.15);
-  transform:translateX(100%);
-  transition:transform .32s cubic-bezier(.22,1,.36,1);
-  z-index:999;
-  display:flex;flex-direction:column;
-  padding-top:var(--safe-top);
-  padding-bottom:var(--safe-bottom);
-}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:360px;max-width:88vw;background:#fff;box-shadow:-8px 0 40px rgba(0,0,0,.15);transform:translateX(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);z-index:999;display:flex;flex-direction:column;padding-top:var(--safe-top);padding-bottom:var(--safe-bottom)}
 .drawer.show{transform:translateX(0)}
-
-.drawer-header{
-  padding:20px 22px;
-  background:linear-gradient(135deg,#2563eb,#7c3aed);
-  color:#fff;position:relative;flex-shrink:0;
-}
-.drawer-user{display:flex;align-items:center;gap:14px;margin-bottom:4px}
-.drawer-avatar{
-  width:52px;height:52px;border-radius:50%;
-  background:rgba(255,255,255,.2);
-  border:2px solid rgba(255,255,255,.4);
-  display:grid;place-items:center;
-  font-size:20px;font-weight:800;overflow:hidden;flex-shrink:0;
-  color:#fff;
-}
+.drawer-header{padding:20px 22px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;position:relative;flex-shrink:0}
+.drawer-user{display:flex;align-items:center;gap:14px}
+.drawer-avatar{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.4);display:grid;place-items:center;font-size:20px;font-weight:800;overflow:hidden;flex-shrink:0;color:#fff}
 .drawer-avatar img{width:100%;height:100%;object-fit:cover}
 .drawer-user-info{flex:1;min-width:0}
-.drawer-user-name{font-weight:800;font-size:15px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.drawer-user-role{
-  font-size:11.5px;opacity:.9;font-weight:600;
-  display:inline-block;padding:2px 8px;
-  background:rgba(255,255,255,.18);
-  border-radius:10px;margin-top:4px;
-}
-.drawer-close{
-  position:absolute;top:14px;right:14px;
-  width:34px;height:34px;border-radius:10px;
-  background:rgba(255,255,255,.15);
-  border:none;color:#fff;font-size:20px;
-  cursor:pointer;display:grid;place-items:center;
-  transition:background .15s;
-}
-.drawer-close:hover{background:rgba(255,255,255,.28)}
-
-.drawer-nav{
-  flex:1;overflow-y:auto;
-  padding:16px 12px;
-  -webkit-overflow-scrolling:touch;
-}
-.drawer-nav::-webkit-scrollbar{width:6px}
-.drawer-nav::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
-
+.drawer-user-name{font-weight:800;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.drawer-user-role{font-size:11.5px;opacity:.9;font-weight:600;display:inline-block;padding:2px 8px;background:rgba(255,255,255,.18);border-radius:10px;margin-top:4px}
+.drawer-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center}
+.drawer-nav{flex:1;overflow-y:auto;padding:16px 12px}
 .drawer-section{margin-bottom:14px}
-.drawer-section-title{
-  font-size:10.5px;font-weight:800;color:var(--muted);
-  text-transform:uppercase;letter-spacing:.8px;
-  padding:8px 14px 6px;
-}
-.drawer-nav a{
-  display:flex;align-items:center;gap:14px;
-  padding:12px 14px;border-radius:11px;
-  color:var(--text);text-decoration:none;
-  font-weight:600;font-size:14.5px;
-  cursor:pointer;transition:all .15s;
-  margin-bottom:2px;position:relative;
-  min-height:48px;
-}
-.drawer-nav a .icon{
-  width:38px;height:38px;border-radius:10px;
-  background:#f1f5f9;display:grid;place-items:center;
-  font-size:18px;flex-shrink:0;transition:all .15s;
-}
-.drawer-nav a:hover{background:#f1f5f9}
-.drawer-nav a:hover .icon{background:var(--primary-light)}
-.drawer-nav a.active{
-  background:linear-gradient(135deg,#2563eb,#1e40af);
-  color:#fff;
-  box-shadow:0 4px 12px rgba(37,99,235,.28);
-}
+.drawer-section-title{font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;padding:8px 14px 6px}
+.drawer-nav a{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:11px;color:var(--text);text-decoration:none;font-weight:600;font-size:14.5px;cursor:pointer;margin-bottom:2px;min-height:48px}
+.drawer-nav a .icon{width:38px;height:38px;border-radius:10px;background:#f1f5f9;display:grid;place-items:center;font-size:18px;flex-shrink:0}
+.drawer-nav a.active{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff}
 .drawer-nav a.active .icon{background:rgba(255,255,255,.2)}
-.drawer-badge{
-  margin-left:auto;
-  background:var(--red);color:#fff;
-  font-size:11px;font-weight:800;
-  padding:2px 8px;border-radius:10px;
-  min-width:22px;text-align:center;line-height:1.5;
-}
-.drawer-nav a.active .drawer-badge{background:rgba(255,255,255,.25)}
-
-.drawer-footer{
-  border-top:1px solid var(--border);
-  padding:12px;
-  background:#f8fafc;flex-shrink:0;
-}
-.drawer-footer button{
-  width:100%;padding:12px 16px;
-  border:none;background:transparent;
-  text-align:left;font-size:14px;font-weight:600;
-  cursor:pointer;border-radius:10px;
-  display:flex;align-items:center;gap:12px;
-  color:var(--text);font-family:inherit;
-  transition:background .15s;margin-bottom:2px;
-  min-height:46px;
-}
-.drawer-footer button:hover{background:#e2e8f0}
+.drawer-badge{margin-left:auto;background:var(--red);color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:10px;min-width:22px;text-align:center}
+.drawer-footer{border-top:1px solid var(--border);padding:12px;background:#f8fafc;flex-shrink:0}
+.drawer-footer button{width:100%;padding:12px 16px;border:none;background:transparent;text-align:left;font-size:14px;font-weight:600;cursor:pointer;border-radius:10px;display:flex;align-items:center;gap:12px;color:var(--text);font-family:inherit;margin-bottom:2px;min-height:46px}
 .drawer-footer button.danger{color:var(--red)}
-.drawer-footer button.danger:hover{background:var(--red-light)}
 
 /* ============================================================
- * 🏠 HOME PAGE — Beautiful
+ * 🏠 HOME
  * ============================================================ */
 .container{max-width:1500px;margin:0 auto;padding:28px 24px 80px}
 .page-title{font-size:26px;font-weight:800;margin-bottom:4px;letter-spacing:-.4px}
@@ -233,155 +91,40 @@ img{max-width:100%;height:auto;display:block}
 .page{display:none;animation:fadeIn .3s}
 .page.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-
-.home-hero{
-  position:relative;
-  background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 50%,#2563eb 100%);
-  border-radius:var(--radius-xl);
-  padding:38px 40px;
-  color:#fff;
-  margin-bottom:24px;
-  overflow:hidden;
-  box-shadow:0 20px 50px -12px rgba(99,102,241,.4);
-}
-.home-hero::before{
-  content:'';position:absolute;
-  top:-40%;right:-10%;width:500px;height:500px;
-  background:radial-gradient(circle,rgba(255,255,255,.15),transparent 65%);
-  border-radius:50%;pointer-events:none;
-}
-.home-hero::after{
-  content:'';position:absolute;
-  bottom:-50%;left:-10%;width:400px;height:400px;
-  background:radial-gradient(circle,rgba(255,255,255,.10),transparent 60%);
-  border-radius:50%;pointer-events:none;
-}
+.home-hero{position:relative;background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 50%,#2563eb 100%);border-radius:var(--radius-xl);padding:38px 40px;color:#fff;margin-bottom:24px;overflow:hidden;box-shadow:0 20px 50px -12px rgba(99,102,241,.4)}
+.home-hero::before{content:'';position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 65%);border-radius:50%;pointer-events:none}
+.home-hero::after{content:'';position:absolute;bottom:-50%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.10),transparent 60%);border-radius:50%;pointer-events:none}
 .home-hero-content{position:relative;z-index:1}
-.home-hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:7px 14px;background:rgba(255,255,255,.18);
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:9999px;font-size:12.5px;font-weight:700;
-  margin-bottom:16px;letter-spacing:.2px;
-}
-.home-hero h1{
-  font-size:32px;font-weight:800;
-  letter-spacing:-.6px;line-height:1.2;
-  margin-bottom:8px;
-}
+.home-hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);border-radius:9999px;font-size:12.5px;font-weight:700;margin-bottom:16px}
+.home-hero h1{font-size:32px;font-weight:800;letter-spacing:-.6px;line-height:1.2;margin-bottom:8px}
 .home-hero h1 span{background:linear-gradient(90deg,#fbbf24,#f59e0b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .home-hero p{font-size:15px;opacity:.92;font-weight:500;max-width:600px}
-.home-hero-cta{
-  display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;position:relative;z-index:1;
-}
-.btn-light{
-  background:#fff;color:var(--primary);
-  box-shadow:0 6px 20px rgba(0,0,0,.15);
-}
-.btn-light:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.2)}
-.btn-outline-light{
-  background:rgba(255,255,255,.12);
-  color:#fff;border:1.5px solid rgba(255,255,255,.35);
-  backdrop-filter:blur(8px);
-}
-.btn-outline-light:hover{background:rgba(255,255,255,.22);transform:translateY(-2px)}
-
-.home-hero-stats{
-  position:relative;z-index:1;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin-top:28px;
-  padding-top:24px;
-  border-top:1px solid rgba(255,255,255,.18);
-}
-.home-stat{
-  display:flex;align-items:center;gap:14px;
-  padding:14px;border-radius:14px;
-  background:rgba(255,255,255,.10);
-  border:1px solid rgba(255,255,255,.15);
-  backdrop-filter:blur(8px);
-  transition:all .25s;
-}
-.home-stat:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
-.home-stat-icon{
-  width:48px;height:48px;border-radius:12px;
-  background:rgba(255,255,255,.2);
-  display:grid;place-items:center;
-  font-size:22px;flex-shrink:0;
-}
+.home-hero-cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;position:relative;z-index:1}
+.btn-light{background:#fff;color:var(--primary);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.btn-outline-light{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+.home-hero-stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.18)}
+.home-stat{display:flex;align-items:center;gap:14px;padding:14px;border-radius:14px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.15)}
+.home-stat-icon{width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:22px;flex-shrink:0}
 .home-stat-info{flex:1;min-width:0}
-.home-stat-value{font-size:26px;font-weight:800;line-height:1.1;letter-spacing:-.5px}
-.home-stat-label{font-size:11.5px;opacity:.85;font-weight:600;margin-top:2px;letter-spacing:.2px}
-
-/* Quick actions */
-.section-title{
-  font-size:17px;font-weight:800;
-  margin-bottom:16px;letter-spacing:-.2px;
-  display:flex;align-items:center;gap:8px;
-}
-.quick-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:14px;margin-bottom:28px;
-}
-.quick-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px;
-  display:flex;align-items:center;gap:16px;
-  cursor:pointer;
-  transition:all .22s cubic-bezier(.34,1.56,.64,1);
-  position:relative;
-  overflow:hidden;
-}
-.quick-card::before{
-  content:'';position:absolute;
-  inset:0;opacity:0;
-  background:linear-gradient(135deg,rgba(37,99,235,.03),rgba(124,58,237,.03));
-  transition:opacity .22s;
-}
-.quick-card:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow-lg);
-  border-color:transparent;
-}
-.quick-card:hover::before{opacity:1}
-.quick-card:active{transform:translateY(-1px)}
-.quick-icon{
-  width:54px;height:54px;border-radius:14px;
-  display:grid;place-items:center;
-  color:#fff;font-size:24px;flex-shrink:0;
-  box-shadow:0 6px 16px rgba(0,0,0,.12);
-  position:relative;z-index:1;
-}
-.quick-info{flex:1;min-width:0;position:relative;z-index:1}
-.quick-title{font-weight:700;font-size:15px;color:var(--text);letter-spacing:-.2px}
+.home-stat-value{font-size:26px;font-weight:800;line-height:1.1}
+.home-stat-label{font-size:11.5px;opacity:.85;font-weight:600;margin-top:2px}
+.section-title{font-size:17px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:28px}
+.quick-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:all .22s}
+.quick-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:transparent}
+.quick-icon{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;color:#fff;font-size:24px;flex-shrink:0;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.quick-info{flex:1;min-width:0}
+.quick-title{font-weight:700;font-size:15px}
 .quick-desc{font-size:12.5px;color:var(--muted);font-weight:500;margin-top:2px}
-
-/* Recent activity */
-.activity-item{
-  display:flex;align-items:center;gap:14px;
-  padding:16px;
-  background:#f8fafc;
-  border-radius:12px;
-  border:1px solid var(--border);
-}
-.activity-icon{
-  width:46px;height:46px;border-radius:12px;
-  background:linear-gradient(135deg,#2563eb,#7c3aed);
-  color:#fff;display:grid;place-items:center;
-  font-size:22px;flex-shrink:0;
-  box-shadow:0 4px 12px rgba(37,99,235,.25);
-}
+.activity-item{display:flex;align-items:center;gap:14px;padding:16px;background:#f8fafc;border-radius:12px;border:1px solid var(--border)}
+.activity-icon{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:22px;flex-shrink:0}
 .activity-content{flex:1;font-size:14px;font-weight:600;line-height:1.5}
 
 /* ============================================================
  * 🎴 CARDS / BUTTONS / FORMS
  * ============================================================ */
 .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;border:1px solid var(--border);margin-bottom:20px}
-.card-title{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;letter-spacing:-.2px}
+.card-title{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .filter-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .filter-bar label{font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap}
 .filter-bar select,.filter-bar input{padding:9px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;background:#fff;color:var(--text);font-weight:500}
@@ -389,68 +132,40 @@ img{max-width:100%;height:auto;display:block}
 
 .btn{padding:10px 20px;border-radius:11px;border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .18s;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;min-height:44px}
 .btn-primary{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;box-shadow:0 4px 12px rgba(37,99,235,.25)}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(37,99,235,.35)}
-.btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
 .btn-ghost{background:#f1f5f9;color:var(--text);border:1.5px solid var(--border)}
-.btn-ghost:hover{background:#e2e8f0}
 .btn-success{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
-.btn-success:hover{transform:translateY(-1px)}
 .btn-danger{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff}
-.btn-danger:hover{transform:translateY(-1px)}
-.btn-warning{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
 .btn-sm{padding:8px 14px;font-size:13px;min-height:38px}
-.btn-xs{padding:6px 10px;font-size:12px;border-radius:8px;min-height:32px}
 
 .status-group{display:inline-flex;gap:5px;flex-wrap:nowrap}
-.status-btn{width:42px;height:42px;border-radius:11px;border:1.5px solid var(--border);background:#fff;font-weight:800;font-size:15px;cursor:pointer;transition:all .12s;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;padding:0;line-height:1}
-.status-btn:hover{transform:translateY(-1px);border-color:var(--primary)}
-.status-btn:active{transform:scale(.94)}
-.status-btn.active[data-s="/"]{background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-color:transparent;box-shadow:0 3px 10px rgba(16,185,129,.35)}
-.status-btn.active[data-s="ล"]{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#fff;border-color:transparent;box-shadow:0 3px 10px rgba(251,191,36,.35)}
-.status-btn.active[data-s="ข"]{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border-color:transparent;box-shadow:0 3px 10px rgba(239,68,68,.35)}
-.status-btn.active[data-s="ป"]{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border-color:transparent;box-shadow:0 3px 10px rgba(249,115,22,.35)}
+.status-btn{width:42px;height:42px;border-radius:11px;border:1.5px solid var(--border);background:#fff;font-weight:800;font-size:15px;cursor:pointer;transition:all .12s;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;padding:0}
+.status-btn.active[data-s="/"]{background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-color:transparent}
+.status-btn.active[data-s="ล"]{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#fff;border-color:transparent}
+.status-btn.active[data-s="ข"]{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border-color:transparent}
+.status-btn.active[data-s="ป"]{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border-color:transparent}
 
 /* ============================================================
  * ⭐ STICKY TABLE
  * ============================================================ */
-.sticky-table-wrap{
-  position:relative;overflow:auto;
-  -webkit-overflow-scrolling:touch;
-  overscroll-behavior:contain;
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  background:#fff;
-  max-height:calc(100vh - 240px);
-}
+.sticky-table-wrap{position:relative;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border:1px solid var(--border);border-radius:var(--radius);background:#fff;max-height:calc(100vh - 240px)}
 .sticky-table-wrap::-webkit-scrollbar{height:10px;width:10px}
 .sticky-table-wrap::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:6px;border:2px solid #fff}
-.sticky-table-wrap::-webkit-scrollbar-track{background:#f1f5f9}
 .sticky-table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;table-layout:auto}
 .sticky-table th,.sticky-table td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;background:#fff;vertical-align:middle}
 .sticky-table th{font-weight:700;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;position:sticky;top:0;z-index:10;background:#f8fafc;box-shadow:inset 0 -2px 0 #e2e8f0}
 .sticky-table tbody tr:nth-child(even) td{background:#fbfcfd}
 .sticky-table tbody tr:hover td{background:#eff6ff}
-.sticky-table .col-stick-1{position:sticky;left:0;z-index:5;background:#fff}
-.sticky-table .col-stick-2{position:sticky;z-index:5;background:#fff}
-.sticky-table .col-stick-3{position:sticky;z-index:5;background:#fff}
-.sticky-table tbody tr:nth-child(even) .col-stick-1,
-.sticky-table tbody tr:nth-child(even) .col-stick-2,
-.sticky-table tbody tr:nth-child(even) .col-stick-3{background:#fbfcfd}
-.sticky-table tbody tr:hover .col-stick-1,
-.sticky-table tbody tr:hover .col-stick-2,
-.sticky-table tbody tr:hover .col-stick-3{background:#eff6ff}
-.sticky-table thead .col-stick-1,
-.sticky-table thead .col-stick-2,
-.sticky-table thead .col-stick-3{z-index:15;background:#f8fafc}
+.sticky-table .col-stick-1,.sticky-table .col-stick-2,.sticky-table .col-stick-3{position:sticky;z-index:5;background:#fff}
+.sticky-table tbody tr:nth-child(even) .col-stick-1,.sticky-table tbody tr:nth-child(even) .col-stick-2,.sticky-table tbody tr:nth-child(even) .col-stick-3{background:#fbfcfd}
+.sticky-table thead .col-stick-1,.sticky-table thead .col-stick-2,.sticky-table thead .col-stick-3{z-index:15;background:#f8fafc}
 .sticky-table .has-shadow-right::after{content:'';position:absolute;top:0;right:-10px;bottom:0;width:10px;background:linear-gradient(90deg,rgba(15,23,42,.10),transparent);pointer-events:none;opacity:0;transition:opacity .15s}
 .sticky-table-wrap.scrolled-right .has-shadow-right::after{opacity:1}
-.sticky-table thead .has-shadow-right::after{background:linear-gradient(90deg,rgba(15,23,42,.12),transparent)}
 .table-info-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:#f8fafc;border:1px solid var(--border);border-bottom:none;border-radius:var(--radius) var(--radius) 0 0;font-size:12px;color:var(--muted);font-weight:600;gap:10px;flex-wrap:wrap}
 .table-info-bar .scroll-hint{color:var(--primary);font-size:11.5px;display:flex;align-items:center;gap:4px;padding:3px 8px;background:#eff6ff;border-radius:6px}
-.table-info-bar .scroll-hint::before{content:'↔️'}
 
 /* ============================================================
- * 📊 KPI / CHARTS / OTHER PAGES
+ * 📊 KPI / CHARTS
  * ============================================================ */
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
 .kpi{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);border:1px solid var(--border);position:relative;overflow:hidden}
@@ -459,7 +174,6 @@ img{max-width:100%;height:auto;display:block}
 .kpi.yellow::before{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
 .kpi.red::before{background:linear-gradient(90deg,#ef4444,#dc2626)}
 .kpi.orange::before{background:linear-gradient(90deg,#f97316,#ea580c)}
-.kpi.purple::before{background:linear-gradient(90deg,#8b5cf6,#7c3aed)}
 .kpi-label{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
 .kpi-value{font-size:36px;font-weight:800;margin:6px 0;letter-spacing:-1px;line-height:1.1}
 .kpi-sub{font-size:12.5px;color:var(--muted);font-weight:500}
@@ -471,16 +185,83 @@ img{max-width:100%;height:auto;display:block}
 .chart-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);font-size:14px;gap:8px;pointer-events:none}
 .chart-empty-icon{font-size:48px;opacity:.4}
 
-/* Modal */
-.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;z-index:1000;padding:24px;overflow-y:auto}
+/* ============================================================
+ * 📑 REPORT FILTER — ใหม่: จัดกลุ่มสวยงาม
+ * ============================================================ */
+.report-filter-card{padding:20px}
+.report-filter-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:14px}
+.report-filter-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.report-filter-field > label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.3px;display:flex;align-items:center;gap:4px;text-transform:uppercase}
+.report-filter-field select,
+.report-filter-field input{padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14.5px;font-family:inherit;background:#fff;color:var(--text);font-weight:600;width:100%;min-height:46px;transition:all .15s}
+.report-filter-field select:focus,
+.report-filter-field input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+
+/* Date range group */
+.report-range-row{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:end;margin-bottom:16px}
+.report-range-side{display:flex;flex-direction:column;gap:6px;min-width:0}
+.report-range-side > label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
+.report-range-inputs{display:grid;grid-template-columns:1fr 88px;gap:6px}
+.report-range-inputs select,
+.report-range-inputs input{padding:11px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:14.5px;font-family:inherit;background:#fff;color:var(--text);font-weight:600;width:100%;min-height:46px}
+.report-range-inputs select:focus,
+.report-range-inputs input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.report-range-arrow{display:flex;align-items:center;justify-content:center;padding-bottom:8px;font-size:20px;color:var(--primary);font-weight:800}
+
+/* Actions */
+.report-actions-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.report-actions-row .btn{width:100%;min-height:48px;font-size:14.5px}
+
+/* Term info banner */
+.report-term-banner{display:flex;align-items:center;gap:10px;padding:12px 16px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;border-radius:12px;margin-bottom:16px;font-size:13px;font-weight:600;color:#1e40af;flex-wrap:wrap}
+.report-term-banner .icon{font-size:18px;flex-shrink:0}
+.report-term-banner .term-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#fff;border-radius:8px;font-size:12px;font-weight:700;color:#1e40af}
+
+/* ============================================================
+ * 📑 REPORT — Daily Cards (Mobile View)
+ * ============================================================ */
+.report-daily-cards{display:none;flex-direction:column;gap:10px}
+.report-day-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:var(--shadow-sm);border-left:4px solid var(--primary)}
+.report-day-card.holiday{background:#fef9c3;border-color:#fcd34d;border-left-color:#f59e0b}
+.report-day-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.report-day-date{display:flex;align-items:baseline;gap:8px}
+.report-day-num{font-size:22px;font-weight:800;color:var(--primary);line-height:1}
+.report-day-month{font-size:13px;color:var(--muted);font-weight:600}
+.report-day-weekday{font-size:11.5px;color:var(--muted);font-weight:600;padding:2px 8px;background:#f1f5f9;border-radius:6px}
+.report-day-percent{font-size:18px;font-weight:800;padding:4px 12px;border-radius:20px;background:#f1f5f9;color:var(--muted)}
+.report-day-percent.good{background:var(--green-light);color:#065f46}
+.report-day-percent.warn{background:var(--yellow-light);color:#92400e}
+.report-day-percent.bad{background:var(--red-light);color:#991b1b}
+.report-day-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}
+.report-day-stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px;border-radius:8px;background:#f8fafc}
+.report-day-stat .lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase}
+.report-day-stat .val{font-size:16px;font-weight:800;line-height:1.1}
+.report-day-stat.present{background:var(--green-light)}.report-day-stat.present .val{color:#065f46}
+.report-day-stat.leave{background:var(--yellow-light)}.report-day-stat.leave .val{color:#92400e}
+.report-day-stat.absent{background:var(--red-light)}.report-day-stat.absent .val{color:#991b1b}
+.report-day-stat.sick{background:var(--orange-light)}.report-day-stat.sick .val{color:#9a3412}
+.report-day-stat.total{background:var(--primary-light)}.report-day-stat.total .val{color:#1e40af}
+.report-day-notes{margin-top:8px;font-size:12.5px;color:#78350f;background:#fffbeb;border:1px dashed #fcd34d;padding:8px 10px;border-radius:8px;line-height:1.5}
+.report-day-notes strong{color:#92400e}
+.report-day-empty{text-align:center;padding:16px;color:var(--muted);font-weight:700;font-size:14px;background:#f8fafc;border-radius:10px}
+
+/* Empty filter result */
+.report-empty-filter{text-align:center;padding:40px 20px;background:#fff;border-radius:12px;border:1px dashed var(--border);color:var(--muted)}
+.report-empty-filter .icon{font-size:48px;margin-bottom:8px;opacity:.5}
+.report-empty-filter h3{color:var(--text);font-size:16px;margin-bottom:6px}
+.report-empty-filter p{font-size:13px}
+
+/* ============================================================
+ * MODAL
+ * ============================================================ */
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;z-index:1000;padding:24px;overflow-y:auto}
 .modal-overlay.show{display:flex}
-.modal{background:#fff;border-radius:16px;max-width:900px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 24px 64px rgba(0,0,0,.25);-webkit-overflow-scrolling:touch}
+.modal{background:#fff;border-radius:16px;max-width:900px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 24px 64px rgba(0,0,0,.25)}
 .modal-sm{max-width:480px}
 .modal-lg{max-width:1200px}
 .modal-header{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:2;border-radius:16px 16px 0 0}
 .modal-title{font-size:18px;font-weight:800;padding-right:12px}
 .modal-close{background:#f1f5f9;border:none;width:40px;height:40px;border-radius:10px;font-size:22px;cursor:pointer;color:var(--muted);display:grid;place-items:center;flex-shrink:0}
-.modal-close:hover{background:#fee2e2;color:var(--red)}
 .modal-body{padding:24px 26px}
 .modal-footer{display:flex;gap:12px;justify-content:flex-end;padding:18px 26px;border-top:1px solid var(--border);background:#f8fafc;position:sticky;bottom:0}
 
@@ -496,8 +277,7 @@ img{max-width:100%;height:auto;display:block}
 .form-group input,.form-group select,.form-group textarea{padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;background:#fff;width:100%}
 .form-group input:focus,.form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 .checkbox-group{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;padding:12px;background:#f8fafc;border:1.5px solid var(--border);border-radius:10px}
-.checkbox-group label{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;transition:background .15s;min-height:40px}
-.checkbox-group label:hover{background:#e2e8f0}
+.checkbox-group label{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;min-height:40px}
 .checkbox-group input[type="checkbox"]{width:18px;height:18px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
 
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11.5px;font-weight:700}
@@ -512,16 +292,11 @@ img{max-width:100%;height:auto;display:block}
 .action-btns{display:flex;gap:6px;flex-wrap:wrap}
 .icon-btn{width:40px;height:40px;border-radius:9px;border:none;cursor:pointer;font-size:15px;display:grid;place-items:center;transition:all .15s;flex-shrink:0}
 .icon-btn.view{background:#ede9fe;color:var(--purple)}
-.icon-btn.view:hover{background:var(--purple);color:#fff}
 .icon-btn.edit{background:var(--primary-light);color:var(--primary)}
-.icon-btn.edit:hover{background:var(--primary);color:#fff}
 .icon-btn.del{background:var(--red-light);color:var(--red)}
-.icon-btn.del:hover{background:var(--red);color:#fff}
-.icon-btn:hover{transform:translateY(-1px)}
 
 .search-box{position:relative;flex:1;min-width:220px;max-width:420px}
 .search-box input{width:100%;padding:10px 14px 10px 42px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;font-weight:500}
-.search-box input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 .search-box::before{content:"🔍";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none}
 
 /* Profile */
@@ -534,35 +309,30 @@ img{max-width:100%;height:auto;display:block}
 .info-item{background:#f8fafc;padding:12px 14px;border-radius:10px;border:1px solid var(--border)}
 .info-label{font-size:11.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
 .info-value{font-size:14px;font-weight:600;color:var(--text);word-break:break-word}
-.info-value.empty{color:#cbd5e1;font-style:italic;font-weight:500}
+.info-value.empty{color:#cbd5e1;font-style:italic}
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:20px}
 .stat-mini{padding:14px;border-radius:10px;text-align:center;border:1.5px solid var(--border)}
-.stat-mini .label{font-size:11.5px;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.4px}
+.stat-mini .label{font-size:11.5px;font-weight:700;text-transform:uppercase;color:var(--muted)}
 .stat-mini .value{font-size:24px;font-weight:800;margin-top:2px;line-height:1.2}
-.stat-mini.present{background:var(--green-light);border-color:#a7f3d0}
-.stat-mini.present .value{color:#065f46}
-.stat-mini.leave{background:var(--yellow-light);border-color:#fde68a}
-.stat-mini.leave .value{color:#92400e}
-.stat-mini.absent{background:var(--red-light);border-color:#fecaca}
-.stat-mini.absent .value{color:#991b1b}
-.stat-mini.sick{background:var(--orange-light);border-color:#fed7aa}
-.stat-mini.sick .value{color:#9a3412}
+.stat-mini.present{background:var(--green-light);border-color:#a7f3d0}.stat-mini.present .value{color:#065f46}
+.stat-mini.leave{background:var(--yellow-light);border-color:#fde68a}.stat-mini.leave .value{color:#92400e}
+.stat-mini.absent{background:var(--red-light);border-color:#fecaca}.stat-mini.absent .value{color:#991b1b}
+.stat-mini.sick{background:var(--orange-light);border-color:#fed7aa}.stat-mini.sick .value{color:#9a3412}
 .att-status{display:inline-block;width:30px;height:30px;border-radius:8px;font-weight:800;text-align:center;line-height:30px;font-size:13px}
 .att-status[data-s="/"]{background:var(--green-light);color:#065f46}
 .att-status[data-s="ล"]{background:var(--yellow-light);color:#92400e}
 .att-status[data-s="ข"]{background:var(--red-light);color:#991b1b}
 .att-status[data-s="ป"]{background:var(--orange-light);color:#9a3412}
 .att-status[data-s=""]{background:#f1f5f9;color:#cbd5e1}
-.att-status[data-s="ส"],.att-status[data-s="อ"]{background:#e2e8f0;color:#64748b}
-.teacher-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:center;transition:all .2s}
-.teacher-card:hover{box-shadow:var(--shadow-lg)}
+
+.teacher-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:center}
 .teacher-card .avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800;flex-shrink:0;overflow:hidden}
 .teacher-card .avatar img{width:100%;height:100%;object-fit:cover}
 .teacher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
 .teacher-classes{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 
 /* Toast */
-.toast{position:fixed;bottom:28px;right:28px;left:auto;background:#0f172a;color:#fff;padding:16px 22px;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.25);font-size:14px;font-weight:600;transform:translateY(120px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:9999;max-width:420px;pointer-events:none}
+.toast{position:fixed;bottom:28px;right:28px;left:auto;background:#0f172a;color:#fff;padding:16px 22px;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.25);font-size:14px;font-weight:600;transform:translateY(120px);opacity:0;transition:all .35s;z-index:9999;max-width:420px;pointer-events:none}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success{background:linear-gradient(135deg,#10b981,#059669)}
 .toast.error{background:linear-gradient(135deg,#ef4444,#dc2626)}
@@ -573,95 +343,70 @@ img{max-width:100%;height:auto;display:block}
 .empty-state{padding:60px 20px;text-align:center;color:var(--muted)}
 .empty-state-icon{font-size:64px;margin-bottom:12px;opacity:.35}
 .empty-state h3{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
-.empty-state p{margin-bottom:16px;font-size:13.5px}
 
-/* Photo upload */
 .photo-upload{display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px;border:2px dashed var(--border);border-radius:12px;background:#f8fafc}
-.photo-upload img{width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:var(--shadow)}
 .photo-upload .placeholder{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:grid;place-items:center;font-size:42px;color:#94a3b8;overflow:hidden}
 .photo-upload label{cursor:pointer;font-size:12.5px;color:var(--primary);font-weight:700}
 .photo-upload input[type="file"]{display:none}
 
-/* Info banners */
 .info-banner{background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:12px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:flex-start;gap:12px;font-size:13.5px;font-weight:600;color:#78350f}
 .info-banner .icon{font-size:22px;flex-shrink:0}
 .info-banner.danger{background:linear-gradient(135deg,#fee2e2,#fecaca);border-color:#fca5a5;color:#991b1b}
-.info-banner.success{background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-color:#6ee7b7;color:#065f46}
 .info-banner.info{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-color:#93c5fd;color:#1e40af}
 .info-banner.purple{background:linear-gradient(135deg,#ede9fe,#ddd6fe);border-color:#c4b5fd;color:#5b21b6}
 
 /* Auth */
 .auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#1e40af 0%,#7c3aed 100%);position:relative;overflow:hidden}
-.auth-page::before{content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%}
-.auth-page::after{content:'';position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.1),transparent 70%);border-radius:50%}
 .auth-card{background:#fff;border-radius:20px;box-shadow:0 24px 64px rgba(0,0,0,.3);max-width:460px;width:100%;padding:40px;position:relative;z-index:1;max-height:95vh;overflow-y:auto}
-.auth-logo{width:80px;height:80px;border-radius:20px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:38px;margin:0 auto 20px;box-shadow:0 8px 24px rgba(37,99,235,.3);overflow:hidden}
+.auth-logo{width:80px;height:80px;border-radius:20px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:38px;margin:0 auto 20px;overflow:hidden}
 .auth-logo img{width:100%;height:100%;object-fit:cover}
 .auth-title{text-align:center;font-size:22px;font-weight:800;margin-bottom:4px}
 .auth-subtitle{text-align:center;font-size:13.5px;color:var(--muted);margin-bottom:24px}
 .auth-tabs{display:flex;background:#f1f5f9;border-radius:12px;padding:4px;margin-bottom:24px}
-.auth-tab{flex:1;padding:12px;border:none;background:none;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;border-radius:8px;font-family:inherit;transition:all .15s;min-height:44px}
+.auth-tab{flex:1;padding:12px;border:none;background:none;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;border-radius:8px;font-family:inherit;min-height:44px}
 .auth-tab.active{background:#fff;color:var(--primary);box-shadow:0 2px 6px rgba(0,0,0,.08)}
 .auth-form{display:none}
 .auth-form.active{display:block}
 .auth-form .form-group{margin-bottom:14px}
-.auth-form .form-group label{font-size:13px;font-weight:600;margin-bottom:6px;display:block}
-.auth-form .form-group input,.auth-form .form-group select{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:16px;font-family:inherit;background:#fff;width:100%}
-.auth-form .form-group input:focus,.auth-form .form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.auth-form input,.auth-form select{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:16px;font-family:inherit;background:#fff;width:100%}
 .auth-checkbox{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:13.5px;font-weight:600;cursor:pointer;min-height:44px}
 .auth-checkbox input{width:20px;height:20px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
-.auth-btn{width:100%;padding:14px;border-radius:10px;border:none;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 4px 12px rgba(37,99,235,.25);transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px}
-.auth-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(37,99,235,.35)}
-.auth-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.auth-btn{width:100%;padding:14px;border-radius:10px;border:none;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px}
 .auth-footer{text-align:center;margin-top:20px;font-size:13px;color:var(--muted)}
 .auth-info{background:var(--primary-light);padding:12px 14px;border-radius:10px;font-size:12.5px;color:#1e40af;margin-bottom:16px;display:flex;gap:8px;align-items:flex-start;font-weight:500}
-.auth-info .icon{font-size:16px;flex-shrink:0}
 .auth-class-box{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px;background:#f8fafc;border:1.5px solid var(--border);border-radius:10px;margin-top:6px}
 .auth-class-box label{display:flex;align-items:center;gap:6px;padding:8px;border-radius:6px;cursor:pointer;font-size:12.5px;font-weight:600;min-height:40px}
-.auth-class-box label:hover{background:#e2e8f0}
 .auth-class-box input[type="checkbox"]{width:16px;height:16px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
 
 /* Delete workflow */
-.delete-modal-icon{font-size:64px;text-align:center;margin:4px 0 12px}
 .delete-warning{background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;border-radius:12px;padding:14px 18px;margin-bottom:16px;color:#991b1b;font-weight:600;font-size:13.5px;display:flex;gap:10px;align-items:flex-start}
-.delete-warning .icon{font-size:20px;flex-shrink:0}
 .delete-student-info{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px;display:flex;gap:14px;align-items:center}
 .delete-student-info .avatar{width:56px;height:56px;border-radius:50%;background:#e2e8f0;display:grid;place-items:center;font-size:22px;overflow:hidden;flex-shrink:0}
 .delete-student-info .avatar img{width:100%;height:100%;object-fit:cover}
-.delete-student-info .info{flex:1;min-width:0}
-.delete-student-info .name{font-weight:800;font-size:15.5px;margin-bottom:2px}
-.delete-student-info .meta{font-size:12.5px;color:var(--muted)}
 .hold-progress-dots{display:flex;gap:8px;justify-content:center;margin-bottom:16px}
 .hold-dot{width:12px;height:12px;border-radius:50%;background:#e2e8f0;transition:all .3s;border:2px solid #cbd5e1}
-.hold-dot.done{background:var(--green);border-color:var(--green);box-shadow:0 0 0 4px rgba(16,185,129,.2)}
+.hold-dot.done{background:var(--green);border-color:var(--green)}
 .hold-dot.active{background:var(--yellow);border-color:var(--yellow);animation:pulse-dot 1s infinite}
 @keyframes pulse-dot{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
-.delete-hold-btn{position:relative;overflow:hidden;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;padding:14px 24px;border-radius:10px;border:none;font-weight:700;font-size:14.5px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:8px;width:100%;justify-content:center;user-select:none;-webkit-user-select:none;transition:transform .1s;margin-top:12px;min-height:52px;touch-action:none}
+.delete-hold-btn{position:relative;overflow:hidden;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;padding:14px 24px;border-radius:10px;border:none;font-weight:700;font-size:14.5px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:8px;width:100%;justify-content:center;user-select:none;margin-top:12px;min-height:52px;touch-action:none}
 .delete-hold-btn .hold-progress{position:absolute;top:0;left:0;height:100%;width:0;background:rgba(0,0,0,.3);pointer-events:none}
-.delete-hold-btn .hold-label{position:relative;z-index:1;display:flex;align-items:center;gap:8px;pointer-events:none}
-.delete-hold-btn:active{transform:scale(.98)}
-.delete-hold-btn:disabled{opacity:.6;cursor:not-allowed}
+.delete-hold-btn .hold-label{position:relative;z-index:1;pointer-events:none}
 .round-text{font-size:13px;color:var(--muted);text-align:center;margin-top:8px;font-weight:600}
 
-.del-req-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;display:flex;gap:14px;align-items:flex-start;transition:all .15s}
-.del-req-card:hover{box-shadow:var(--shadow)}
+.del-req-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;display:flex;gap:14px;align-items:flex-start}
 .del-req-card.pending{border-left:4px solid var(--yellow)}
-.del-req-card.approved{border-left:4px solid var(--green);opacity:.85}
-.del-req-card.rejected{border-left:4px solid var(--red);opacity:.85}
-.del-req-card.cancelled,.del-req-card.failed{border-left:4px solid var(--muted);opacity:.7}
+.del-req-card.approved{border-left:4px solid var(--green)}
+.del-req-card.rejected{border-left:4px solid var(--red)}
 .del-req-card .icon-wrap{width:44px;height:44px;border-radius:12px;background:#f1f5f9;display:grid;place-items:center;font-size:22px;flex-shrink:0}
 .del-req-card .content{flex:1;min-width:0}
 .del-req-card .title{font-size:14.5px;font-weight:700;margin-bottom:4px}
 .del-req-card .meta{font-size:12.5px;color:var(--muted);margin-bottom:8px;display:flex;gap:12px;flex-wrap:wrap}
-.del-req-card .note{font-size:12.5px;padding:8px 12px;background:#f8fafc;border-radius:8px;margin-top:8px;color:var(--text)}
-.del-req-card .actions{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap}
-.user-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:center;transition:all .2s}
-.user-card:hover{box-shadow:var(--shadow-lg)}
+.user-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:center}
 .user-card.pending{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-color:#fcd34d}
 .user-card .avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;display:grid;place-items:center;font-size:20px;font-weight:800;flex-shrink:0;overflow:hidden}
 .user-card .avatar img{width:100%;height:100%;object-fit:cover}
 .user-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
-.user-role-badge{font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;letter-spacing:.3px}
+.user-role-badge{font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px}
 .user-role-badge.admin{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#fff}
 .user-role-badge.director{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
 .user-role-badge.deputy_director{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff}
@@ -669,8 +414,8 @@ img{max-width:100%;height:auto;display:block}
 
 /* Academic */
 .academic-timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
-.timeline-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:20px;position:relative;transition:all .2s}
-.timeline-card.active{border-color:var(--green);box-shadow:0 4px 20px rgba(16,185,129,.2)}
+.timeline-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:20px}
+.timeline-card.active{border-color:var(--green)}
 .timeline-card.inactive{border-color:var(--muted);opacity:.6}
 .timeline-card.future{border-color:var(--primary);border-style:dashed}
 .timeline-card h3{font-size:15px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -681,7 +426,7 @@ img{max-width:100%;height:auto;display:block}
 .timeline-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);font-size:13.5px;gap:12px}
 .timeline-row:last-child{border-bottom:none}
 .timeline-row .label{color:var(--muted);font-weight:600}
-.timeline-row .value{font-weight:700;color:var(--text);text-align:right}
+.timeline-row .value{font-weight:700}
 .promo-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:14px}
 .promo-class-card{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
 .promo-class-card .from{font-size:12px;color:var(--muted);font-weight:600}
@@ -690,18 +435,11 @@ img{max-width:100%;height:auto;display:block}
 
 /* Archive */
 .archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
-.archive-year-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px;transition:all .2s}
-.archive-year-card:hover{box-shadow:var(--shadow-lg);border-color:var(--primary)}
+.archive-year-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px}
 .archive-year-card .year-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--primary-light);gap:8px;flex-wrap:wrap}
 .archive-year-card .year-title{font-size:18px;font-weight:800;color:var(--primary)}
-.archive-year-card .file-list{display:flex;flex-direction:column;gap:8px}
-.archive-year-card .file-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;background:#f8fafc;border:1px solid var(--border);font-size:13px}
-.archive-year-card .file-item .file-icon{font-size:20px;flex-shrink:0}
-.archive-year-card .file-item .file-info{flex:1;min-width:0}
-.archive-year-card .file-item .file-name{font-weight:600;color:var(--text);word-break:break-all;font-size:12.5px}
-.archive-year-card .file-item .file-size{font-size:11px;color:var(--muted)}
-.archive-year-card .file-item a{color:var(--primary);font-weight:700;text-decoration:none;font-size:12px;padding:8px 14px;border-radius:8px;background:var(--primary-light);flex-shrink:0;min-height:36px;display:inline-flex;align-items:center;justify-content:center}
-.archive-year-card .file-item a:hover{background:var(--primary);color:#fff}
+.archive-year-card .file-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;background:#f8fafc;border:1px solid var(--border);font-size:13px;margin-bottom:8px}
+.archive-year-card .file-item a{color:var(--primary);font-weight:700;text-decoration:none;font-size:12px;padding:8px 14px;border-radius:8px;background:var(--primary-light);flex-shrink:0}
 
 /* Print */
 .print-only,.print-header,.print-signature{display:none}
@@ -711,27 +449,24 @@ img{max-width:100%;height:auto;display:block}
 
 @media print{
   @page{size:A4;margin:6mm 8mm}
-  html,body{background:#fff}
-  body{font-size:10px}
-  .navbar,.drawer,.drawer-overlay,.no-print,.btn,.filter-bar,.modal-close,.modal-footer,.sync-status,.info-banner,.auth-page{display:none!important}
+  html,body{background:#fff;font-size:10px}
+  .navbar,.drawer,.drawer-overlay,.no-print,.btn,.filter-bar,.modal-close,.modal-footer,.sync-status,.info-banner,.auth-page,.report-filter-card,.report-term-banner{display:none!important}
   .container{max-width:none;padding:0}
   .card{box-shadow:none;border:0;margin-bottom:0;padding:0}
   .page-title,.page-sub,.home-hero,.quick-grid,.section-title{display:none}
   .print-header{display:block!important;text-align:center;margin-bottom:6px}
-  .print-header img.logo{max-height:48px;margin-bottom:2px}
-  .print-header h2{font-size:13px;margin-bottom:1px;font-weight:800}
-  .print-header p{font-size:10px;color:#333;margin:0;line-height:1.3}
+  .print-header img.logo{max-height:48px}
+  .print-header h2{font-size:13px;font-weight:800}
   h2,h3,.card-title{font-size:11px!important;margin-bottom:4px!important}
   .sticky-table-wrap{max-height:none!important;overflow:visible!important;border:0!important}
   .sticky-table,.sticky-table th,.sticky-table td{position:static!important;box-shadow:none!important}
-  .sticky-table .has-shadow-right::after{display:none!important}
+  .report-daily-cards{display:none!important}
   table{font-size:9px;width:100%}
   th,td{padding:2px 4px!important;border:1px solid #000!important;line-height:1.2;white-space:normal!important}
   th{background:#e5e7eb!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:8.5px}
   .charts-grid{display:none!important}
   .att-status{width:auto;height:auto;padding:1px 5px;font-size:8px;display:inline-block}
   .print-signature{display:block!important;margin-top:12px;text-align:right;font-size:10px}
-  .print-signature img{max-height:40px;display:block;margin-left:auto}
 }
 
 /* ============================================================
@@ -741,7 +476,6 @@ img{max-width:100%;height:auto;display:block}
   .container{padding:20px 18px 80px}
   .charts-grid{grid-template-columns:1fr}
   .form-grid.cols-4{grid-template-columns:repeat(2,1fr)}
-  .user-grid,.teacher-grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
   .home-hero{padding:30px}
   .home-hero h1{font-size:26px}
 }
@@ -749,7 +483,7 @@ img{max-width:100%;height:auto;display:block}
 @media(max-width:768px){
   .navbar{padding:0 14px}
   .navbar-inner{height:60px;gap:10px}
-  .brand-logo{width:38px;height:38px;font-size:18px;border-radius:10px}
+  .brand-logo{width:38px;height:38px;font-size:18px}
   .brand-name{font-size:13.5px}
   .brand-sub{font-size:10px}
   .sync-status{padding:5px 10px;font-size:10.5px}
@@ -760,88 +494,80 @@ img{max-width:100%;height:auto;display:block}
   .page-title{font-size:20px}
   .page-sub{font-size:12.5px;margin-bottom:16px}
 
-  /* Home */
   .home-hero{padding:24px 20px;border-radius:20px;margin-bottom:18px}
-  .home-hero-badge{font-size:11.5px;padding:6px 12px;margin-bottom:12px}
   .home-hero h1{font-size:22px;margin-bottom:6px}
-  .home-hero p{font-size:13px;line-height:1.5}
+  .home-hero p{font-size:13px}
   .home-hero-cta{gap:10px;margin-top:18px}
   .home-hero-cta .btn{padding:11px 16px;font-size:13px;flex:1;min-height:44px}
   .home-hero-stats{grid-template-columns:1fr;gap:10px;margin-top:20px;padding-top:18px}
   .home-stat{padding:12px;gap:12px}
-  .home-stat-icon{width:44px;height:44px;font-size:20px;border-radius:11px}
+  .home-stat-icon{width:44px;height:44px;font-size:20px}
   .home-stat-value{font-size:22px}
-  .home-stat-label{font-size:11px}
 
   .section-title{font-size:15px;margin-bottom:12px}
-  .quick-grid{grid-template-columns:1fr;gap:10px;margin-bottom:22px}
-  .quick-card{padding:14px;border-radius:14px}
-  .quick-icon{width:46px;height:46px;font-size:20px;border-radius:11px}
-  .quick-title{font-size:14px}
-  .quick-desc{font-size:11.5px}
-  .activity-item{padding:14px}
+  .quick-grid{grid-template-columns:1fr;gap:10px}
+  .quick-card{padding:14px}
+  .quick-icon{width:46px;height:46px;font-size:20px}
 
-  /* Filter bar compact */
-  .filter-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:stretch}
-  .filter-bar label{font-size:11.5px;grid-column:span 1;margin-bottom:-4px}
-  .filter-bar select,.filter-bar input{width:100%;padding:10px 12px;font-size:15px;min-height:44px}
+  /* Filter bar — stack */
+  .filter-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .filter-bar label{font-size:11.5px;margin-bottom:-2px}
+  .filter-bar select,.filter-bar input{width:100%;font-size:15px;min-height:44px}
   .filter-bar .search-box{grid-column:1/-1;min-width:0;max-width:none}
-  .filter-bar .btn{width:100%;justify-content:center;margin-left:0 !important;font-size:13px;padding:10px 12px;min-height:42px}
+  .filter-bar .btn{width:100%;margin-left:0 !important;font-size:13px;min-height:44px}
 
-  /* Form */
+  /* Report Filter — mobile */
+  .report-filter-card{padding:16px}
+  .report-filter-row{grid-template-columns:1fr;gap:12px;margin-bottom:12px}
+  .report-range-row{grid-template-columns:1fr;gap:10px;margin-bottom:14px}
+  .report-range-arrow{padding:0;transform:rotate(90deg);font-size:22px;margin:-4px 0}
+  .report-range-inputs{grid-template-columns:1fr 88px;gap:8px}
+  .report-actions-row{grid-template-columns:1fr;gap:10px}
+  .report-actions-row .btn{min-height:48px;font-size:14.5px}
+  .report-term-banner{font-size:12px;padding:10px 12px}
+
   .form-grid,.form-grid.cols-3,.form-grid.cols-4{grid-template-columns:1fr;gap:12px}
   .form-group input,.form-group select,.form-group textarea{font-size:16px !important;padding:12px 14px;min-height:46px}
   .checkbox-group{grid-template-columns:repeat(2,1fr);padding:10px;gap:6px}
 
-  /* Buttons */
   .btn{padding:11px 18px;font-size:14px;min-height:46px}
   .btn-sm{padding:9px 14px;font-size:13px;min-height:40px}
-  .icon-btn{width:42px;height:42px;font-size:16px}
+  .icon-btn{width:42px;height:42px}
 
-  /* Status */
   .status-group{gap:4px}
-  .status-btn{width:36px;height:36px;font-size:13.5px;border-radius:9px;border-width:1.5px}
+  .status-btn{width:36px;height:36px;font-size:13.5px}
 
-  /* KPI */
-  .kpi-grid{grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);gap:10px}
   .kpi{padding:16px}
-  .kpi-label{font-size:11px}
   .kpi-value{font-size:26px;margin:4px 0}
-  .kpi-sub{font-size:11px}
 
-  /* Charts */
-  .charts-grid{grid-template-columns:1fr;gap:14px;margin-bottom:16px}
+  .charts-grid{grid-template-columns:1fr;gap:14px}
   .chart-card{padding:16px}
-  .chart-card h3{font-size:14px;margin-bottom:12px}
   .chart-canvas-wrap{height:240px;min-height:240px}
   .chart-canvas-wrap.tall{height:300px;min-height:300px}
 
-  /* Modal */
   .modal-overlay{padding:0;align-items:flex-end}
-  .modal{border-radius:20px 20px 0 0;max-height:94vh;width:100%;max-width:100%;animation:slideUp .25s ease-out}
-  @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+  .modal{border-radius:20px 20px 0 0;max-height:94vh;width:100%;max-width:100%}
   .modal-header{padding:16px 18px;border-radius:20px 20px 0 0}
   .modal-title{font-size:16px}
-  .modal-close{width:38px;height:38px;font-size:20px}
   .modal-body{padding:16px 18px}
   .modal-footer{padding:12px 18px calc(12px + var(--safe-bottom));flex-direction:column-reverse;gap:8px}
   .modal-footer .btn{width:100%}
 
-  /* Tables */
   .sticky-table-wrap{max-height:calc(100vh - 280px);margin:0 -14px;border-radius:0;border-left:none;border-right:none}
   .sticky-table{font-size:13px}
   .sticky-table th,.sticky-table td{padding:9px 10px}
-  .sticky-table th{font-size:11px;letter-spacing:.2px}
-  .sticky-table .has-shadow-right::after{width:12px;background:linear-gradient(90deg,rgba(15,23,42,.16),transparent)}
   .sticky-table .hide-mobile{display:none!important}
   .table-info-bar{padding:6px 12px;font-size:11px;margin:0 -14px;border-radius:0}
 
-  /* Profile */
+  /* Report — switch to cards */
+  .report-daily-table-wrap{display:none!important}
+  .report-daily-cards{display:flex}
+
   .profile-header{flex-direction:column;text-align:center;padding:16px;gap:12px}
   .profile-avatar{width:72px;height:72px;font-size:28px}
   .info-grid{grid-template-columns:1fr}
-  .stat-row{grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-  .stat-mini{padding:10px 6px}
+  .stat-row{grid-template-columns:repeat(3,1fr);gap:8px}
   .stat-mini .value{font-size:20px}
 
   .teacher-grid,.user-grid{grid-template-columns:1fr;gap:10px}
@@ -850,46 +576,38 @@ img{max-width:100%;height:auto;display:block}
 
   .del-req-card{flex-direction:column;gap:10px;padding:14px}
   .del-req-card .actions{width:100%}
-  .del-req-card .actions .btn{flex:1;justify-content:center}
+  .del-req-card .actions .btn{flex:1}
 
   .archive-grid{grid-template-columns:1fr;gap:12px}
   .archive-year-card{padding:14px}
   .archive-year-card .year-header{flex-direction:column;align-items:stretch;gap:8px}
-  .archive-year-card .year-header .btn{width:100%;justify-content:center}
 
-  .auth-page{padding:12px;align-items:flex-start;padding-top:24px}
+  .auth-page{padding:12px;padding-top:24px;align-items:flex-start}
   .auth-card{padding:24px 18px;border-radius:16px;max-height:none}
   .auth-logo{width:64px;height:64px;font-size:30px;margin-bottom:14px}
   .auth-title{font-size:19px}
-  .auth-subtitle{font-size:12.5px;margin-bottom:18px}
   .auth-class-box{grid-template-columns:repeat(2,1fr)}
 
   .academic-timeline{grid-template-columns:1fr;gap:12px}
-  .timeline-card{padding:16px}
   .promo-breakdown{grid-template-columns:repeat(2,1fr);gap:8px}
 
-  .toast{left:14px;right:14px;bottom:24px;max-width:none;font-size:13px;padding:14px 18px;transform:translateY(200%)}
-  .toast.show{transform:translateY(0)}
-
-  /* Drawer */
+  .toast{left:14px;right:14px;bottom:24px;max-width:none;font-size:13px;padding:14px 18px}
   .drawer{width:100%;max-width:100%}
-  .drawer-user-name{font-size:16px}
 }
 
 @media(max-width:400px){
   .home-hero h1{font-size:20px}
   .home-hero-cta{flex-direction:column}
   .home-hero-cta .btn{width:100%}
-  .status-btn{width:34px;height:34px;font-size:13px;border-radius:8px}
-  .status-group{gap:3px}
+  .status-btn{width:34px;height:34px;font-size:13px}
   .filter-bar{grid-template-columns:1fr}
-  .filter-bar label{grid-column:1/-1}
   .stat-row{grid-template-columns:repeat(2,1fr)}
+  .report-range-inputs{grid-template-columns:1fr 78px}
 }
 
 *:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:4px}
 @media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
 </style>
 </head>
@@ -901,12 +619,10 @@ img{max-width:100%;height:auto;display:block}
     <div class="auth-logo" id="authLogo">🏫</div>
     <h1 class="auth-title">ระบบบันทึกการมาเรียน</h1>
     <p class="auth-subtitle" id="authSubtitle">โรงเรียนบ้านถิ่นสำราญ · จังหวัดเชียงใหม่</p>
-
     <div class="auth-tabs">
       <button class="auth-tab active" onclick="switchAuthTab('login')">🔐 เข้าสู่ระบบ</button>
       <button class="auth-tab" onclick="switchAuthTab('signup')">📝 สมัครสมาชิก</button>
     </div>
-
     <form class="auth-form active" id="loginForm" onsubmit="event.preventDefault();doLogin()">
       <div class="form-group"><label>ชื่อผู้ใช้</label><input type="text" id="loginUsername" autocomplete="username" required></div>
       <div class="form-group"><label>รหัสผ่าน</label><input type="password" id="loginPassword" autocomplete="current-password" required></div>
@@ -914,7 +630,6 @@ img{max-width:100%;height:auto;display:block}
       <button type="submit" class="auth-btn" id="btnLogin">🔐 เข้าสู่ระบบ</button>
       <div class="auth-footer">ลืมรหัสผ่าน? กรุณาติดต่อ<b>ผู้ดูแลระบบ</b></div>
     </form>
-
     <form class="auth-form" id="signupForm" onsubmit="event.preventDefault();doSignup()">
       <div class="auth-info"><span class="icon">ℹ️</span><span>หลังสมัครแล้ว กรุณารอผู้ดูแลระบบอนุมัติก่อนเข้าใช้งาน</span></div>
       <div class="form-group"><label>ชื่อผู้ใช้ <span style="color:var(--red)">*</span></label><input type="text" id="suUsername" placeholder="อย่างน้อย 3 ตัวอักษร" required></div>
@@ -925,32 +640,14 @@ img{max-width:100%;height:auto;display:block}
       <div class="form-group"><label>ชื่อ-สกุล <span style="color:var(--red)">*</span></label><input type="text" id="suName" required></div>
       <div class="form-group"><label>เบอร์โทร</label><input type="tel" id="suPhone" maxlength="10"></div>
       <div class="form-grid">
-        <div class="form-group">
-          <label>ตำแหน่ง</label>
-          <select id="suPosition">
-            <option value="">- เลือกตำแหน่ง -</option>
-            <option value="ครูอัตราจ้าง">ครูอัตราจ้าง</option>
-            <option value="พนักงานราชการ">พนักงานราชการ</option>
-            <option value="ครู คศ.1">ครู คศ.1</option>
-            <option value="ครู คศ.2">ครู คศ.2</option>
-            <option value="ครู คศ.3">ครู คศ.3</option>
-            <option value="ครู คศ.4">ครู คศ.4</option>
-            <option value="ครู คศ.5">ครู คศ.5</option>
-          </select>
+        <div class="form-group"><label>ตำแหน่ง</label>
+          <select id="suPosition"><option value="">- เลือกตำแหน่ง -</option><option value="ครูอัตราจ้าง">ครูอัตราจ้าง</option><option value="พนักงานราชการ">พนักงานราชการ</option><option value="ครู คศ.1">ครู คศ.1</option><option value="ครู คศ.2">ครู คศ.2</option><option value="ครู คศ.3">ครู คศ.3</option><option value="ครู คศ.4">ครู คศ.4</option><option value="ครู คศ.5">ครู คศ.5</option></select>
         </div>
-        <div class="form-group">
-          <label>บทบาทในระบบ</label>
-          <select id="suRole">
-            <option value="teacher">ครู</option>
-            <option value="deputy_director">รองผู้อำนวยการ</option>
-            <option value="director">ผู้อำนวยการ</option>
-          </select>
+        <div class="form-group"><label>บทบาทในระบบ</label>
+          <select id="suRole"><option value="teacher">ครู</option><option value="deputy_director">รองผู้อำนวยการ</option><option value="director">ผู้อำนวยการ</option></select>
         </div>
       </div>
-      <div class="form-group">
-        <label>ครูประจำชั้น (เลือกได้หลายชั้น)</label>
-        <div class="auth-class-box" id="suClassesBox"></div>
-      </div>
+      <div class="form-group"><label>ครูประจำชั้น (เลือกได้หลายชั้น)</label><div class="auth-class-box" id="suClassesBox"></div></div>
       <button type="submit" class="auth-btn" id="btnSignup" style="margin-top:16px">📝 สมัครสมาชิก</button>
     </form>
   </div>
@@ -959,7 +656,6 @@ img{max-width:100%;height:auto;display:block}
 <!-- ============ MAIN APP ============ -->
 <div id="appRoot" style="display:none">
 
-<!-- Navbar with Hamburger -->
 <nav class="navbar">
   <div class="navbar-inner">
     <a class="brand" onclick="navigate('home')">
@@ -970,18 +666,12 @@ img{max-width:100%;height:auto;display:block}
       </div>
     </a>
     <div class="nav-right">
-      <div class="sync-status" id="syncStatus">
-        <div class="sync-dot" id="syncDot"></div>
-        <span id="syncText">พร้อมใช้งาน</span>
-      </div>
-      <button class="hamburger" id="hamburgerBtn" onclick="toggleDrawer()" aria-label="เมนู">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="sync-status" id="syncStatus"><div class="sync-dot" id="syncDot"></div><span id="syncText">พร้อมใช้งาน</span></div>
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleDrawer()" aria-label="เมนู"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
 
-<!-- Drawer Menu -->
 <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
 <aside class="drawer" id="drawer">
   <div class="drawer-header">
@@ -992,9 +682,8 @@ img{max-width:100%;height:auto;display:block}
         <div class="drawer-user-role" id="drawerUserRole">—</div>
       </div>
     </div>
-    <button class="drawer-close" onclick="closeDrawer()" aria-label="ปิด">✕</button>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
   </div>
-
   <nav class="drawer-nav">
     <div class="drawer-section">
       <div class="drawer-section-title">เมนูหลัก</div>
@@ -1004,7 +693,6 @@ img{max-width:100%;height:auto;display:block}
       <a data-page="reports" onclick="navigate('reports')"><span class="icon">📑</span> รายงาน / ปพ.5</a>
       <a data-page="archive" onclick="navigate('archive')"><span class="icon">📦</span> Archive</a>
     </div>
-
     <div class="drawer-section">
       <div class="drawer-section-title">จัดการข้อมูล</div>
       <a data-page="info" onclick="navigate('info')"><span class="icon">👤</span> ข้อมูลนักเรียน</a>
@@ -1012,7 +700,6 @@ img{max-width:100%;height:auto;display:block}
       <a data-page="teachers" onclick="navigate('teachers')"><span class="icon">👨‍🏫</span> ครูประจำชั้น</a>
       <a data-page="deletes" onclick="navigate('deletes')"><span class="icon">🗑️</span> คำขอลบ <span class="drawer-badge" id="pendingDeletesBadge" style="display:none">0</span></a>
     </div>
-
     <div class="drawer-section" id="drawerAdminSection" style="display:none">
       <div class="drawer-section-title">ผู้ดูแลระบบ</div>
       <a data-page="users" onclick="navigate('users')"><span class="icon">🧑‍💼</span> จัดการผู้ใช้ <span class="drawer-badge" id="pendingUsersBadge" style="display:none">0</span></a>
@@ -1020,7 +707,6 @@ img{max-width:100%;height:auto;display:block}
       <a data-page="settings" onclick="navigate('settings')"><span class="icon">⚙️</span> ตั้งค่าโรงเรียน</a>
     </div>
   </nav>
-
   <div class="drawer-footer">
     <button onclick="closeDrawer();openMyProfile()">👤 ข้อมูลของฉัน</button>
     <button onclick="closeDrawer();openChangePassword()">🔑 เปลี่ยนรหัสผ่าน</button>
@@ -1033,10 +719,7 @@ img{max-width:100%;height:auto;display:block}
   <div class="container">
     <div class="home-hero">
       <div class="home-hero-content">
-        <div class="home-hero-badge">
-          <span>📅</span>
-          <span id="heroDate">—</span>
-        </div>
+        <div class="home-hero-badge"><span>📅</span><span id="heroDate">—</span></div>
         <h1>สวัสดี <span id="heroUserName">คุณครู</span> 👋</h1>
         <p>ยินดีต้อนรับสู่ระบบบันทึกการมาเรียน โรงเรียนบ้านถิ่นสำราญ</p>
         <div class="home-hero-cta">
@@ -1045,68 +728,21 @@ img{max-width:100%;height:auto;display:block}
         </div>
       </div>
       <div class="home-hero-stats">
-        <div class="home-stat">
-          <div class="home-stat-icon">👥</div>
-          <div class="home-stat-info">
-            <div class="home-stat-value" id="heroStudents">—</div>
-            <div class="home-stat-label">นักเรียนทั้งหมด</div>
-          </div>
-        </div>
-        <div class="home-stat">
-          <div class="home-stat-icon">✅</div>
-          <div class="home-stat-info">
-            <div class="home-stat-value" id="heroPresent">—</div>
-            <div class="home-stat-label">มาเรียนวันนี้</div>
-          </div>
-        </div>
-        <div class="home-stat">
-          <div class="home-stat-icon">📈</div>
-          <div class="home-stat-info">
-            <div class="home-stat-value" id="heroPercent">—</div>
-            <div class="home-stat-label">ร้อยละการมา</div>
-          </div>
-        </div>
+        <div class="home-stat"><div class="home-stat-icon">👥</div><div class="home-stat-info"><div class="home-stat-value" id="heroStudents">—</div><div class="home-stat-label">นักเรียนทั้งหมด</div></div></div>
+        <div class="home-stat"><div class="home-stat-icon">✅</div><div class="home-stat-info"><div class="home-stat-value" id="heroPresent">—</div><div class="home-stat-label">มาเรียนวันนี้</div></div></div>
+        <div class="home-stat"><div class="home-stat-icon">📈</div><div class="home-stat-info"><div class="home-stat-value" id="heroPercent">—</div><div class="home-stat-label">ร้อยละการมา</div></div></div>
       </div>
     </div>
-
     <h2 class="section-title">⚡ เมนูลัด</h2>
     <div class="quick-grid">
-      <div class="quick-card" onclick="navigate('attendance')">
-        <div class="quick-icon" style="background:linear-gradient(135deg,#3b82f6,#2563eb)">✏️</div>
-        <div class="quick-info">
-          <div class="quick-title">บันทึกการมาเรียน</div>
-          <div class="quick-desc">กรอกสถานะรายวัน</div>
-        </div>
-      </div>
-      <div class="quick-card" onclick="navigate('dashboard')">
-        <div class="quick-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">📊</div>
-        <div class="quick-info">
-          <div class="quick-title">Dashboard</div>
-          <div class="quick-desc">กราฟสถิติเรียลไทม์</div>
-        </div>
-      </div>
-      <div class="quick-card" onclick="navigate('info')">
-        <div class="quick-icon" style="background:linear-gradient(135deg,#10b981,#059669)">👤</div>
-        <div class="quick-info">
-          <div class="quick-title">ข้อมูลนักเรียน</div>
-          <div class="quick-desc">ค้นหารายบุคคล</div>
-        </div>
-      </div>
-      <div class="quick-card" onclick="navigate('reports')">
-        <div class="quick-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)">📑</div>
-        <div class="quick-info">
-          <div class="quick-title">รายงาน</div>
-          <div class="quick-desc">พิมพ์ ปพ.5</div>
-        </div>
-      </div>
+      <div class="quick-card" onclick="navigate('attendance')"><div class="quick-icon" style="background:linear-gradient(135deg,#3b82f6,#2563eb)">✏️</div><div class="quick-info"><div class="quick-title">บันทึกการมาเรียน</div><div class="quick-desc">กรอกสถานะรายวัน</div></div></div>
+      <div class="quick-card" onclick="navigate('dashboard')"><div class="quick-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">📊</div><div class="quick-info"><div class="quick-title">Dashboard</div><div class="quick-desc">กราฟสถิติเรียลไทม์</div></div></div>
+      <div class="quick-card" onclick="navigate('info')"><div class="quick-icon" style="background:linear-gradient(135deg,#10b981,#059669)">👤</div><div class="quick-info"><div class="quick-title">ข้อมูลนักเรียน</div><div class="quick-desc">ค้นหารายบุคคล</div></div></div>
+      <div class="quick-card" onclick="navigate('reports')"><div class="quick-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)">📑</div><div class="quick-info"><div class="quick-title">รายงาน</div><div class="quick-desc">พิมพ์ ปพ.5</div></div></div>
     </div>
-
     <h2 class="section-title">📌 ข้อมูลล่าสุด</h2>
     <div class="card" style="margin-bottom:0">
-      <div class="activity-item" id="heroLatest">
-        <div class="activity-icon">📅</div>
-        <div class="activity-content">กำลังโหลด...</div>
-      </div>
+      <div class="activity-item" id="heroLatest"><div class="activity-icon">📅</div><div class="activity-content">กำลังโหลด...</div></div>
     </div>
   </div>
 </div>
@@ -1135,7 +771,7 @@ img{max-width:100%;height:auto;display:block}
       <div class="chart-card" style="grid-column:1/-1"><h3>📈 แนวโน้มการมาเรียน (%)</h3><div class="chart-canvas-wrap"><canvas id="chartTrend"></canvas></div></div>
       <div class="chart-card"><h3>📊 เปรียบเทียบแต่ละชั้น (%)</h3><div class="chart-canvas-wrap"><canvas id="chartClass"></canvas></div></div>
       <div class="chart-card"><h3>🥧 สัดส่วนสถานะ</h3><div class="chart-canvas-wrap"><canvas id="chartDonut"></canvas></div></div>
-      <div class="chart-card"><h3>🏆 อันดับชั้นเรียน (30 วัน)</h3><div class="chart-canvas-wrap"><canvas id="chartRank"></canvas></div></div>
+      <div class="chart-card"><h3>🏆 อันดับชั้นเรียน</h3><div class="chart-canvas-wrap"><canvas id="chartRank"></canvas></div></div>
       <div class="chart-card"><h3>📉 สถานะรายวัน (Stacked)</h3><div class="chart-canvas-wrap"><canvas id="chartStack"></canvas></div></div>
     </div>
   </div>
@@ -1158,16 +794,10 @@ img{max-width:100%;height:auto;display:block}
       <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;flex-wrap:wrap;gap:12px">
         <h2 class="card-title" style="margin:0">รายชื่อนักเรียน</h2>
         <div style="font-size:13.5px;color:var(--muted);font-weight:600">
-          มา <b id="cPresent" style="color:var(--green)">0</b> ·
-          ลา <b id="cLeave" style="color:var(--yellow)">0</b> ·
-          ขาด <b id="cAbsent" style="color:var(--red)">0</b> ·
-          ป่วย <b id="cSick" style="color:var(--orange)">0</b>
+          มา <b id="cPresent" style="color:var(--green)">0</b> · ลา <b id="cLeave" style="color:var(--yellow)">0</b> · ขาด <b id="cAbsent" style="color:var(--red)">0</b> · ป่วย <b id="cSick" style="color:var(--orange)">0</b>
         </div>
       </div>
-      <div class="table-info-bar" style="border-radius:0;border-left:0;border-right:0">
-        <span>📋 รายชื่อในชั้น</span>
-        <span class="scroll-hint" style="display:none">เลื่อนดูเพิ่มเติม</span>
-      </div>
+      <div class="table-info-bar" style="border-radius:0;border-left:0;border-right:0"><span>📋 รายชื่อในชั้น</span></div>
       <div class="sticky-table-wrap" id="attendanceTableWrap" style="border:none;border-radius:0">
         <table class="sticky-table">
           <thead><tr>
@@ -1197,13 +827,8 @@ img{max-width:100%;height:auto;display:block}
       </div>
     </div>
     <div class="card" style="padding:0;overflow:hidden">
-      <div style="padding:16px 20px">
-        <h2 class="card-title" id="infoCount" style="margin:0">รายชื่อนักเรียน</h2>
-      </div>
-      <div class="table-info-bar" style="border-radius:0;border-left:0;border-right:0">
-        <span>📋 รายชื่อทั้งหมด</span>
-        <span class="scroll-hint" style="display:none">เลื่อนดูเพิ่มเติม</span>
-      </div>
+      <div style="padding:16px 20px"><h2 class="card-title" id="infoCount" style="margin:0">รายชื่อนักเรียน</h2></div>
+      <div class="table-info-bar" style="border-radius:0;border-left:0;border-right:0"><span>📋 รายชื่อทั้งหมด</span></div>
       <div class="sticky-table-wrap" id="infoTableWrap" style="border:none;border-radius:0">
         <table class="sticky-table">
           <thead><tr>
@@ -1237,13 +862,8 @@ img{max-width:100%;height:auto;display:block}
       </div>
     </div>
     <div class="card" style="padding:0;overflow:hidden">
-      <div style="padding:16px 20px">
-        <h2 class="card-title" id="studentCount" style="margin:0">รายชื่อนักเรียน</h2>
-      </div>
-      <div class="table-info-bar" style="border-radius:0;border-left:0;border-right:0">
-        <span>📋 รายชื่อทั้งหมด</span>
-        <span class="scroll-hint" style="display:none">เลื่อนดูเพิ่มเติม</span>
-      </div>
+      <div style="padding:16px 20px"><h2 class="card-title" id="studentCount" style="margin:0">รายชื่อนักเรียน</h2></div>
+      <div class="table-info-bar" style="border-radius:0;border-left:0;border-right:0"><span>📋 รายชื่อทั้งหมด</span></div>
       <div class="sticky-table-wrap" id="studentsTableWrap" style="border:none;border-radius:0">
         <table class="sticky-table">
           <thead><tr>
@@ -1285,24 +905,54 @@ img{max-width:100%;height:auto;display:block}
       <span class="icon">💡</span>
       <span>เมื่อสั่งพิมพ์ ให้เลือก "บันทึกเป็น PDF" และยกเลิกติ๊ก <b>"Headers and footers"</b></span>
     </div>
-    <div class="card no-print">
-      <div class="filter-bar">
-        <label>ปีการศึกษา:</label>
-        <select id="reportAcademicYear" onchange="onReportYearChange()" style="min-width:200px">
-          <option value="current">📗 ปีปัจจุบัน</option>
-        </select>
-        <label>ขอบเขต:</label>
-        <select id="reportScope"><option value="all">🏫 ทั้งโรงเรียน</option></select>
-        <label>จากเดือน:</label>
-        <select id="fromMonth"></select>
-        <input type="number" id="fromYear" value="2569" min="2560" max="2600">
-        <label>ถึงเดือน:</label>
-        <select id="toMonth"></select>
-        <input type="number" id="toYear" value="2569" min="2560" max="2600">
-        <button class="btn btn-primary" onclick="loadReport()">📊 แสดง</button>
+
+    <!-- Filter ใหม่: จัดกลุ่มเรียบร้อย -->
+    <div class="card report-filter-card no-print">
+      <!-- แถว 1: ปีการศึกษา + ขอบเขต -->
+      <div class="report-filter-row">
+        <div class="report-filter-field">
+          <label>📗 ปีการศึกษา</label>
+          <select id="reportAcademicYear" onchange="onReportYearChange()">
+            <option value="current">📗 ปีปัจจุบัน</option>
+          </select>
+        </div>
+        <div class="report-filter-field">
+          <label>🏫 ขอบเขต</label>
+          <select id="reportScope">
+            <option value="all">🏫 ทั้งโรงเรียน</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- แถว 2: ช่วงเวลา (จาก → ถึง) -->
+      <div class="report-range-row">
+        <div class="report-range-side">
+          <label>📅 จากเดือน</label>
+          <div class="report-range-inputs">
+            <select id="fromMonth"></select>
+            <input type="number" id="fromYear" value="2569" min="2560" max="2600" placeholder="พ.ศ.">
+          </div>
+        </div>
+        <div class="report-range-arrow">→</div>
+        <div class="report-range-side">
+          <label>📅 ถึงเดือน</label>
+          <div class="report-range-inputs">
+            <select id="toMonth"></select>
+            <input type="number" id="toYear" value="2569" min="2560" max="2600" placeholder="พ.ศ.">
+          </div>
+        </div>
+      </div>
+
+      <!-- แถว 3: ปุ่มการทำงาน -->
+      <div class="report-actions-row">
+        <button class="btn btn-primary" onclick="loadReport()">📊 แสดงรายงาน</button>
         <button class="btn btn-ghost" onclick="window.print()">🖨️ ปริ้น</button>
       </div>
     </div>
+
+    <!-- Term info banner -->
+    <div class="report-term-banner no-print" id="reportTermBanner" style="display:none"></div>
+
     <div id="reportContent"></div>
   </div>
 </div>
@@ -1312,13 +962,7 @@ img{max-width:100%;height:auto;display:block}
   <div class="container">
     <h1 class="page-title">📦 Archive ปีการศึกษา</h1>
     <p class="page-sub">ข้อมูลย้อนหลังทั้งหมด · เก็บใน Google Drive</p>
-    <div class="info-banner purple">
-      <span class="icon">📦</span>
-      <div>
-        <b>โฟลเดอร์ Archive อยู่ที่ Google Drive</b><br>
-        <code>Archive_ระบบมาเรียน/ปีการศึกษา_XXXX/</code>
-      </div>
-    </div>
+    <div class="info-banner purple"><span class="icon">📦</span><div><b>โฟลเดอร์ Archive อยู่ที่ Google Drive</b><br><code>Archive_ระบบมาเรียน/ปีการศึกษา_XXXX/</code></div></div>
     <div class="card">
       <div class="filter-bar">
         <button class="btn btn-ghost" onclick="loadArchiveList()">🔄 โหลดใหม่</button>
@@ -1335,10 +979,7 @@ img{max-width:100%;height:auto;display:block}
     <h1 class="page-title">จัดการผู้ใช้</h1>
     <p class="page-sub" id="usersSubtitle">จัดการบัญชี · อนุมัติผู้ใช้ใหม่ · โอนสิทธิ์</p>
     <div id="pendingUsersSection" style="display:none;margin-bottom:20px">
-      <div class="info-banner">
-        <span class="icon">⏳</span>
-        <span><b>มีคำขอสมัครใหม่รออนุมัติ</b></span>
-      </div>
+      <div class="info-banner"><span class="icon">⏳</span><span><b>มีคำขอสมัครใหม่รออนุมัติ</b></span></div>
       <div class="user-grid" id="pendingUsersGrid"></div>
     </div>
     <div class="card">
@@ -1349,10 +990,7 @@ img{max-width:100%;height:auto;display:block}
         <button class="btn btn-primary" onclick="openUserModal()" id="btnAddUser">➕ เพิ่มผู้ใช้</button>
       </div>
     </div>
-    <div class="card">
-      <h2 class="card-title" id="userCount">รายชื่อผู้ใช้</h2>
-      <div class="user-grid" id="userGrid"></div>
-    </div>
+    <div class="card"><h2 class="card-title" id="userCount">รายชื่อผู้ใช้</h2><div class="user-grid" id="userGrid"></div></div>
   </div>
 </div>
 
@@ -1408,9 +1046,7 @@ img{max-width:100%;height:auto;display:block}
           <div class="form-group"><label>วันปิดภาคเรียน</label><input type="date" id="setTerm2End"></div>
         </div>
       </div>
-      <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
-        <button class="btn btn-primary" onclick="saveTermDates()">💾 บันทึกวันภาคเรียน</button>
-      </div>
+      <div style="margin-top:20px"><button class="btn btn-primary" onclick="saveTermDates()">💾 บันทึกวันภาคเรียน</button></div>
     </div>
     <div class="card">
       <h2 class="card-title">📋 ตัวอย่างการเลื่อนชั้น</h2>
@@ -1419,17 +1055,11 @@ img{max-width:100%;height:auto;display:block}
     </div>
     <div class="card" style="border-color:#fca5a5">
       <h2 class="card-title" style="color:var(--red)">🚀 เริ่มปีการศึกษาใหม่</h2>
-      <div class="info-banner danger">
-        <span class="icon">⚠️</span>
-        <div><b>โปรดอ่านก่อนดำเนินการ!</b><br>ระบบจะ Archive ทั้ง 2 ไฟล์, เลื่อนชั้นนักเรียน, รีเซ็ตข้อมูลปีเก่า<br><b style="color:#dc2626">※ ไม่สามารถย้อนกลับได้!</b></div>
-      </div>
+      <div class="info-banner danger"><span class="icon">⚠️</span><div><b>โปรดอ่านก่อนดำเนินการ!</b><br>ระบบจะ Archive ทั้ง 2 ไฟล์, เลื่อนชั้นนักเรียน, รีเซ็ตข้อมูลปีเก่า<br><b style="color:#dc2626">※ ไม่สามารถย้อนกลับได้!</b></div></div>
       <div id="promoWarningBox" style="margin-bottom:16px"></div>
       <button class="btn btn-danger" onclick="confirmPromotion()" style="font-size:16px;padding:14px 28px">🚀 เริ่มปีการศึกษาใหม่</button>
     </div>
-    <div class="card">
-      <h2 class="card-title">📜 ประวัติการเริ่มปีการศึกษา</h2>
-      <div id="promoHistory"></div>
-    </div>
+    <div class="card"><h2 class="card-title">📜 ประวัติการเริ่มปีการศึกษา</h2><div id="promoHistory"></div></div>
   </div>
 </div>
 
@@ -1446,8 +1076,7 @@ img{max-width:100%;height:auto;display:block}
         <div class="form-group"><label>ชื่อผู้อำนวยการ</label><input type="text" id="setDirectorName"></div>
       </div>
       <div class="form-grid" style="margin-top:14px">
-        <div class="form-group">
-          <label>ตราโรงเรียน (โลโก้)</label>
+        <div class="form-group"><label>ตราโรงเรียน (โลโก้)</label>
           <div class="photo-upload">
             <div id="logoPreview" class="placeholder">🏫</div>
             <label for="logoInput">📷 เลือกรูปตรา</label>
@@ -1455,8 +1084,7 @@ img{max-width:100%;height:auto;display:block}
             <button class="btn btn-ghost btn-sm" onclick="clearLogo()" type="button">🗑️ ลบ</button>
           </div>
         </div>
-        <div class="form-group">
-          <label>ลายเซ็นผู้อำนวยการ</label>
+        <div class="form-group"><label>ลายเซ็นผู้อำนวยการ</label>
           <div class="photo-upload">
             <div id="directorSigPreview" class="placeholder">✍️</div>
             <label for="directorSigInput">📷 เลือกไฟล์ลายเซ็น</label>
@@ -1465,9 +1093,7 @@ img{max-width:100%;height:auto;display:block}
           </div>
         </div>
       </div>
-      <div style="margin-top:20px">
-        <button class="btn btn-primary" onclick="saveSettings()">💾 บันทึกทั้งหมด</button>
-      </div>
+      <div style="margin-top:20px"><button class="btn btn-primary" onclick="saveSettings()">💾 บันทึกทั้งหมด</button></div>
     </div>
   </div>
 </div>
@@ -1564,8 +1190,7 @@ img{max-width:100%;height:auto;display:block}
       <div class="modal-body">
         <input type="hidden" id="t_row"><input type="hidden" id="t_id"><input type="hidden" id="t_photo"><input type="hidden" id="t_signature">
         <div class="form-grid">
-          <div class="form-group">
-            <label>📷 รูปถ่ายครู</label>
+          <div class="form-group"><label>📷 รูปถ่ายครู</label>
             <div class="photo-upload">
               <div id="teacherPhotoPreview" class="placeholder">👤</div>
               <label for="teacherPhotoInput">📷 เลือกรูป</label>
@@ -1573,8 +1198,7 @@ img{max-width:100%;height:auto;display:block}
               <button class="btn btn-ghost btn-sm" onclick="clearTeacherPhoto()" type="button">🗑️</button>
             </div>
           </div>
-          <div class="form-group">
-            <label>✍️ ลายเซ็นครู</label>
+          <div class="form-group"><label>✍️ ลายเซ็นครู</label>
             <div class="photo-upload">
               <div id="teacherSigPreview" class="placeholder">✍️</div>
               <label for="teacherSigInput">📷 เลือกไฟล์</label>
@@ -1589,24 +1213,11 @@ img{max-width:100%;height:auto;display:block}
           <div class="form-group"><label>นามสกุล</label><input type="text" id="t_lastName"></div>
         </div>
         <div class="form-grid" style="margin-top:14px">
-          <div class="form-group">
-            <label>ตำแหน่ง</label>
-            <select id="t_position">
-              <option value="">- เลือก -</option>
-              <option value="ครูอัตราจ้าง">ครูอัตราจ้าง</option>
-              <option value="พนักงานราชการ">พนักงานราชการ</option>
-              <option value="ครู คศ.1">ครู คศ.1</option>
-              <option value="ครู คศ.2">ครู คศ.2</option>
-              <option value="ครู คศ.3">ครู คศ.3</option>
-              <option value="ครู คศ.4">ครู คศ.4</option>
-              <option value="ครู คศ.5">ครู คศ.5</option>
-            </select>
+          <div class="form-group"><label>ตำแหน่ง</label>
+            <select id="t_position"><option value="">- เลือก -</option><option value="ครูอัตราจ้าง">ครูอัตราจ้าง</option><option value="พนักงานราชการ">พนักงานราชการ</option><option value="ครู คศ.1">ครู คศ.1</option><option value="ครู คศ.2">ครู คศ.2</option><option value="ครู คศ.3">ครู คศ.3</option><option value="ครู คศ.4">ครู คศ.4</option><option value="ครู คศ.5">ครู คศ.5</option></select>
           </div>
         </div>
-        <div class="form-group" style="margin-top:14px">
-          <label>ชั้นที่ดูแล</label>
-          <div class="checkbox-group" id="t_classes_checkboxes"></div>
-        </div>
+        <div class="form-group" style="margin-top:14px"><label>ชั้นที่ดูแล</label><div class="checkbox-group" id="t_classes_checkboxes"></div></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-ghost" onclick="closeTeacherModal()">ยกเลิก</button>
@@ -1632,46 +1243,20 @@ img{max-width:100%;height:auto;display:block}
           <div class="form-group"><label>เบอร์โทร</label><input type="tel" id="u_phone" maxlength="10"></div>
         </div>
         <div class="form-grid" style="margin-top:14px">
-          <div class="form-group">
-            <label>บทบาท</label>
-            <select id="u_role">
-              <option value="teacher">ครู</option>
-              <option value="deputy_director">รองผู้อำนวยการ</option>
-              <option value="director">ผู้อำนวยการ</option>
-              <option value="admin">ผู้ดูแลระบบ</option>
-            </select>
+          <div class="form-group"><label>บทบาท</label>
+            <select id="u_role"><option value="teacher">ครู</option><option value="deputy_director">รองผู้อำนวยการ</option><option value="director">ผู้อำนวยการ</option><option value="admin">ผู้ดูแลระบบ</option></select>
           </div>
-          <div class="form-group">
-            <label>ตำแหน่ง</label>
-            <select id="u_position">
-              <option value="">- ไม่ระบุ -</option>
-              <option value="ครูอัตราจ้าง">ครูอัตราจ้าง</option>
-              <option value="พนักงานราชการ">พนักงานราชการ</option>
-              <option value="ครู คศ.1">ครู คศ.1</option>
-              <option value="ครู คศ.2">ครู คศ.2</option>
-              <option value="ครู คศ.3">ครู คศ.3</option>
-              <option value="ครู คศ.4">ครู คศ.4</option>
-              <option value="ครู คศ.5">ครู คศ.5</option>
-            </select>
+          <div class="form-group"><label>ตำแหน่ง</label>
+            <select id="u_position"><option value="">- ไม่ระบุ -</option><option value="ครูอัตราจ้าง">ครูอัตราจ้าง</option><option value="พนักงานราชการ">พนักงานราชการ</option><option value="ครู คศ.1">ครู คศ.1</option><option value="ครู คศ.2">ครู คศ.2</option><option value="ครู คศ.3">ครู คศ.3</option><option value="ครู คศ.4">ครู คศ.4</option><option value="ครู คศ.5">ครู คศ.5</option></select>
           </div>
         </div>
         <div class="form-grid" style="margin-top:14px">
-          <div class="form-group">
-            <label>สถานะ</label>
-            <select id="u_status">
-              <option value="active">พร้อมใช้งาน</option>
-              <option value="pending">รออนุมัติ</option>
-              <option value="disabled">ปิดใช้งาน</option>
-              <option value="rejected">ปฏิเสธ</option>
-            </select>
+          <div class="form-group"><label>สถานะ</label>
+            <select id="u_status"><option value="active">พร้อมใช้งาน</option><option value="pending">รออนุมัติ</option><option value="disabled">ปิดใช้งาน</option><option value="rejected">ปฏิเสธ</option></select>
           </div>
         </div>
-        <div class="form-group" style="margin-top:14px">
-          <label>ชั้นที่ดูแล</label>
-          <div class="checkbox-group" id="u_classes_checkboxes"></div>
-        </div>
-        <div class="form-group" style="margin-top:14px">
-          <label>รูปโปรไฟล์</label>
+        <div class="form-group" style="margin-top:14px"><label>ชั้นที่ดูแล</label><div class="checkbox-group" id="u_classes_checkboxes"></div></div>
+        <div class="form-group" style="margin-top:14px"><label>รูปโปรไฟล์</label>
           <div class="photo-upload">
             <div id="u_photoPreview" class="placeholder">👤</div>
             <label for="u_photoInput">📷 เลือกรูป</label>
@@ -1694,14 +1279,8 @@ img{max-width:100%;height:auto;display:block}
   <div class="modal modal-sm">
     <div class="modal-header"><div class="modal-title" style="color:var(--purple)">🔄 โอนสิทธิ์ผู้ดูแลระบบ</div><button class="modal-close" onclick="closeTransferModal()">×</button></div>
     <div class="modal-body">
-      <div class="info-banner danger">
-        <span class="icon">⚠️</span>
-        <span><b>โปรดอ่านก่อนยืนยัน!</b><br>บัญชีของคุณจะกลายเป็น "ครู" ทันที<br><b>ไม่สามารถย้อนกลับได้!</b></span>
-      </div>
-      <div class="form-group">
-        <label>เลือกผู้ใช้ปลายทาง</label>
-        <select id="transferTarget"></select>
-      </div>
+      <div class="info-banner danger"><span class="icon">⚠️</span><span><b>โปรดอ่านก่อนยืนยัน!</b><br>บัญชีของคุณจะกลายเป็น "ครู" ทันที<br><b>ไม่สามารถย้อนกลับได้!</b></span></div>
+      <div class="form-group"><label>เลือกผู้ใช้ปลายทาง</label><select id="transferTarget"></select></div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-ghost" onclick="closeTransferModal()">ยกเลิก</button>
@@ -1718,24 +1297,12 @@ img{max-width:100%;height:auto;display:block}
       <button class="modal-close" onclick="closeDeleteModal()">×</button>
     </div>
     <div class="modal-body">
-      <div class="delete-modal-icon" id="deleteIcon">🗑️</div>
-      <div class="delete-warning">
-        <span class="icon">⚠️</span>
-        <div>
-          <div style="margin-bottom:4px">การลบจะ<b>ไม่สามารถกู้คืนได้</b></div>
-          <div style="font-size:12.5px;font-weight:500">ต้องผ่านการอนุมัติจาก <b>ผอ. / รอง ผอ. / Admin</b></div>
-        </div>
-      </div>
+      <div style="font-size:64px;text-align:center;margin:4px 0 12px" id="deleteIcon">🗑️</div>
+      <div class="delete-warning"><span class="icon">⚠️</span><div><div style="margin-bottom:4px">การลบจะ<b>ไม่สามารถกู้คืนได้</b></div><div style="font-size:12.5px;font-weight:500">ต้องผ่านการอนุมัติจาก <b>ผอ. / รอง ผอ. / Admin</b></div></div></div>
       <div id="deleteStep1">
         <div class="delete-student-info" id="deleteStudentInfo"></div>
-        <div style="text-align:center;font-size:13.5px;color:var(--text);font-weight:700;margin:14px 0 8px">
-          🔒 ขั้นตอนที่ 1/2 — กดปุ่มค้างไว้ 5 วินาที จำนวน 3 ครั้ง
-        </div>
-        <div class="hold-progress-dots">
-          <div class="hold-dot" id="holdDot1"></div>
-          <div class="hold-dot" id="holdDot2"></div>
-          <div class="hold-dot" id="holdDot3"></div>
-        </div>
+        <div style="text-align:center;font-size:13.5px;color:var(--text);font-weight:700;margin:14px 0 8px">🔒 ขั้นตอนที่ 1/2 — กดปุ่มค้างไว้ 5 วินาที จำนวน 3 ครั้ง</div>
+        <div class="hold-progress-dots"><div class="hold-dot" id="holdDot1"></div><div class="hold-dot" id="holdDot2"></div><div class="hold-dot" id="holdDot3"></div></div>
         <div class="round-text" id="roundText">รอบที่ 1 จาก 3</div>
         <button type="button" class="delete-hold-btn" id="deleteHoldBtn"
                 onmousedown="startDeleteHold(event)" ontouchstart="startDeleteHold(event);event.preventDefault()"
@@ -1747,14 +1314,8 @@ img{max-width:100%;height:auto;display:block}
       </div>
       <div id="deleteStep2" style="display:none">
         <div style="text-align:center;font-size:13.5px;color:var(--text);font-weight:700;margin:14px 0">✅ ยืนยันครั้งที่ 1/2 สำเร็จ!</div>
-        <div class="info-banner info">
-          <span class="icon">📝</span>
-          <span><b>ขั้นตอนที่ 2/2</b> — กรุณาพิมพ์<b>ชื่อ-สกุลของครูประจำชั้น</b></span>
-        </div>
-        <div class="form-group">
-          <label>ชื่อ-สกุล ครูประจำชั้น</label>
-          <input type="text" id="deleteTeacherName" placeholder="พิมพ์ชื่อ-สกุลให้ตรงกัน">
-        </div>
+        <div class="info-banner info"><span class="icon">📝</span><span><b>ขั้นตอนที่ 2/2</b> — กรุณาพิมพ์<b>ชื่อ-สกุลของครูประจำชั้น</b></span></div>
+        <div class="form-group"><label>ชื่อ-สกุล ครูประจำชั้น</label><input type="text" id="deleteTeacherName" placeholder="พิมพ์ชื่อ-สกุลให้ตรงกัน"></div>
       </div>
     </div>
     <div class="modal-footer">
@@ -1809,14 +1370,8 @@ img{max-width:100%;height:auto;display:block}
   <div class="modal modal-sm">
     <div class="modal-header"><div class="modal-title" style="color:var(--red)">⚠️ ยืนยันเริ่มปีการศึกษาใหม่</div></div>
     <div class="modal-body">
-      <div class="info-banner danger">
-        <span class="icon">⚠️</span>
-        <span>กรุณาพิมพ์ <b>START</b> เพื่อยืนยัน<br>การดำเนินการนี้ไม่สามารถย้อนกลับได้!</span>
-      </div>
-      <div class="form-group">
-        <label>พิมพ์ <b style="color:var(--red)">START</b></label>
-        <input type="text" id="promoConfirmText" placeholder="START" autocomplete="off">
-      </div>
+      <div class="info-banner danger"><span class="icon">⚠️</span><span>กรุณาพิมพ์ <b>START</b> เพื่อยืนยัน<br>การดำเนินการนี้ไม่สามารถย้อนกลับได้!</span></div>
+      <div class="form-group"><label>พิมพ์ <b style="color:var(--red)">START</b></label><input type="text" id="promoConfirmText" placeholder="START" autocomplete="off"></div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-ghost" onclick="closePromoConfirm()">ยกเลิก</button>
@@ -1836,6 +1391,7 @@ const CLASSES = ['อ.2','อ.3','ป.1','ป.2','ป.3','ป.4','ป.5','ป.6'
 const CLASS_LABELS = {'อ.2':'อนุบาล 2','อ.3':'อนุบาล 3','ป.1':'ประถมศึกษาปีที่ 1','ป.2':'ประถมศึกษาปีที่ 2','ป.3':'ประถมศึกษาปีที่ 3','ป.4':'ประถมศึกษาปีที่ 4','ป.5':'ประถมศึกษาปีที่ 5','ป.6':'ประถมศึกษาปีที่ 6'};
 const MONTHS_TH = ['','มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
 const MONTHS_SHORT = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+const WEEKDAYS_SHORT = ['อา.','จ.','อ.','พ.','พฤ.','ศ.','ส.'];
 const STATUS_LABELS = { '/':'มา', 'ล':'ลา', 'ข':'ขาด', 'ป':'ป่วย' };
 const APPROVER_ROLES = ['admin','director','deputy_director'];
 const MANAGER_ROLES = ['admin','director','deputy_director'];
@@ -1847,6 +1403,8 @@ let TEACHER_LIST_CACHE = [];
 let CURRENT_USER = null;
 let CURRENT_TOKEN = '';
 let CURRENT_YEAR = 2569;
+/* เก็บวันเปิด-ปิดภาคเรียน เพื่อใช้กรองรายงาน */
+let TERM_DATES = { term1Start:'', term1End:'', term2Start:'', term2End:'' };
 
 /* ============================================================
  * API
@@ -1960,24 +1518,63 @@ function isAdmin() { return CURRENT_USER && CURRENT_USER.role === 'admin'; }
 function debounce(fn, ms = 300) { let t; return function(...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); }; }
 
 /* ============================================================
- * DRAWER MENU
+ * TERM DATES — ดึงวันเปิด-ปิดภาคเรียน และตรวจสอบ
  * ============================================================ */
-function toggleDrawer() {
-  const isOpen = $('drawer').classList.contains('show');
-  if (isOpen) closeDrawer(); else openDrawer();
+async function loadTermDates() {
+  try {
+    const info = await API.getAcademicYearInfo();
+    TERM_DATES = {
+      term1Start: info.term1Start || '',
+      term1End: info.term1End || '',
+      term2Start: info.term2Start || '',
+      term2End: info.term2End || ''
+    };
+    if (info.academicYear) CURRENT_YEAR = info.academicYear;
+  } catch(e) {
+    TERM_DATES = { term1Start:'', term1End:'', term2Start:'', term2End:'' };
+  }
 }
-function openDrawer() {
-  $('drawer').classList.add('show');
-  $('drawerOverlay').classList.add('show');
-  $('hamburgerBtn').classList.add('open');
-  document.body.classList.add('no-scroll');
+/* ตรวจสอบว่าวันที่ (ISO) อยู่ในช่วงเปิดภาคเรียนหรือไม่ */
+function isDateInActiveTerm(iso) {
+  if (!iso) return false;
+  const t = TERM_DATES;
+  // ถ้าไม่มีข้อมูลวันเปิด-ปิดเลย → ให้ผ่านทั้งหมด (กรณี backend ยังไม่ตั้ง)
+  if (!t.term1Start && !t.term2Start) return true;
+  // เทอม 1
+  if (t.term1Start && t.term1End && iso >= t.term1Start && iso <= t.term1End) return true;
+  if (t.term1Start && !t.term1End && iso >= t.term1Start) return true;
+  // เทอม 2
+  if (t.term2Start && t.term2End && iso >= t.term2Start && iso <= t.term2End) return true;
+  if (t.term2Start && !t.term2End && iso >= t.term2Start) return true;
+  return false;
 }
-function closeDrawer() {
-  $('drawer').classList.remove('show');
-  $('drawerOverlay').classList.remove('show');
-  $('hamburgerBtn').classList.remove('open');
-  document.body.classList.remove('no-scroll');
+/* อัปเดต banner แสดงช่วงเปิด-ปิดภาคเรียน */
+function updateTermBanner() {
+  const el = $('reportTermBanner');
+  if (!el) return;
+  const t = TERM_DATES;
+  const parts = [];
+  if (t.term1Start || t.term1End) {
+    const from = t.term1Start ? formatThaiDate(t.term1Start) : '—';
+    const to = t.term1End ? formatThaiDate(t.term1End) : '—';
+    parts.push(`<span class="term-chip">📘 เทอม 1: ${from} → ${to}</span>`);
+  }
+  if (t.term2Start || t.term2End) {
+    const from = t.term2Start ? formatThaiDate(t.term2Start) : '—';
+    const to = t.term2End ? formatThaiDate(t.term2End) : '—';
+    parts.push(`<span class="term-chip">📗 เทอม 2: ${from} → ${to}</span>`);
+  }
+  if (!parts.length) { el.style.display = 'none'; return; }
+  el.style.display = '';
+  el.innerHTML = `<span class="icon">📅</span><span><b>ช่วงเปิดภาคเรียน:</b> แสดงเฉพาะวันที่อยู่ในช่วงนี้เท่านั้น</span>${parts.join('')}`;
 }
+
+/* ============================================================
+ * DRAWER
+ * ============================================================ */
+function toggleDrawer() { const isOpen = $('drawer').classList.contains('show'); if (isOpen) closeDrawer(); else openDrawer(); }
+function openDrawer() { $('drawer').classList.add('show'); $('drawerOverlay').classList.add('show'); $('hamburgerBtn').classList.add('open'); document.body.classList.add('no-scroll'); }
+function closeDrawer() { $('drawer').classList.remove('show'); $('drawerOverlay').classList.remove('show'); $('hamburgerBtn').classList.remove('open'); document.body.classList.remove('no-scroll'); }
 
 /* ============================================================
  * STICKY TABLE
@@ -1987,7 +1584,6 @@ function setupStickyTable(wrapperId) {
   if (!wrapper) return;
   const table = wrapper.querySelector('.sticky-table');
   if (!table) return;
-
   const stickCols = ['col-stick-1', 'col-stick-2', 'col-stick-3'];
   const headerCells = Array.from(table.querySelectorAll('thead th'));
   let offset = 0;
@@ -1995,45 +1591,27 @@ function setupStickyTable(wrapperId) {
     for (const cls of stickCols) {
       if (th.classList.contains(cls)) {
         th.style.left = offset + 'px';
-        table.querySelectorAll('tbody tr').forEach(tr => {
-          const td = tr.children[idx];
-          if (td && td.classList.contains(cls)) td.style.left = offset + 'px';
-        });
-        table.querySelectorAll('tfoot tr').forEach(tr => {
-          const td = tr.children[idx];
-          if (td && td.classList.contains(cls)) td.style.left = offset + 'px';
-        });
+        table.querySelectorAll('tbody tr').forEach(tr => { const td = tr.children[idx]; if (td && td.classList.contains(cls)) td.style.left = offset + 'px'; });
+        table.querySelectorAll('tfoot tr').forEach(tr => { const td = tr.children[idx]; if (td && td.classList.contains(cls)) td.style.left = offset + 'px'; });
         offset += th.offsetWidth;
         break;
       }
     }
   });
-
-  const updateScroll = () => {
-    wrapper.classList.toggle('scrolled-right', wrapper.scrollLeft > 4);
-  };
-  if (!wrapper._hasScrollListener) {
-    wrapper.addEventListener('scroll', updateScroll, { passive: true });
-    wrapper._hasScrollListener = true;
-  }
+  const updateScroll = () => { wrapper.classList.toggle('scrolled-right', wrapper.scrollLeft > 4); };
+  if (!wrapper._hasScrollListener) { wrapper.addEventListener('scroll', updateScroll, { passive: true }); wrapper._hasScrollListener = true; }
   updateScroll();
-
   const bar = wrapper.previousElementSibling;
   if (bar && bar.classList.contains('table-info-bar')) {
     const hint = bar.querySelector('.scroll-hint');
     if (hint) {
       const check = () => { hint.style.display = wrapper.scrollWidth > wrapper.clientWidth + 4 ? '' : 'none'; };
       check();
-      if (!wrapper._hasResizeListener) {
-        window.addEventListener('resize', check);
-        wrapper._hasResizeListener = true;
-      }
+      if (!wrapper._hasResizeListener) { window.addEventListener('resize', check); wrapper._hasResizeListener = true; }
     }
   }
 }
-function setupAllStickyTables() {
-  ['attendanceTableWrap','infoTableWrap','studentsTableWrap','reportStickyWrap'].forEach(setupStickyTable);
-}
+function setupAllStickyTables() { ['attendanceTableWrap','infoTableWrap','studentsTableWrap','reportStickyWrap'].forEach(setupStickyTable); }
 const _debouncedRecalc = debounce(() => {
   ['attendanceTableWrap','infoTableWrap','studentsTableWrap','reportStickyWrap'].forEach(id => { const w = $(id); if (w) w._hasScrollListener = false; });
   setupAllStickyTables();
@@ -2057,8 +1635,7 @@ async function doLogin() {
   try {
     const res = await API.login({ username, password });
     if (!res.ok) throw new Error('เข้าสู่ระบบไม่สำเร็จ');
-    CURRENT_TOKEN = res.token;
-    CURRENT_USER = res.user;
+    CURRENT_TOKEN = res.token; CURRENT_USER = res.user;
     if (remember) {
       localStorage.setItem(LS_KEY_TOKEN, res.token);
       localStorage.setItem(LS_KEY_USER, JSON.stringify(res.user));
@@ -2118,7 +1695,11 @@ async function tryAutoLogin() {
   else { token = sessionStorage.getItem(LS_KEY_TOKEN); expires = sessionStorage.getItem(LS_KEY_EXPIRES); }
   if (!token) return false;
   try {
-    if (expires && new Date(expires) < new Date()) { doLogout(); return false; }
+    if (expires && new Date(expires) < new Date()) {
+      localStorage.removeItem(LS_KEY_TOKEN); localStorage.removeItem(LS_KEY_USER);
+      localStorage.removeItem(LS_KEY_EXPIRES); sessionStorage.clear();
+      return false;
+    }
     CURRENT_TOKEN = token;
     const res = await API.checkSession();
     if (!res.ok) return false;
@@ -2136,7 +1717,7 @@ async function enterApp() {
   updateUserUI();
   await loadSettings();
   try { TEACHER_LIST_CACHE = await API.getTeachers(); } catch(e) {}
-  try { const info = await API.getAcademicYearInfo(); CURRENT_YEAR = info.academicYear || 2569; } catch(e) {}
+  await loadTermDates();
   updateNavVisibility();
   loadHomeStats();
   loadReportYearOptions();
@@ -2155,16 +1736,9 @@ function updateUserUI() {
 function updateNavVisibility() {
   const adminSection = $('drawerAdminSection');
   adminSection.style.display = isManager() ? '' : 'none';
-  // ซ่อนเมนู academic / settings / users สำหรับ non-manager
   if (!isAdmin()) {
     const academicLink = adminSection.querySelector('[data-page="academic"]');
     if (academicLink) academicLink.style.display = 'none';
-  }
-  if (!isManager()) {
-    const settingsLink = adminSection.querySelector('[data-page="settings"]');
-    const usersLink = adminSection.querySelector('[data-page="users"]');
-    if (settingsLink) settingsLink.style.display = 'none';
-    if (usersLink) usersLink.style.display = 'none';
   }
 }
 
@@ -2175,9 +1749,7 @@ async function loadSettings() {
   try { SCHOOL_SETTINGS = await API.getSettings(); applySettings(); } catch(e) {}
 }
 function applySettings() {
-  if (SCHOOL_SETTINGS.school_name) {
-    $('brandName').textContent = SCHOOL_SETTINGS.school_name.replace('โรงเรียน','').trim() || 'บ้านถิ่นสำราญ';
-  }
+  if (SCHOOL_SETTINGS.school_name) $('brandName').textContent = SCHOOL_SETTINGS.school_name.replace('โรงเรียน','').trim() || 'บ้านถิ่นสำราญ';
   if (SCHOOL_SETTINGS.school_logo) {
     $('brandLogo').innerHTML = `<img src="${SCHOOL_SETTINGS.school_logo}">`;
     $('authLogo').innerHTML = `<img src="${SCHOOL_SETTINGS.school_logo}">`;
@@ -2240,30 +1812,18 @@ async function loadHomeStats() {
     const today = new Date();
     const dateStr = today.toLocaleDateString('th-TH', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     $('heroDate').textContent = dateStr;
-
     const [students, dash, home] = await Promise.all([API.getStudents(), API.getDashboard(todayISO(), '7d'), API.getHomeStats()]);
     $('heroStudents').textContent = students.length;
     $('heroPresent').textContent = dash.totals.present;
     $('heroPercent').textContent = dash.totals.percent + '%';
-
     let yearInfo = home.academicYear ? ` · ปีการศึกษา ${home.academicYear}` : '';
     let termInfo = home.currentTerm && home.currentTerm.term ? ` · ${home.currentTerm.label}` : '';
     const activityEl = $('heroLatest');
     if (home.latestFound) {
       const [y,m,d] = home.latestDate.split('-');
-      activityEl.innerHTML = `
-        <div class="activity-icon">📅</div>
-        <div class="activity-content">
-          <b>บันทึกการมาเรียนล่าสุด:</b> วันที่ ${+d} ${MONTHS_TH[+m]} ${+y+543}
-          <div style="font-size:12.5px;color:var(--muted);font-weight:500;margin-top:2px">${yearInfo.replace(' · ','')} ${termInfo.replace(' · ','')}</div>
-        </div>`;
+      activityEl.innerHTML = `<div class="activity-icon">📅</div><div class="activity-content"><b>บันทึกการมาเรียนล่าสุด:</b> วันที่ ${+d} ${MONTHS_TH[+m]} ${+y+543}<div style="font-size:12.5px;color:var(--muted);font-weight:500;margin-top:2px">${yearInfo.replace(' · ','')} ${termInfo.replace(' · ','')}</div></div>`;
     } else {
-      activityEl.innerHTML = `
-        <div class="activity-icon">📅</div>
-        <div class="activity-content">
-          <b>ยังไม่มีการบันทึกการมาเรียน</b>
-          <div style="font-size:12.5px;color:var(--muted);font-weight:500;margin-top:2px">${yearInfo.replace(' · ','')} ${termInfo.replace(' · ','')}</div>
-        </div>`;
+      activityEl.innerHTML = `<div class="activity-icon">📅</div><div class="activity-content"><b>ยังไม่มีการบันทึกการมาเรียน</b><div style="font-size:12.5px;color:var(--muted);font-weight:500;margin-top:2px">${yearInfo.replace(' · ','')} ${termInfo.replace(' · ','')}</div></div>`;
     }
   } catch(e) { console.error(e); }
 }
@@ -2417,6 +1977,8 @@ function renderProfile(data) {
   const infoItem = (label, value) => `<div class="info-item"><div class="info-label">${label}</div><div class="info-value ${!value?'empty':''}">${escapeHtml(value||'—')}</div></div>`;
   let tableRows = '';
   data.daily.forEach(d => {
+    // กรองเฉพาะวันในภาคเรียน
+    if (!isDateInActiveTerm(d.date) && !d.weekend) return;
     const stat = d.weekend || d.status || '';
     const label = d.weekend ? d.weekend : (stat ? STATUS_LABELS[stat] : '-');
     tableRows += `<tr><td>${d.day}</td><td>${formatThaiDate(d.date)}</td><td><span class="att-status" data-s="${stat}">${label}</span></td></tr>`;
@@ -2487,6 +2049,7 @@ function renderProfile(data) {
     </div>
     <div class="form-section">
       <div class="form-section-title">📅 ตารางการมาเรียน (${formatThaiDate(data.range.from)} — ${formatThaiDate(data.range.to)})</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">📌 แสดงเฉพาะวันในช่วงเปิดภาคเรียน</div>
       <div class="sticky-table-wrap" style="max-height:400px">
         <table class="sticky-table att-table">
           <thead><tr>
@@ -2729,13 +2292,10 @@ function renderDeleteRequestCard(r) {
         <span>🕐 ${formatTimestamp(r.timestamp)}</span>
         <span>👤 ${escapeHtml(r.requesterName)}</span>
       </div>
-      <div style="font-size:12.5px;color:var(--muted)">
-        ครูประจำชั้น: <b>${escapeHtml(r.teacherName)}</b>
-        ${r.approvedBy ? ` · อนุมัติโดย: <b>${escapeHtml(r.approvedBy)}</b>` : ''}
-      </div>
-      ${r.note ? `<div class="note">💬 ${escapeHtml(r.note)}</div>` : ''}
+      <div style="font-size:12.5px;color:var(--muted)">ครูประจำชั้น: <b>${escapeHtml(r.teacherName)}</b>${r.approvedBy ? ` · อนุมัติโดย: <b>${escapeHtml(r.approvedBy)}</b>` : ''}</div>
+      ${r.note ? `<div style="font-size:12.5px;padding:8px 12px;background:#f8fafc;border-radius:8px;margin-top:8px">💬 ${escapeHtml(r.note)}</div>` : ''}
     </div>
-    <div class="actions">
+    <div class="actions" style="display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap">
       ${canApprove ? `<button class="btn btn-success btn-sm" onclick="approveDeleteReq(${r.id})">✅ อนุมัติ</button><button class="btn btn-danger btn-sm" onclick="rejectDeleteReq(${r.id})">❌ ปฏิเสธ</button>` : ''}
       ${canCancel ? `<button class="btn btn-ghost btn-sm" onclick="cancelDeleteReq(${r.id})">🚫 ยกเลิก</button>` : ''}
     </div>
@@ -2786,11 +2346,7 @@ function renderUsers() {
     return `<div class="user-card">
       <div class="avatar">${avatar}</div>
       <div style="flex:1;min-width:0">
-        <div style="font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          ${escapeHtml(u.name || '-')}
-          <span class="user-role-badge ${u.role}">${u.roleLabel}</span>
-          ${u.position ? `<span class="badge gray">${escapeHtml(u.position)}</span>` : ''}
-        </div>
+        <div style="font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap">${escapeHtml(u.name || '-')}<span class="user-role-badge ${u.role}">${u.roleLabel}</span>${u.position ? `<span class="badge gray">${escapeHtml(u.position)}</span>` : ''}</div>
         <div style="font-size:12px;color:var(--muted);margin-top:2px">@${escapeHtml(u.username)} ${u.phone ? ' · 📞 ' + escapeHtml(u.phone) : ''}</div>
         ${classesBadges ? `<div class="teacher-classes">${classesBadges}</div>` : ''}
       </div>
@@ -2875,15 +2431,10 @@ function clearUserPhoto() { _userPhotoTemp = ''; $('u_photoPreview').innerHTML =
 async function saveUser() {
   const classes = Array.from($('u_classes_checkboxes').querySelectorAll('input:checked')).map(cb => cb.value);
   const data = {
-    row: $('u_row').value ? +$('u_row').value : null,
-    id: $('u_id').value ? +$('u_id').value : null,
-    username: $('u_username').value.trim(),
-    password: $('u_password').value,
-    name: $('u_name').value.trim(),
-    phone: $('u_phone').value.trim(),
-    role: $('u_role').value,
-    position: $('u_position').value,
-    status: $('u_status').value,
+    row: $('u_row').value ? +$('u_row').value : null, id: $('u_id').value ? +$('u_id').value : null,
+    username: $('u_username').value.trim(), password: $('u_password').value,
+    name: $('u_name').value.trim(), phone: $('u_phone').value.trim(),
+    role: $('u_role').value, position: $('u_position').value, status: $('u_status').value,
     classes, photo: _userPhotoTemp !== null ? _userPhotoTemp : ($('u_photo').value || '')
   };
   if (!data.row && !data.password) { showToast('ต้องกรอกรหัสผ่านสำหรับผู้ใช้ใหม่', 'error'); return; }
@@ -2901,8 +2452,6 @@ async function deleteUserReq(row, name) {
   try { await API.deleteUser({ row }); showToast('ลบผู้ใช้สำเร็จ'); loadUsers(); }
   catch(e) { showToast('❌ ' + e.message, 'error'); }
 }
-
-/* Transfer Admin */
 function openTransferModal(targetRow) {
   if (!isAdmin()) { showToast('เฉพาะ Admin เท่านั้น', 'error'); return; }
   const teachers = allUsers.filter(u => u.row !== targetRow && u.role === 'teacher' && u.status === 'active' && u.username !== CURRENT_USER.username);
@@ -2986,13 +2535,9 @@ function clearTeacherSig() { _teacherSigTemp = ''; $('teacherSigPreview').innerH
 async function saveTeacher() {
   const classes = Array.from($('t_classes_checkboxes').querySelectorAll('input:checked')).map(cb => cb.value);
   const data = {
-    row: $('t_row').value ? +$('t_row').value : null,
-    id: $('t_id').value ? +$('t_id').value : null,
-    prefix: $('t_prefix').value,
-    firstName: $('t_firstName').value.trim(),
-    lastName: $('t_lastName').value.trim(),
-    position: $('t_position').value,
-    classes,
+    row: $('t_row').value ? +$('t_row').value : null, id: $('t_id').value ? +$('t_id').value : null,
+    prefix: $('t_prefix').value, firstName: $('t_firstName').value.trim(), lastName: $('t_lastName').value.trim(),
+    position: $('t_position').value, classes,
     photo: _teacherPhotoTemp !== null ? _teacherPhotoTemp : ($('t_photo').value || ''),
     signature: _teacherSigTemp !== null ? _teacherSigTemp : ($('t_signature').value || '')
   };
@@ -3024,6 +2569,12 @@ async function loadAcademicInfo() {
   try {
     const info = await API.getAcademicYearInfo();
     CURRENT_YEAR = info.academicYear || 2569;
+    // อัปเดต TERM_DATES ด้วย
+    TERM_DATES = {
+      term1Start: info.term1Start || '', term1End: info.term1End || '',
+      term2Start: info.term2Start || '', term2End: info.term2End || ''
+    };
+    updateTermBanner();
     $('academicYearBig').textContent = info.academicYear || '—';
     const termLabel = info.currentTerm && info.currentTerm.term ? info.currentTerm.label : 'นอกภาคเรียน';
     const termIcon = info.currentTerm && info.currentTerm.term === 1 ? '📘' : info.currentTerm && info.currentTerm.term === 2 ? '📗' : '⏸️';
@@ -3071,48 +2622,18 @@ async function loadPromotionPreview() {
     $('promoBreakdown').innerHTML = CLASSES.map(c => {
       const count = breakdown[c] || 0;
       const next = c==='อ.2'?'อ.3':c==='อ.3'?'ป.1':c==='ป.1'?'ป.2':c==='ป.2'?'ป.3':c==='ป.3'?'ป.4':c==='ป.4'?'ป.5':c==='ป.5'?'ป.6':'จบ';
-      return `<div class="promo-class-card">
-        <div class="from">${CLASS_LABELS[c]}</div>
-        <div class="count">${count} คน</div>
-        <div class="to">→ ${next==='จบ'?'🎓 จบ':CLASS_LABELS[next]}</div>
-      </div>`;
+      return `<div class="promo-class-card"><div class="from">${CLASS_LABELS[c]}</div><div class="count">${count} คน</div><div class="to">→ ${next==='จบ'?'🎓 จบ':CLASS_LABELS[next]}</div></div>`;
     }).join('');
     const totalStudents = Object.values(breakdown).reduce((s,v)=>s+v,0);
     $('promoSummary').innerHTML = `📊 นักเรียนทั้งหมด <b>${totalStudents} คน</b> · เลื่อนชั้น <b>${totalStudents - (data.graduates||0)} คน</b> · จบ <b style="color:#dc2626">${data.graduates || 0} คน</b>`;
-    $('promoWarningBox').innerHTML = `
-      <div style="padding:16px;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:12px;font-size:14px;font-weight:600;color:#78350f">
-        <div>📋 <b>ปีการศึกษาใหม่:</b> ${data.nextYear}</div>
-        <div>📦 <b>Archive:</b> โฟลเดอร์ "Archive_ระบบมาเรียน/ปีการศึกษา_${data.currentYear}/"</div>
-      </div>`;
+    $('promoWarningBox').innerHTML = `<div style="padding:16px;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fcd34d;border-radius:12px;font-size:14px;font-weight:600;color:#78350f"><div>📋 <b>ปีการศึกษาใหม่:</b> ${data.nextYear}</div><div>📦 <b>Archive:</b> โฟลเดอร์ "Archive_ระบบมาเรียน/ปีการศึกษา_${data.currentYear}/"</div></div>`;
   } catch(e) { $('promoSummary').innerHTML = `⚠️ ${escapeHtml(e.message)}`; }
 }
 async function loadPromotionHistory() {
   try {
     const list = await API.getArchiveHistory();
-    if (!list.length) {
-      $('promoHistory').innerHTML = `<div class="empty-state" style="padding:40px"><div class="empty-state-icon">📜</div><h3>ยังไม่มีประวัติ</h3></div>`;
-      return;
-    }
-    $('promoHistory').innerHTML = `<div class="sticky-table-wrap" style="max-height:400px">
-      <table class="sticky-table">
-        <thead><tr>
-          <th class="col-stick-1 has-shadow-right" style="min-width:150px">วันที่</th>
-          <th style="min-width:90px">จากปี</th>
-          <th style="min-width:90px">ไปปี</th>
-          <th style="min-width:100px">เลื่อนชั้น</th>
-          <th style="min-width:90px">จบ</th>
-          <th style="min-width:150px">ผู้ทำ</th>
-        </tr></thead>
-        <tbody>${list.map(r => `<tr>
-          <td class="col-stick-1 has-shadow-right">${formatTimestamp(r.timestamp)}</td>
-          <td><span class="badge blue">${r.fromYear}</span></td>
-          <td><span class="badge green">${r.toYear}</span></td>
-          <td>${r.promoted} คน</td>
-          <td>🎓 ${r.graduates} คน</td>
-          <td>${escapeHtml(r.byUser)}</td>
-        </tr>`).join('')}</tbody>
-      </table>
-    </div>`;
+    if (!list.length) { $('promoHistory').innerHTML = `<div class="empty-state" style="padding:40px"><div class="empty-state-icon">📜</div><h3>ยังไม่มีประวัติ</h3></div>`; return; }
+    $('promoHistory').innerHTML = `<div class="sticky-table-wrap" style="max-height:400px"><table class="sticky-table"><thead><tr><th class="col-stick-1 has-shadow-right" style="min-width:150px">วันที่</th><th style="min-width:90px">จากปี</th><th style="min-width:90px">ไปปี</th><th style="min-width:100px">เลื่อนชั้น</th><th style="min-width:90px">จบ</th><th style="min-width:150px">ผู้ทำ</th></tr></thead><tbody>${list.map(r => `<tr><td class="col-stick-1 has-shadow-right">${formatTimestamp(r.timestamp)}</td><td><span class="badge blue">${r.fromYear}</span></td><td><span class="badge green">${r.toYear}</span></td><td>${r.promoted} คน</td><td>🎓 ${r.graduates} คน</td><td>${escapeHtml(r.byUser)}</td></tr>`).join('')}</tbody></table></div>`;
   } catch(e) {}
 }
 function confirmPromotion() { $('promoConfirmText').value = ''; $('promoConfirmOverlay').classList.add('show'); setTimeout(() => $('promoConfirmText').focus(), 100); }
@@ -3141,8 +2662,7 @@ async function loadArchiveList() {
     const data = await API.listArchiveFolderContents();
     if (!data || !data.years || !data.years.length) {
       container.innerHTML = `<div class="card"><div class="empty-state"><div class="empty-state-icon">📦</div><h3>ยังไม่มีข้อมูล Archive</h3><p>เมื่อเริ่มปีการศึกษาใหม่ ระบบจะ Archive อัตโนมัติ</p><button class="btn btn-primary" onclick="loadArchiveList()">🔄 โหลดใหม่</button></div></div>`;
-      $('btnOpenRootFolder').style.display = 'none';
-      return;
+      $('btnOpenRootFolder').style.display = 'none'; return;
     }
     $('btnOpenRootFolder').style.display = '';
     $('btnOpenRootFolder').dataset.url = data.root.url;
@@ -3156,18 +2676,10 @@ async function loadArchiveList() {
           ${y.files.length ? y.files.map(f => {
             const isAtt = f.name.indexOf('บันทึกมาเรียน')>=0;
             const sizeKB = f.size ? (f.size/1024).toFixed(1) + ' KB' : '—';
-            return `<div class="file-item">
-              <div class="file-icon">${isAtt?'📘':'📊'}</div>
-              <div class="file-info">
-                <div class="file-name">${escapeHtml(f.name)}</div>
-                <div class="file-size">${sizeKB}</div>
-              </div>
-              <a href="${f.url}" target="_blank" rel="noopener">เปิด</a>
-            </div>`;
+            return `<div class="file-item"><div class="file-icon">${isAtt?'📘':'📊'}</div><div class="file-info"><div class="file-name">${escapeHtml(f.name)}</div><div class="file-size">${sizeKB}</div></div><a href="${f.url}" target="_blank" rel="noopener">เปิด</a></div>`;
           }).join('') : `<div style="text-align:center;padding:14px;color:var(--muted);font-size:12.5px">ไม่พบไฟล์</div>`}
         </div>
-      </div>
-    `).join('')}</div>`;
+      </div>`).join('')}</div>`;
   } catch(e) {
     container.innerHTML = `<div class="card" style="text-align:center;padding:40px"><div style="font-size:52px;opacity:.4;margin-bottom:12px">⚠️</div><h3 style="margin-bottom:8px;color:var(--red);font-size:16px">ไม่สามารถโหลดข้อมูล Archive ได้</h3><p style="color:var(--muted);margin-bottom:16px;font-size:13.5px">${escapeHtml(e.message)}</p><button class="btn btn-primary" onclick="loadArchiveList()">🔄 ลองอีกครั้ง</button></div>`;
   }
@@ -3198,306 +2710,420 @@ function clearChartEmpty(id) {
   const old = canvas.parentElement.querySelector('.chart-empty'); if (old) old.remove();
 }
 async function loadDashboard() {
-  const range = $('selRange').value;
+  const range = $('selRange') ? $('selRange').value : '30d';
+  const kpiPresent = $('kpiPresent'), kpiPresentPct = $('kpiPresentPct');
+  const kpiLeave = $('kpiLeave'), kpiAbsent = $('kpiAbsent'), kpiSick = $('kpiSick');
+  if (kpiPresent) kpiPresent.textContent = '...';
   try {
     const data = await API.getDashboard(todayISO(), range);
-    $('kpiPresent').textContent = data.totals.present;
-    $('kpiPresentPct').textContent = data.totals.percent + '% จาก ' + data.totals.total + ' คน';
-    $('kpiLeave').textContent = data.totals.leave;
-    $('kpiAbsent').textContent = data.totals.absent;
-    $('kpiSick').textContent = data.totals.sick;
-    $('dashboardDateLabel').textContent = `ข้อมูล ณ ${formatThaiDate(data.date)} · ปีการศึกษา ${CURRENT_YEAR}`;
-    $('dashPrintHeader').innerHTML = `${SCHOOL_SETTINGS.school_logo ? `<img src="${SCHOOL_SETTINGS.school_logo}" class="logo">` : ''}<h2>${escapeHtml(SCHOOL_SETTINGS.school_name || 'โรงเรียนบ้านถิ่นสำราญ')}</h2><p>รายงานสถิติการมาเรียน · ${formatThaiDate(data.date)}</p>`;
-    renderTrend(data.trend); renderClassChart(data.today); renderDonut(data.totals);
-    renderRanking(data.ranking); renderStack(data.trend);
+    if (!data || !data.totals) throw new Error('ไม่พบข้อมูลสถิติ');
+    if (kpiPresent) kpiPresent.textContent = Number(data.totals.present || 0).toLocaleString();
+    if (kpiPresentPct) kpiPresentPct.textContent = `${data.totals.percent || 0}% ของทั้งหมด`;
+    if (kpiLeave) kpiLeave.textContent = Number(data.totals.leave || 0).toLocaleString();
+    if (kpiAbsent) kpiAbsent.textContent = Number(data.totals.absent || 0).toLocaleString();
+    if (kpiSick) kpiSick.textContent = Number(data.totals.sick || 0).toLocaleString();
+    if ($('dashboardDateLabel')) $('dashboardDateLabel').textContent = `ข้อมูล ณ วันที่ ${formatThaiDate(todayISO())} (ช่วง: ${range==='7d'?'7 วัน':range==='30d'?'30 วัน':'90 วัน'})`;
+    if ($('dashPrintHeader')) $('dashPrintHeader').innerHTML = `${SCHOOL_SETTINGS.school_logo ? `<img src="${SCHOOL_SETTINGS.school_logo}" class="logo">` : ''}<h2>${escapeHtml(SCHOOL_SETTINGS.school_name || 'โรงเรียนบ้านถิ่นสำราญ')}</h2><p>รายงานสถิติการมาเรียน · ${formatThaiDate(todayISO())}</p>`;
+    // กรองเฉพาะวันในภาคเรียน
+    const trend = (data.trend || []).filter(t => isDateInActiveTerm(t.date));
+    renderTrendChart(trend);
+    renderClassChart(data.byClass || data.today || {});
+    renderDonutChart(data.totals);
+    renderRankChart(data.byClass || data.ranking || {});
+    renderStackChart((data.dailyStack || data.trend || []).filter(t => isDateInActiveTerm(t.date)));
     setSyncStatus(true, 'พร้อมใช้งาน');
-  } catch(e) { showToast('⚠️ ' + e.message, 'error'); }
+  } catch(e) {
+    showToast('⚠️ โหลด Dashboard ล้มเหลว: ' + e.message, 'error');
+    ['chartTrend','chartClass','chartDonut','chartRank','chartStack'].forEach(id => showChartEmpty(id, 'ไม่สามารถโหลดข้อมูลได้'));
+  }
 }
-function renderTrend(trend) {
-  destroyChart('trend'); clearChartEmpty('chartTrend');
-  if (!trend.filter(t => t.percent !== null).length) { showChartEmpty('chartTrend', 'ยังไม่มีข้อมูล'); return; }
-  charts.trend = new Chart($('chartTrend'), {
+function renderTrendChart(trendData) {
+  destroyChart('chartTrend');
+  if (!trendData || !trendData.length) { showChartEmpty('chartTrend', 'ไม่มีข้อมูลแนวโน้ม'); return; }
+  clearChartEmpty('chartTrend');
+  const ctx = $('chartTrend').getContext('2d');
+  charts['chartTrend'] = new Chart(ctx, {
     type: 'line',
-    data: { labels: trend.map(t => formatThaiDate(t.date)), datasets: [{
-      label: 'ร้อยละการมาเรียน', data: trend.map(t => t.percent),
-      borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,.12)',
-      fill: true, tension: .35, pointRadius: 4, pointHoverRadius: 7,
-      pointBackgroundColor: '#fff', pointBorderColor: '#2563eb', pointBorderWidth: 2,
-      borderWidth: 2.5, spanGaps: true }] },
-    options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' },
-      scales: { y: { beginAtZero: false, min: 50, max: 100, ticks: { callback: v => v + '%' } }, x: { ticks: { autoSkip: true, maxTicksLimit: 12 } } },
-      plugins: { legend: { display: false } } }
+    data: { labels: trendData.map(d => formatThaiDate(d.date)), datasets: [{ label: 'ร้อยละการมาเรียน', data: trendData.map(d => d.percent), borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,0.08)', fill: true, tension: 0.35, pointRadius: 4, pointBackgroundColor: '#fff', pointBorderColor: '#2563eb', pointBorderWidth: 2, borderWidth: 2.5, spanGaps: true }] },
+    options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' }, plugins: { legend: { display: false } }, scales: { y: { min: 0, max: 100, ticks: { callback: v => v + '%' } }, x: { grid: { display: false }, ticks: { autoSkip: true, maxTicksLimit: 12 } } } }
   });
 }
-function renderClassChart(today) {
-  destroyChart('class'); clearChartEmpty('chartClass');
-  const labels = CLASSES.map(c => CLASS_LABELS[c]);
-  const data = CLASSES.map(c => { const v = today[c] || { present:0, total:0 }; return v.total ? +(v.present/v.total*100).toFixed(2) : 0; });
-  if (!data.some(v => v > 0)) { showChartEmpty('chartClass', 'ยังไม่มีข้อมูล'); return; }
-  charts.class = new Chart($('chartClass'), {
+function renderClassChart(classData) {
+  destroyChart('chartClass');
+  const labels = Object.keys(classData || {});
+  if (!labels.length) { showChartEmpty('chartClass', 'ไม่มีข้อมูลเปรียบเทียบ'); return; }
+  clearChartEmpty('chartClass');
+  const values = labels.map(c => { const v = classData[c] || {}; if (typeof v.percent === 'number') return v.percent; if (v.total) return +(v.present / v.total * 100).toFixed(2); return 0; });
+  const ctx = $('chartClass').getContext('2d');
+  charts['chartClass'] = new Chart(ctx, {
     type: 'bar',
-    data: { labels, datasets: [{ label: '% การมาเรียน', data,
-      backgroundColor: data.map(v => v >= 95 ? '#10b981' : v >= 80 ? '#fbbf24' : v > 0 ? '#ef4444' : '#cbd5e1'), borderRadius: 8 }] },
-    options: { responsive: true, maintainAspectRatio: false,
-      scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } }, x: { ticks: { autoSkip: false, maxRotation: 45, font: { size: 10 } } } },
-      plugins: { legend: { display: false } } }
+    data: { labels: labels.map(c => CLASS_LABELS[c] || c), datasets: [{ label: '% มาเรียน', data: values, backgroundColor: values.map(v => v >= 95 ? '#10b981' : v >= 80 ? '#fbbf24' : v > 0 ? '#ef4444' : '#cbd5e1'), borderRadius: 8 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 0, max: 100, ticks: { callback: v => v + '%' } }, x: { ticks: { autoSkip: false, maxRotation: 45, font: { size: 10 } } } } }
   });
 }
-function renderDonut(t) {
-  destroyChart('donut'); clearChartEmpty('chartDonut');
-  if (!t.present && !t.leave && !t.absent && !t.sick) { showChartEmpty('chartDonut', 'ยังไม่มีข้อมูล'); return; }
-  charts.donut = new Chart($('chartDonut'), {
+function renderDonutChart(totals) {
+  destroyChart('chartDonut');
+  const totalCount = (totals.present || 0) + (totals.leave || 0) + (totals.absent || 0) + (totals.sick || 0);
+  if (totalCount === 0) { showChartEmpty('chartDonut', 'ยังไม่มีการบันทึกสถานะ'); return; }
+  clearChartEmpty('chartDonut');
+  const ctx = $('chartDonut').getContext('2d');
+  charts['chartDonut'] = new Chart(ctx, {
     type: 'doughnut',
-    data: { labels: ['มา','ลา','ขาด','ป่วย'], datasets: [{ data: [t.present,t.leave,t.absent,t.sick],
-      backgroundColor: ['#10b981','#fbbf24','#ef4444','#f97316'], borderWidth: 3, borderColor: '#fff', hoverOffset: 8 }] },
-    options: { responsive: true, maintainAspectRatio: false, cutout: '65%',
-      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
+    data: { labels: ['มาเรียน', 'ลา', 'ขาด', 'ป่วย'], datasets: [{ data: [totals.present || 0, totals.leave || 0, totals.absent || 0, totals.sick || 0], backgroundColor: ['#10b981', '#f59e0b', '#ef4444', '#f97316'], borderWidth: 3, borderColor: '#fff', hoverOffset: 8 }] },
+    options: { responsive: true, maintainAspectRatio: false, cutout: '65%', plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
   });
 }
-function renderRanking(ranking) {
-  destroyChart('rank'); clearChartEmpty('chartRank');
-  if (!ranking.some(r => r.percent > 0)) { showChartEmpty('chartRank', 'ยังไม่มีข้อมูล'); return; }
-  charts.rank = new Chart($('chartRank'), {
+function renderRankChart(classData) {
+  destroyChart('chartRank');
+  const entries = Object.entries(classData || {}).map(([k, v]) => { let pct = 0; if (typeof v === 'number') pct = v; else if (typeof v.percent === 'number') pct = v.percent; else if (v.total) pct = +(v.present / v.total * 100).toFixed(2); return [k, { percent: pct }]; }).sort((a, b) => (b[1].percent || 0) - (a[1].percent || 0));
+  if (!entries.length) { showChartEmpty('chartRank', 'ไม่มีข้อมูลจัดอันดับ'); return; }
+  clearChartEmpty('chartRank');
+  const ctx = $('chartRank').getContext('2d');
+  charts['chartRank'] = new Chart(ctx, {
     type: 'bar',
-    data: { labels: ranking.map(r => r.label), datasets: [{ label: '% การมาเรียน', data: ranking.map(r => r.percent),
-      backgroundColor: ranking.map((_, i) => i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : i === 2 ? '#d97706' : '#cbd5e1'), borderRadius: 8 }] },
-    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-      scales: { x: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } }, plugins: { legend: { display: false } } }
+    data: { labels: entries.map(e => CLASS_LABELS[e[0]] || e[0]), datasets: [{ label: '% มาเรียน', data: entries.map(e => e[1].percent || 0), backgroundColor: entries.map((_, i) => i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : i === 2 ? '#d97706' : '#cbd5e1'), borderRadius: 8 }] },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { min: 0, max: 100, ticks: { callback: v => v + '%' } } } }
   });
 }
-function renderStack(trend) {
-  destroyChart('stack'); clearChartEmpty('chartStack');
-  if (!trend.some(t => t.byClass)) { showChartEmpty('chartStack', 'ยังไม่มีข้อมูล'); return; }
-  const mk = (key, label, color) => ({ label, backgroundColor: color, stack: 's', borderRadius: 3,
-    data: trend.map(t => t.byClass ? Object.values(t.byClass).reduce((s,c)=>s+(c[key]||0),0) : 0) });
-  charts.stack = new Chart($('chartStack'), {
+function renderStackChart(stackData) {
+  destroyChart('chartStack');
+  if (!stackData || !stackData.length) { showChartEmpty('chartStack', 'ไม่มีข้อมูลรายวัน'); return; }
+  clearChartEmpty('chartStack');
+  const useByClass = stackData[0].byClass !== undefined;
+  const rows = useByClass ? stackData.map(t => { const c = t.byClass || {}; const sum = k => Object.values(c).reduce((s, x) => s + (x[k] || 0), 0); return { date: t.date, present: sum('present'), leave: sum('leave'), absent: sum('absent'), sick: sum('sick') }; }) : stackData;
+  const ctx = $('chartStack').getContext('2d');
+  charts['chartStack'] = new Chart(ctx, {
     type: 'bar',
-    data: { labels: trend.map(t => formatThaiDate(t.date)),
-      datasets: [ mk('present','มา','#10b981'), mk('leave','ลา','#fbbf24'), mk('absent','ขาด','#ef4444'), mk('sick','ป่วย','#f97316') ] },
-    options: { responsive: true, maintainAspectRatio: false,
-      scales: { x: { stacked: true, ticks: { autoSkip: true, maxTicksLimit: 12 } }, y: { stacked: true, beginAtZero: true } },
-      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
+    data: { labels: rows.map(d => formatThaiDate(d.date)), datasets: [
+      { label: 'มา', data: rows.map(d => d.present || 0), backgroundColor: '#10b981', stack: 's', borderRadius: 3 },
+      { label: 'ลา', data: rows.map(d => d.leave || 0), backgroundColor: '#f59e0b', stack: 's', borderRadius: 3 },
+      { label: 'ขาด', data: rows.map(d => d.absent || 0), backgroundColor: '#ef4444', stack: 's', borderRadius: 3 },
+      { label: 'ป่วย', data: rows.map(d => d.sick || 0), backgroundColor: '#f97316', stack: 's', borderRadius: 3 }
+    ] },
+    options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true, ticks: { autoSkip: true, maxTicksLimit: 12 } }, y: { stacked: true, beginAtZero: true } }, plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
   });
 }
 
 /* ============================================================
  * REPORTS
  * ============================================================ */
-let dailyReportChart = null, reportsInit = false;
+let reportsInit = false;
+function initReports() {
+  if (reportsInit) { updateTermBanner(); loadReport(); return; }
+  reportsInit = true;
+  const fm = $('fromMonth'), tm = $('toMonth');
+  fm.innerHTML = ''; tm.innerHTML = '';
+  for (let i = 1; i <= 12; i++) { fm.add(new Option(MONTHS_TH[i], i)); tm.add(new Option(MONTHS_TH[i], i)); }
+  const d = new Date();
+  const currentM = d.getMonth() + 1;
+  fm.value = currentM; tm.value = currentM;
+  $('fromYear').value = CURRENT_YEAR;
+  $('toYear').value = CURRENT_YEAR;
+  const scope = $('reportScope');
+  scope.innerHTML = '<option value="all">🏫 ทั้งโรงเรียน</option>';
+  CLASSES.forEach(c => scope.add(new Option(CLASS_LABELS[c] || c, c)));
+  loadReportYearOptions();
+  updateTermBanner();
+  loadReport();
+}
 async function loadReportYearOptions() {
   const sel = $('reportAcademicYear');
   if (!sel) return;
   sel.innerHTML = '<option value="current">📗 ปีปัจจุบัน (' + CURRENT_YEAR + ')</option>';
   try {
-    const years = await API.listArchivedYears();
-    years.forEach(y => {
-      const o = document.createElement('option');
-      o.value = y;
-      o.textContent = '📦 ปีการศึกษา ' + y + ' (Archive)';
-      sel.appendChild(o);
-    });
+    const res = await API.listArchivedYears();
+    const years = (res && res.years) ? res.years : (Array.isArray(res) ? res : []);
+    years.forEach(y => sel.add(new Option(`📦 ปีการศึกษา ${y} (Archive)`, y)));
   } catch(e) { console.error(e); }
 }
 function onReportYearChange() {
-  const y = $('reportAcademicYear').value;
-  if (y === 'current' || y === '') { $('fromYear').value = CURRENT_YEAR; $('toYear').value = CURRENT_YEAR; $('fromMonth').value = 5; $('toMonth').value = 3; }
-  else { const year = parseInt(y); $('fromYear').value = year; $('toYear').value = year + 1; $('fromMonth').value = 5; $('toMonth').value = 3; }
-}
-function initReports() {
-  if (!reportsInit) {
-    reportsInit = true;
-    const fromMonth = $('fromMonth'), toMonth = $('toMonth'), selScope = $('reportScope');
-    MONTHS_TH.slice(1).forEach((m, i) => {
-      const o1 = document.createElement('option'); o1.value = i+1; o1.textContent = m; fromMonth.appendChild(o1);
-      const o2 = document.createElement('option'); o2.value = i+1; o2.textContent = m; toMonth.appendChild(o2);
-    });
-    const now = new Date();
-    fromMonth.value = now.getMonth() + 1;
-    toMonth.value = now.getMonth() + 1;
-    CLASSES.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = CLASS_LABELS[c]; selScope.appendChild(o); });
-    $('fromYear').value = CURRENT_YEAR;
-    $('toYear').value = CURRENT_YEAR;
-    loadReportYearOptions();
-  }
-  loadReport();
+  const val = $('reportAcademicYear').value;
+  if (val === 'current' || val === '') { $('fromYear').value = CURRENT_YEAR; $('toYear').value = CURRENT_YEAR; }
+  else { $('fromYear').value = val; $('toYear').value = val; }
 }
 async function loadReport() {
-  const scope = $('reportScope').value;
-  const academicYear = $('reportAcademicYear').value;
+  const container = $('reportContent');
+  container.innerHTML = `<div class="card" style="text-align:center;padding:50px"><span class="loading dark"></span> กำลังประมวลผลรายงาน ปพ.5...</div>`;
+  const cls = $('reportScope').value;
   const fm = +$('fromMonth').value, fy = +$('fromYear').value;
   const tm = +$('toMonth').value, ty = +$('toYear').value;
-  const c = $('reportContent');
-  c.innerHTML = '<div class="card" style="text-align:center;padding:60px"><span class="loading dark"></span></div>';
+  const ay = $('reportAcademicYear').value;
   try {
-    const data = await API.getClassDailyTableWithYear(scope, fm, fy, tm, ty, academicYear);
-    renderDailyReport(data);
+    const data = await API.getClassDailyTableWithYear(cls, fm, fy, tm, ty, ay);
+    renderReportTable(data);
     setSyncStatus(true, 'พร้อมใช้งาน');
-  } catch(e) { c.innerHTML = `<div class="card" style="color:var(--red);padding:40px">⚠️ ${escapeHtml(e.message)}</div>`; }
+  } catch(e) {
+    container.innerHTML = `<div class="card" style="color:var(--red);padding:30px;text-align:center">⚠️ ${escapeHtml(e.message)}</div>`;
+  }
 }
-function renderDailyReport(data) {
-  const c = $('reportContent');
-  if (!data.days || !data.days.length) { c.innerHTML = `<div class="card"><div class="empty-state"><div class="empty-state-icon">📋</div><h3>ไม่พบข้อมูล</h3></div></div>`; return; }
-  const rows = data.days.map(d => {
-    if (d.status === 'weekend') {
-      return `<tr style="background:#f8fafc"><td class="col-stick-1">${d.day}</td><td class="col-stick-2 has-shadow-right">${d.monthShort} ${d.year}</td><td colspan="7" style="text-align:center;color:var(--muted);font-weight:600">วันหยุด</td></tr>`;
-    }
-    if (d.status === 'holiday') {
-      return `<tr style="background:#fef9c3"><td class="col-stick-1">${d.day}</td><td class="col-stick-2 has-shadow-right">${d.monthShort} ${d.year}</td><td colspan="7" style="text-align:center;color:#92400e;font-weight:600">วันหยุด</td></tr>`;
-    }
-    const pct = d.total ? +(d.present/d.total*100).toFixed(2) : 0;
-    const color = pct >= 90 ? 'var(--green)' : pct >= 80 ? 'var(--yellow)' : 'var(--red)';
-    const noteParts = [];
-    if (d.leaveNames && d.leaveNames.length) noteParts.push('ลา: ' + d.leaveNames.join(', '));
-    if (d.sickNames && d.sickNames.length) noteParts.push('ป่วย: ' + d.sickNames.join(', '));
-    if (d.absentNames && d.absentNames.length) noteParts.push('ขาด: ' + d.absentNames.join(', '));
+function renderReportTable(data) {
+  const container = $('reportContent');
+  if (data && data.days && !data.students) { renderDailyReportLegacy(data); return; }
+  if (!data || !data.students || !data.students.length) {
+    container.innerHTML = `<div class="card"><div class="empty-state"><div class="empty-state-icon">📑</div><h3>ไม่พบข้อมูลรายงานในช่วงเวลานี้</h3><p>ลองเปลี่ยนช่วงเดือน/ปี หรือเลือกชั้นเรียนอื่น</p></div></div>`;
+    return;
+  }
+  const dates = data.dates || [];
+  const archiveBadge = data.isArchive ? `<div class="info-banner no-print" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#5b21b6;border-color:#c4b5fd"><span class="icon">📦</span><span><b>ข้อมูลย้อนหลัง</b> — ปีการศึกษา ${escapeHtml(String(data.academicYear || ''))}</span></div>` : '';
+  const headerDates = dates.map(d => `<th style="width:30px;text-align:center;font-size:10px;padding:4px 2px">${d.day}<br><span style="font-size:8px;opacity:.75">${escapeHtml(d.weekdayShort || '')}</span></th>`).join('');
+  const rows = data.students.map((s, idx) => {
+    const cells = dates.map(d => { const st = (s.attendance && s.attendance[d.date]) || ''; return `<td style="text-align:center;padding:2px 1px"><span class="att-status" data-s="${st}" style="font-size:10px;width:22px;height:22px;line-height:22px">${st || ''}</span></td>`; }).join('');
+    const sum = s.summary || {};
     return `<tr>
-      <td class="col-stick-1" style="text-align:center">${d.day}</td>
-      <td class="col-stick-2 has-shadow-right">${d.monthShort} ${d.year}</td>
-      <td>${d.total}</td>
-      <td style="color:var(--green);font-weight:700">${d.present}</td>
-      <td style="color:var(--orange);font-weight:700">${d.sick}</td>
-      <td style="color:var(--yellow);font-weight:700">${d.leave}</td>
-      <td style="color:var(--red);font-weight:700">${d.absent}</td>
-      <td><b style="color:${color}">${pct}%</b></td>
-      <td style="font-size:11px;color:var(--muted);max-width:280px;white-space:normal">${escapeHtml(noteParts.join(' | '))}</td>
+      <td class="col-stick-1" style="text-align:center;font-weight:600;color:var(--muted)">${idx + 1}</td>
+      <td class="col-stick-2 has-shadow-right" style="white-space:nowrap"><b>${escapeHtml(s.fullName || '-')}</b></td>
+      <td style="text-align:center"><span class="badge blue">${escapeHtml(s.class || '')}</span></td>
+      ${cells}
+      <td style="text-align:center;font-weight:700;color:var(--green)">${sum.present || 0}</td>
+      <td style="text-align:center;font-weight:700;color:var(--yellow)">${sum.leave || 0}</td>
+      <td style="text-align:center;font-weight:700;color:var(--red)">${sum.absent || 0}</td>
+      <td style="text-align:center;font-weight:700;color:var(--orange)">${sum.sick || 0}</td>
+      <td style="text-align:center;font-weight:800;color:var(--primary)">${sum.percent || 0}%</td>
     </tr>`;
   }).join('');
-  const totalDays = data.days.filter(d => d.status === 'normal').length;
-  const teacher = (TEACHER_LIST_CACHE||[]).find(t => (t.classes||[]).indexOf(data.class) >= 0);
-  const archiveBadge = data.isArchive
-    ? `<div class="info-banner no-print" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#5b21b6;border-color:#c4b5fd"><span class="icon">📦</span><span><b>ข้อมูลย้อนหลัง</b> — ปีการศึกษา ${data.academicYear}</span></div>` : '';
-  c.innerHTML = `
+  const scopeText = $('reportScope').selectedOptions[0] ? $('reportScope').selectedOptions[0].text : 'ทั้งโรงเรียน';
+  const fromText = `${$('fromMonth').selectedOptions[0].text} ${$('fromYear').value}`;
+  const toText = `${$('toMonth').selectedOptions[0].text} ${$('toYear').value}`;
+  container.innerHTML = `
     ${archiveBadge}
     <div class="print-header">
       ${SCHOOL_SETTINGS.school_logo ? `<img src="${SCHOOL_SETTINGS.school_logo}" class="logo">` : ''}
       <h2>${escapeHtml(SCHOOL_SETTINGS.school_name || 'โรงเรียนบ้านถิ่นสำราญ')}</h2>
       <p>${escapeHtml(SCHOOL_SETTINGS.school_address || '')}</p>
-      <p><b>สถิติการมาเรียน${data.classLabel !== 'ทั้งโรงเรียน' ? 'ของนักเรียนชั้น ' + data.classLabel : 'ของนักเรียนทั้งโรงเรียน'}</b></p>
-      <p>${data.fromLabel} ถึง ${data.toLabel}${data.isArchive ? ' (ข้อมูลย้อนหลัง)' : ''}</p>
+      <p><b>แบบบันทึกเวลาเรียน (ปพ.5)</b> — ${escapeHtml(scopeText)}</p>
+      <p>ช่วงเวลา: ${escapeHtml(fromText)} ถึง ${escapeHtml(toText)}</p>
     </div>
     <div class="card" style="padding:0;overflow:hidden">
       <div class="table-info-bar" style="border-radius:0;border-left:0;border-right:0">
-        <span>📋 ${data.days.length} วัน · ${totalDays} วันเรียน</span>
-        <span class="scroll-hint" style="display:none">เลื่อนดูเพิ่มเติม</span>
+        <span>📊 นักเรียน ${data.students.length} คน · ${dates.length} วัน (เฉพาะวันเปิดภาคเรียน)</span>
       </div>
       <div class="sticky-table-wrap" id="reportStickyWrap" style="border:none;border-radius:0;max-height:calc(100vh - 320px)">
-        <table class="sticky-table">
+        <table class="sticky-table" style="font-size:12px">
           <thead><tr>
-            <th class="col-stick-1 has-shadow-right" style="width:55px;text-align:center">วันที่</th>
-            <th class="col-stick-2 has-shadow-right" style="width:95px">เดือน/ปี</th>
-            <th class="hide-mobile" style="width:75px">เต็ม</th>
-            <th style="width:65px">มา</th>
-            <th style="width:55px">ป่วย</th>
-            <th style="width:55px">ลา</th>
-            <th style="width:55px">ขาด</th>
-            <th style="width:65px">%</th>
-            <th class="hide-mobile" style="min-width:280px">หมายเหตุ</th>
+            <th class="col-stick-1 has-shadow-right" style="width:38px;text-align:center">ที่</th>
+            <th class="col-stick-2 has-shadow-right" style="min-width:150px">ชื่อ-สกุล</th>
+            <th style="width:55px;text-align:center">ชั้น</th>
+            ${headerDates}
+            <th style="width:38px;text-align:center;color:var(--green)" title="มา">มา</th>
+            <th style="width:38px;text-align:center;color:var(--yellow)" title="ลา">ลา</th>
+            <th style="width:38px;text-align:center;color:var(--red)" title="ขาด">ขาด</th>
+            <th style="width:38px;text-align:center;color:var(--orange)" title="ป่วย">ป่วย</th>
+            <th style="width:48px;text-align:center">%</th>
           </tr></thead>
           <tbody>${rows}</tbody>
-          <tfoot style="background:#f8fafc;font-weight:800;position:sticky;bottom:0;z-index:12">
-            <tr>
-              <td class="col-stick-1" colspan="2" style="background:#f8fafc;text-align:center">รวม</td>
-              <td class="hide-mobile" style="background:#f8fafc">—</td>
-              <td style="color:var(--green);background:#f8fafc">${data.summary.totalPresent}</td>
-              <td style="color:var(--orange);background:#f8fafc">${data.summary.totalSick}</td>
-              <td style="color:var(--yellow);background:#f8fafc">${data.summary.totalLeave}</td>
-              <td style="color:var(--red);background:#f8fafc">${data.summary.totalAbsent}</td>
-              <td style="background:#f8fafc">—</td>
-              <td class="hide-mobile" style="background:#f8fafc"></td>
-            </tr>
-          </tfoot>
         </table>
       </div>
-      <div class="print-signature">
-        ${teacher && teacher.signature ? `<img src="${teacher.signature}">` : ''}
-        <div style="margin-bottom:4px">ลงชื่อ ....................................................</div>
-        <div>(${escapeHtml(teacher ? teacher.fullName : '................................')})</div>
-        <div>${teacher ? escapeHtml(teacher.position || 'ครูประจำชั้น') : 'ครูประจำชั้น'}</div>
-      </div>
     </div>
-    <div class="charts-grid no-print">
-      <div class="chart-card" style="grid-column:1/-1">
-        <h3>📈 แนวโน้มรายวัน</h3>
-        <div class="chart-canvas-wrap tall"><canvas id="chartDailyReport"></canvas></div>
+    <div class="print-signature" style="display:flex;justify-content:space-between;margin-top:28px;gap:20px;flex-wrap:wrap">
+      <div style="text-align:center;min-width:220px">
+        <div style="margin-bottom:4px">ลงชื่อ ....................................................</div>
+        <div>( .................................................... )</div>
+        <div style="font-size:11px;color:#555">ครูประจำชั้น</div>
+      </div>
+      <div style="text-align:center;min-width:220px">
+        ${SCHOOL_SETTINGS.director_signature ? `<img src="${SCHOOL_SETTINGS.director_signature}" style="max-height:45px;margin:0 auto 4px">` : ''}
+        <div style="margin-bottom:4px">ลงชื่อ ....................................................</div>
+        <div>( ${escapeHtml(SCHOOL_SETTINGS.director_name || '....................................................')} )</div>
+        <div style="font-size:11px;color:#555">ผู้อำนวยการโรงเรียน</div>
       </div>
     </div>`;
-  if (dailyReportChart) dailyReportChart.destroy();
-  const normalDays = data.days.filter(d => d.status === 'normal');
-  dailyReportChart = new Chart($('chartDailyReport'), {
-    type: 'line',
-    data: { labels: normalDays.map(d => d.day + ' ' + d.monthShort), datasets: [
-      { label: 'มาเรียน', data: normalDays.map(d => d.present), borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,.1)', fill: true, tension: .3, pointRadius: 3, borderWidth: 2 },
-      { label: 'ป่วย', data: normalDays.map(d => d.sick), borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,.08)', fill: true, tension: .3, pointRadius: 3, borderWidth: 2 },
-      { label: 'ลา', data: normalDays.map(d => d.leave), borderColor: '#fbbf24', backgroundColor: 'rgba(251,191,36,.08)', fill: true, tension: .3, pointRadius: 3, borderWidth: 2 },
-      { label: 'ขาด', data: normalDays.map(d => d.absent), borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,.08)', fill: true, tension: .3, pointRadius: 3, borderWidth: 2 }
-    ] },
-    options: { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' },
-      scales: { y: { beginAtZero: true }, x: { ticks: { autoSkip: true, maxTicksLimit: 31 } } },
-      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } }
+  setTimeout(setupAllStickyTables, 100);
+}
+
+/* Fallback: day-based + กรองเฉพาะวันเปิดภาคเรียน */
+function renderDailyReportLegacy(data) {
+  const c = $('reportContent');
+  if (!data.days || !data.days.length) { c.innerHTML = `<div class="card"><div class="empty-state"><div class="empty-state-icon">📋</div><h3>ไม่พบข้อมูล</h3></div></div>`; return; }
+
+  // 🔑 กรองเฉพาะวันในภาคเรียน
+  const filteredDays = data.days.filter(d => {
+    if (d.status === 'weekend') return false; // ซ่อนวันหยุดสุดสัปดาห์ออกทั้งหมด
+    return isDateInActiveTerm(d.date);
   });
+
+  if (!filteredDays.length) {
+    c.innerHTML = `
+      <div class="card">
+        <div class="report-empty-filter">
+          <div class="icon">📅</div>
+          <h3>ไม่มีข้อมูลในช่วงเวลาที่เลือก</h3>
+          <p>ช่วงเดือน/ปีที่เลือก ไม่มีวันที่อยู่ในช่วงเปิด-ปิดภาคเรียน<br>กรุณาตรวจสอบวันเปิด-ปิดภาคเรียนที่หน้า "ปีการศึกษา"</p>
+        </div>
+      </div>`;
+    return;
+  }
+
+  // สร้างการ์ด (สำหรับ mobile)
+  const cardsHtml = filteredDays.map(d => {
+    const isHoliday = d.status === 'holiday';
+    const pct = d.total ? +(d.present / d.total * 100).toFixed(2) : 0;
+    const pctClass = pct >= 90 ? 'good' : pct >= 80 ? 'warn' : 'bad';
+    const weekday = d.weekdayShort || (d.date ? WEEKDAYS_SHORT[new Date(d.date + 'T00:00:00').getDay()] : '');
+    if (isHoliday) {
+      return `<div class="report-day-card holiday">
+        <div class="report-day-header">
+          <div class="report-day-date"><span class="report-day-num">${d.day}</span><span class="report-day-month">${d.monthShort} ${d.year}</span></div>
+          <span class="report-day-percent">🎉 วันหยุด</span>
+        </div>
+      </div>`;
+    }
+    const notes = [];
+    if (d.leaveNames && d.leaveNames.length) notes.push(`<div><strong>ลา:</strong> ${escapeHtml(d.leaveNames.join(', '))}</div>`);
+    if (d.sickNames && d.sickNames.length) notes.push(`<div><strong>ป่วย:</strong> ${escapeHtml(d.sickNames.join(', '))}</div>`);
+    if (d.absentNames && d.absentNames.length) notes.push(`<div><strong>ขาด:</strong> ${escapeHtml(d.absentNames.join(', '))}</div>`);
+    return `<div class="report-day-card">
+      <div class="report-day-header">
+        <div class="report-day-date">
+          <span class="report-day-num">${d.day}</span>
+          <span class="report-day-month">${d.monthShort} ${d.year}</span>
+          ${weekday ? `<span class="report-day-weekday">${weekday}</span>` : ''}
+        </div>
+        <span class="report-day-percent ${pctClass}">${pct}%</span>
+      </div>
+      <div class="report-day-stats">
+        <div class="report-day-stat total"><span class="lbl">ทั้งหมด</span><span class="val">${d.total || 0}</span></div>
+        <div class="report-day-stat present"><span class="lbl">มา</span><span class="val">${d.present || 0}</span></div>
+        <div class="report-day-stat sick"><span class="lbl">ป่วย</span><span class="val">${d.sick || 0}</span></div>
+        <div class="report-day-stat leave"><span class="lbl">ลา</span><span class="val">${d.leave || 0}</span></div>
+        <div class="report-day-stat absent"><span class="lbl">ขาด</span><span class="val">${d.absent || 0}</span></div>
+      </div>
+      ${notes.length ? `<div class="report-day-notes">${notes.join('')}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  // สร้างตาราง (สำหรับ desktop)
+  const tableRows = filteredDays.map(d => {
+    if (d.status === 'holiday') {
+      return `<tr style="background:#fef9c3"><td class="col-stick-1" style="text-align:center">${d.day}</td><td class="col-stick-2 has-shadow-right">${d.monthShort} ${d.year}</td><td colspan="7" style="text-align:center;color:#92400e;font-weight:600">🎉 วันหยุด</td></tr>`;
+    }
+    const pct = d.total ? +(d.present/d.total*100).toFixed(2) : 0;
+    const color = pct >= 90 ? 'var(--green)' : pct >= 80 ? 'var(--yellow)' : 'var(--red)';
+    const notes = [];
+    if (d.leaveNames && d.leaveNames.length) notes.push('ลา: ' + d.leaveNames.join(', '));
+    if (d.sickNames && d.sickNames.length) notes.push('ป่วย: ' + d.sickNames.join(', '));
+    if (d.absentNames && d.absentNames.length) notes.push('ขาด: ' + d.absentNames.join(', '));
+    return `<tr>
+      <td class="col-stick-1" style="text-align:center">${d.day}</td>
+      <td class="col-stick-2 has-shadow-right">${d.monthShort} ${d.year}</td>
+      <td style="font-weight:700">${d.total}</td>
+      <td style="color:var(--green);font-weight:700">${d.present}</td>
+      <td style="color:var(--orange);font-weight:700">${d.sick}</td>
+      <td style="color:var(--yellow);font-weight:700">${d.leave}</td>
+      <td style="color:var(--red);font-weight:700">${d.absent}</td>
+      <td><b style="color:${color}">${pct}%</b></td>
+      <td class="hide-mobile" style="font-size:11px;color:var(--muted);max-width:280px;white-space:normal">${escapeHtml(notes.join(' | '))}</td>
+    </tr>`;
+  }).join('');
+
+  const totalDays = filteredDays.filter(d => d.status === 'normal').length;
+  const teacher = (TEACHER_LIST_CACHE||[]).find(t => (t.classes||[]).indexOf(data.class) >= 0);
+
+  c.innerHTML = `
+    <div class="print-header">
+      ${SCHOOL_SETTINGS.school_logo ? `<img src="${SCHOOL_SETTINGS.school_logo}" class="logo">` : ''}
+      <h2>${escapeHtml(SCHOOL_SETTINGS.school_name || 'โรงเรียนบ้านถิ่นสำราญ')}</h2>
+      <p>${escapeHtml(SCHOOL_SETTINGS.school_address || '')}</p>
+      <p>สถิติการมาเรียน${data.classLabel !== 'ทั้งโรงเรียน' ? 'ของนักเรียนชั้น ' + data.classLabel : 'ของนักเรียนทั้งโรงเรียน'}</p>
+      <p>${escapeHtml(data.fromLabel || '')} ถึง ${escapeHtml(data.toLabel || '')}</p>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <div class="table-info-bar" style="border-radius:0;border-left:0;border-right:0">
+        <span>📋 ${filteredDays.length} วัน · ${totalDays} วันเรียน</span>
+      </div>
+
+      <!-- Mobile cards -->
+      <div class="report-daily-cards">${cardsHtml}</div>
+
+      <!-- Desktop table -->
+      <div class="report-daily-table-wrap">
+        <div class="sticky-table-wrap" id="reportStickyWrap" style="border:none;border-radius:0;max-height:calc(100vh - 320px)">
+          <table class="sticky-table">
+            <thead><tr>
+              <th class="col-stick-1 has-shadow-right" style="width:55px;text-align:center">วันที่</th>
+              <th class="col-stick-2 has-shadow-right" style="width:95px">เดือน/ปี</th>
+              <th style="width:75px">เต็ม</th>
+              <th style="width:65px">มา</th>
+              <th style="width:55px">ป่วย</th>
+              <th style="width:55px">ลา</th>
+              <th style="width:55px">ขาด</th>
+              <th style="width:65px">%</th>
+              <th class="hide-mobile" style="min-width:280px">หมายเหตุ</th>
+            </tr></thead>
+            <tbody>${tableRows}</tbody>
+          </table>
+        </div>
+      </div>
+    </div>`;
   setTimeout(setupAllStickyTables, 100);
 }
 
 /* ============================================================
- * MY PROFILE
+ * MY PROFILE & SECURITY
  * ============================================================ */
+let _myPhotoTemp = null;
 function openMyProfile() {
   if (!CURRENT_USER) return;
+  _myPhotoTemp = null;
   const u = CURRENT_USER;
-  const avatar = u.photo ? `<img src="${u.photo}" style="width:100%;height:100%;object-fit:cover">` : (u.name||'?').charAt(0);
+  const avatar = u.photo ? `<img src="${u.photo}" style="width:100%;height:100%;object-fit:cover">` : escapeHtml((u.name || '?').charAt(0));
   $('myProfileBody').innerHTML = `
-    <div class="photo-upload" style="margin-bottom:16px">
-      <div class="placeholder" id="myAvatar" style="width:130px;height:130px;font-size:42px">${avatar}</div>
-      <label for="myAvatarInput">📷 เปลี่ยนรูป</label>
-      <input type="file" id="myAvatarInput" accept="image/*" onchange="handleMyAvatarUpload(event)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:20px">
+      <div class="profile-avatar" id="myProfilePhotoPreview" style="width:110px;height:110px;font-size:36px">${avatar}</div>
+      <div class="photo-upload" style="border:none;background:transparent;padding:0">
+        <label for="myPhotoInput" style="cursor:pointer;color:var(--primary);font-weight:700;font-size:13px">📷 เปลี่ยนรูปถ่าย</label>
+        <input type="file" id="myPhotoInput" accept="image/*" onchange="handleMyPhotoUpload(event)">
+      </div>
     </div>
-    <input type="hidden" id="myPhoto" value="${u.photo || ''}">
-    <div class="form-group" style="margin-bottom:14px"><label>ชื่อผู้ใช้</label><input type="text" value="${escapeHtml(u.username)}" disabled></div>
-    <div class="form-group" style="margin-bottom:14px"><label>ชื่อ-สกุล</label><input type="text" id="myName" value="${escapeHtml(u.name)}"></div>
-    <div class="form-group" style="margin-bottom:14px"><label>เบอร์โทร</label><input type="tel" id="myPhone" maxlength="10" value="${escapeHtml(u.phone||'')}"></div>
-    <div class="form-group" style="margin-bottom:14px"><label>บทบาท</label><input type="text" value="${u.roleLabel}" disabled></div>
-    <div class="form-group">
-      <label>ชั้นที่ดูแล</label>
-      <div class="checkbox-group" id="myClassesBox">${CLASSES.map(c => `<label><input type="checkbox" value="${c}" ${(u.classes||[]).indexOf(c)>=0?'checked':''}> ${CLASS_LABELS[c]}</label>`).join('')}</div>
-    </div>`;
+    <div class="form-group" style="margin-bottom:12px"><label>ชื่อผู้ใช้งาน (Username)</label><input type="text" value="${escapeHtml(u.username)}" disabled style="background:#f1f5f9"></div>
+    <div class="form-group" style="margin-bottom:12px"><label>ชื่อ-สกุล <span style="color:var(--red)">*</span></label><input type="text" id="myProfileName" value="${escapeHtml(u.name || '')}" required></div>
+    <div class="form-group" style="margin-bottom:12px"><label>เบอร์โทรศัพท์</label><input type="tel" id="myProfilePhone" value="${escapeHtml(u.phone || '')}" maxlength="10"></div>
+    <div class="form-group"><label>ตำแหน่ง</label><input type="text" id="myProfilePosition" value="${escapeHtml(u.position || '')}"></div>`;
   $('myProfileModalOverlay').classList.add('show');
 }
 function closeMyProfileModal() { $('myProfileModalOverlay').classList.remove('show'); }
-let _myAvatarTemp = null;
-async function handleMyAvatarUpload(e) {
+async function handleMyPhotoUpload(e) {
   if (!e.target.files[0]) return;
-  _myAvatarTemp = await fileToBase64(e.target.files[0], 300);
-  $('myAvatar').innerHTML = `<img src="${_myAvatarTemp}" style="width:100%;height:100%;object-fit:cover">`;
+  _myPhotoTemp = await fileToBase64(e.target.files[0], 250);
+  $('myProfilePhotoPreview').innerHTML = `<img src="${_myPhotoTemp}" style="width:100%;height:100%;object-fit:cover">`;
 }
 async function saveMyProfile() {
-  const classes = Array.from($('myClassesBox').querySelectorAll('input:checked')).map(cb => cb.value);
-  const data = { name: $('myName').value.trim(), phone: $('myPhone').value.trim(), classes, photo: _myAvatarTemp !== null ? _myAvatarTemp : ($('myPhoto').value || '') };
-  if (!data.name) { showToast('ต้องระบุชื่อ-สกุล', 'error'); return; }
-  const btn = $('btnSaveMyProfile'); btn.disabled = true; btn.innerHTML = '<span class="loading"></span>';
+  const name = $('myProfileName').value.trim();
+  const phone = $('myProfilePhone').value.trim();
+  const position = $('myProfilePosition').value.trim();
+  if (!name) { showToast('กรุณากรอกชื่อ-สกุล', 'error'); return; }
+  const btn = $('btnSaveMyProfile'); btn.disabled = true; btn.innerHTML = '<span class="loading"></span> กำลังบันทึก...';
   try {
-    const res = await API.updateMyProfile(data);
-    if (res.ok) {
-      showToast('บันทึกข้อมูลสำเร็จ');
-      const refreshed = await API.checkSession();
-      if (refreshed.ok) { CURRENT_USER = refreshed.user; updateUserUI(); }
-      closeMyProfileModal();
-      _myAvatarTemp = null;
-    } else throw new Error(res.error);
+    const payload = { name, phone, position };
+    if (_myPhotoTemp !== null) payload.photo = _myPhotoTemp;
+    const res = await API.updateMyProfile(payload);
+    if (res && res.ok === false) throw new Error(res.error || 'บันทึกไม่สำเร็จ');
+    showToast('อัปเดตข้อมูลสำเร็จ');
+    try { const chk = await API.checkSession(); if (chk.ok) { CURRENT_USER = chk.user; updateUserUI(); } } catch(e) {}
+    closeMyProfileModal();
+    _myPhotoTemp = null;
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
   finally { btn.disabled = false; btn.innerHTML = '💾 บันทึก'; }
 }
 function openChangePassword() { $('changePwdForm').reset(); $('changePwdModalOverlay').classList.add('show'); }
 function closeChangePwdModal() { $('changePwdModalOverlay').classList.remove('show'); }
 async function saveChangePwd() {
-  const oldPassword = $('oldPwd').value, newPassword = $('newPwd').value, newPwd2 = $('newPwd2').value;
-  if (!oldPassword || !newPassword) { showToast('กรอกข้อมูลให้ครบ', 'error'); return; }
-  if (newPassword !== newPwd2) { showToast('รหัสใหม่ไม่ตรงกัน', 'error'); return; }
-  if (newPassword.length < 4) { showToast('รหัสอย่างน้อย 4 ตัวอักษร', 'error'); return; }
-  const btn = $('btnSavePwd'); btn.disabled = true; btn.innerHTML = '<span class="loading"></span>';
+  const oldPassword = $('oldPwd').value;
+  const newPassword = $('newPwd').value;
+  const newPassword2 = $('newPwd2').value;
+  if (!oldPassword || !newPassword) { showToast('กรุณากรอกรหัสผ่านให้ครบ', 'error'); return; }
+  if (newPassword !== newPassword2) { showToast('รหัสผ่านใหม่ไม่ตรงกัน', 'error'); return; }
+  if (newPassword.length < 4) { showToast('รหัสผ่านต้องมี 4 ตัวอักษรขึ้นไป', 'error'); return; }
+  const btn = $('btnSavePwd'); btn.disabled = true; btn.innerHTML = '<span class="loading"></span> กำลังเปลี่ยน...';
   try {
     const res = await API.changePassword({ oldPassword, newPassword });
-    if (res.ok) { showToast('เปลี่ยนรหัสผ่านสำเร็จ'); closeChangePwdModal(); }
-    else throw new Error(res.error);
+    if (res && res.ok === false) throw new Error(res.error || 'เปลี่ยนรหัสไม่สำเร็จ');
+    showToast('เปลี่ยนรหัสผ่านเรียบร้อยแล้ว กรุณาเข้าสู่ระบบใหม่', 'success', 3000);
+    closeChangePwdModal();
+    setTimeout(() => {
+      localStorage.removeItem(LS_KEY_TOKEN); localStorage.removeItem(LS_KEY_USER);
+      localStorage.removeItem(LS_KEY_EXPIRES); sessionStorage.clear();
+      location.reload();
+    }, 1800);
   } catch(e) { showToast('❌ ' + e.message, 'error'); }
   finally { btn.disabled = false; btn.innerHTML = '💾 บันทึก'; }
 }
@@ -3506,28 +3132,32 @@ async function saveChangePwd() {
  * BADGES & POLLING
  * ============================================================ */
 async function updateBadges() {
+  if (!CURRENT_USER) return;
   try {
-    const res = await API.getPendingCount();
-    const count = res.count || 0;
-    const badge = $('pendingDeletesBadge');
-    if (count > 0) { badge.style.display = ''; badge.textContent = count; }
-    else badge.style.display = 'none';
+    if (isApprover()) {
+      const delRes = await API.getPendingCount();
+      const count = (delRes && delRes.count) || 0;
+      const badge = $('pendingDeletesBadge');
+      if (badge) { badge.textContent = count; badge.style.display = count > 0 ? 'inline-block' : 'none'; }
+    }
   } catch(e) {}
   if (isManager()) {
     try {
-      const pending = await API.getPendingUsers();
-      const b = $('pendingUsersBadge');
-      if (pending.length > 0) { b.style.display = ''; b.textContent = pending.length; }
-      else b.style.display = 'none';
+      const usersRes = await API.getPendingUsers();
+      const uCount = Array.isArray(usersRes) ? usersRes.length : 0;
+      const uBadge = $('pendingUsersBadge');
+      if (uBadge) { uBadge.textContent = uCount; uBadge.style.display = uCount > 0 ? 'inline-block' : 'none'; }
     } catch(e) {}
   }
 }
-let lastSyncVersion = null, pollTimer = null;
+let lastSyncVersion = null;
+let _pollingInterval = null;
 async function checkSync() {
+  if (!CURRENT_USER) return;
   try {
     const res = await API.getSyncVersion();
     if (lastSyncVersion !== null && res.version !== lastSyncVersion) {
-      showToast('ข้อมูลอัปเดต', 'info');
+      showToast('ข้อมูลอัปเดต', 'info', 2000);
       refreshCurrentPage();
       updateBadges();
     }
@@ -3549,46 +3179,46 @@ function refreshCurrentPage() {
   else if (currentPage === 'home') loadHomeStats();
 }
 function startPolling() {
-  if (pollTimer) clearInterval(pollTimer);
-  pollTimer = setInterval(checkSync, 30000);
+  if (_pollingInterval) clearInterval(_pollingInterval);
+  _pollingInterval = setInterval(checkSync, 60000);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) checkSync(); });
 }
 
 /* ============================================================
- * INIT
+ * BOOTSTRAP
  * ============================================================ */
 function buildSignupClasses() {
   const box = $('suClassesBox');
   if (!box) return;
-  box.innerHTML = CLASSES.map(c => `<label><input type="checkbox" value="${c}"> ${CLASS_LABELS[c]}</label>`).join('');
+  box.innerHTML = CLASSES.map(c => `<label><input type="checkbox" value="${c}"> ${CLASS_LABELS[c] || c}</label>`).join('');
 }
 document.addEventListener('DOMContentLoaded', async () => {
   buildSignupClasses();
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeDrawer();
+      document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show'));
+    }
+  });
+  window.addEventListener('online', () => setSyncStatus(true, 'พร้อมใช้งาน'));
+  window.addEventListener('offline', () => setSyncStatus(false, 'ไม่มีสัญญาณอินเทอร์เน็ต'));
   try {
     await API.ping();
     const ok = await tryAutoLogin();
     if (ok) { await enterApp(); }
     else {
-      try { const s = await API.getSettings(); SCHOOL_SETTINGS = s; if (s.school_logo) $('authLogo').innerHTML = `<img src="${s.school_logo}">`; } catch(e) {}
+      try { const s = await API.getSettings(); SCHOOL_SETTINGS = s || {}; if (s && s.school_logo) $('authLogo').innerHTML = `<img src="${s.school_logo}">`; } catch(e) {}
       $('authPage').style.display = 'flex';
-      $('loginUsername').focus();
+      $('appRoot').style.display = 'none';
+      setTimeout(() => $('loginUsername') && $('loginUsername').focus(), 100);
     }
   } catch(e) {
     console.error(e);
-    showToast('⚠️ ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้', 'error');
+    showToast('⚠️ ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้', 'error', 5000);
     $('authPage').style.display = 'flex';
   }
 });
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeDrawer();
-    closeStudentModal(); closeProfileModal(); closeTeacherModal();
-    closeUserModal(); closeTransferModal(); closeMyProfileModal(); closeChangePwdModal();
-    closePromoConfirm();
-  }
-});
-
-/* Pull to refresh */
+/* Pull-to-refresh */
 let _pullStart = 0, _pullActive = false;
 document.addEventListener('touchstart', e => {
   if (window.scrollY === 0 && $('appRoot').style.display !== 'none' && !$('drawer').classList.contains('show')) { _pullStart = e.touches[0].clientY; _pullActive = true; }
@@ -3596,11 +3226,7 @@ document.addEventListener('touchstart', e => {
 document.addEventListener('touchmove', e => {
   if (!_pullActive) return;
   const diff = e.touches[0].clientY - _pullStart;
-  if (diff > 80 && window.scrollY === 0) {
-    _pullActive = false;
-    refreshCurrentPage();
-    showToast('รีเฟรชข้อมูลแล้ว', 'info', 1500);
-  }
+  if (diff > 80 && window.scrollY === 0) { _pullActive = false; refreshCurrentPage(); showToast('รีเฟรชข้อมูลแล้ว', 'info', 1500); }
 }, { passive: true });
 document.addEventListener('touchend', () => { _pullActive = false; });
 </script>
